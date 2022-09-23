@@ -1,0 +1,46 @@
+@import "~tailwindcss/base";
+@import "~tailwindcss/components";
+@import "~tailwindcss/utilities";
+@import 'fonts';
+@import 'modal';
+
+html * {
+    font-family: Poppins, sans-serif;
+}
+
+.nav {
+    @apply flex gap-5 ml-20 justify-start flex-1;
+
+    li {
+        @apply flex;
+
+        a {
+            @apply flex items-center gap-2 duration-300 transition-all px-2 py-1 rounded-md;
+
+            &:hover {
+                @apply scale-105 bg-primary bg-opacity-5
+            }
+        }
+    }
+}
+
+.child-m-auto * {
+    @apply m-auto;
+}
+
+@mixin createVariants($apply, $dynamicapply, $className, $start, $per, $end) {
+    @for $i from 0 to $end/$per {
+        .#{$className}-#{$start+$per*$i} {
+            @if $dynamicapply=='duration' {
+                @apply #{$apply} #{'duration-[#{$start+$per*$i}ms]'}
+
+            }
+
+            @else {
+                @apply #{$apply}
+            }
+        }
+    }
+}
+
+@include createVariants('transition-all', 'duration', 'trans', 100, 100, 900);
