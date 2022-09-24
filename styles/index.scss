@@ -43,4 +43,20 @@ html * {
     }
 }
 
+@mixin useColorPalette($className, $color, $attribute) {
+    @for $i from 1 to 9 {
+        .#{$className}-#{$color}-#{$i*100} {
+            * {
+                @apply #{'#{$attribute}-#{$color}-#{$i*100}'};
+
+            }
+
+            &:hover * {
+                @apply opacity-30;
+            }
+        }
+    }
+}
+
 @include createVariants('transition-all', 'duration', 'trans', 100, 100, 900);
+@include useColorPalette('svg', 'gray', 'fill');

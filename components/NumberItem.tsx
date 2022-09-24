@@ -2,22 +2,32 @@ import React from 'react'
 
 type Props = {
     value: string;
+    bracketsClassName?: string
 }
 
-export default function NumberItem({ value }: Props) {
+export default function NumberItem({ value, bracketsClassName = "font-normal" }: Props) {
+
 
     const splitting = (value: string) => {
-        const str = value.split(" ");
-        str.shift();
-        return [value[0], str.join(" ")];
+
+        const [number, ...textarr] = value.split(" ")
+        const paranthesesText = textarr.join(' ').match(/\((.*)\)/)?.[0]
+        const text = textarr.join(' ').replace(/\((.*)\)/, '')
+
+        return <>
+            <span className=" bg-design-gray-200 px-[15px] py-[17px] leading-[0px] rounded-full ">{number}</span>
+            <div>
+                <span>{text}</span>
+                {paranthesesText && <span className={bracketsClassName}>{paranthesesText}</span>}
+            </div>
+        </>
     };
 
-    const [number, text] = splitting(value);
-    
+
+
     return (
-        <div className="flex gap-4 items-center font-semibold text-lg tracking-tighter  my-6">
-            <span className="bg-design-gray-200 px-[15px] py-[17px] leading-[0px] rounded-full ">{number}</span>
-            <span>{text}</span>
+        <div className="flex gap-4 items-center font-semibold text-lg tracking-tighter  mt-6 mb-10">
+            {splitting(value)}
         </div>
     )
 }

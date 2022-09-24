@@ -14,7 +14,8 @@ module.exports = {
         design: {
           gray: {
             100: '#F5F5F5',
-            200: '#EAEAEA'
+            200: '#EAEAEA',
+            300: '#D2DAE3'
           }
         }
       },
