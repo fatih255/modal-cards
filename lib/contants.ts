@@ -1,5 +1,7 @@
-const modals = [
-    { name: "01", thumbnail: 'images/modals/01.png' },
+export const colorSelectPalette = ['color-primary', 'color-1', 'color-2', 'color-3', 'color-4']
+
+export const modals = [
+    { name: "SecurityCodeModal", thumbnail: 'images/modals/01.png' },
     { name: "02", thumbnail: 'images/modals/02.png' },
     { name: "03", thumbnail: 'images/modals/03.png' },
     { name: "04", thumbnail: 'images/modals/04.png' },
@@ -36,5 +38,3 @@ const modals = [
     { name: "35", thumbnail: 'images/modals/35.png' },
     { name: "36", thumbnail: 'images/modals/36.png' },
 ]
-
-export { modals }

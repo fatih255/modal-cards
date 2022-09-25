@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
+import ModalReducer from './slices/modal'
 import widgetsReducer from './slices/widgets'
 //widgets reducers
 import BalloonImageReducer from './slices/widget/balloonImage'
 
 export const store = configureStore({
     reducer: {
+        modal: ModalReducer,
         widgets: widgetsReducer,
         balloon_image_widget: BalloonImageReducer
     }

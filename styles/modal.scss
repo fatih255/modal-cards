@@ -1,5 +1,5 @@
 .default {
-    @apply relative bg-white px-16 py-5 flex flex-col gap-8 justify-center items-center shadow-2xl rounded-lg;
+    @apply absolute w-full h-full bg-white px-16 py-10 flex flex-col gap-8 justify-center items-center shadow-2xl rounded-lg;
 
     * {
         @apply font-inter
@@ -23,10 +23,78 @@
 
     // style particles
     .title {
-        @apply text-3xl font-bold leading-9
+        @apply text-3xl font-bold leading-9 text-center
     }
 
     .description {
-        @apply font-inter text-xl font-normal leading-6
+        @apply font-inter text-xl font-normal leading-6 text-center
+    }
+}
+
+// position classes
+.pos-tl {
+    @apply top-0 left-0
+}
+
+.pos-tc {
+    @apply top-0 mx-auto
+}
+
+.pos-tr {
+    @apply top-0 right-0
+}
+
+.pos-ml {
+    @apply inset-0 my-auto mr-auto
+}
+
+.pos-mc {
+    @apply m-auto inset-0
+}
+
+.pos-mr {
+    @apply inset-0 my-auto ml-auto
+}
+
+.pos-bl {
+    @apply bottom-0 left-0
+}
+
+.pos-bc {
+    @apply bottom-0 mx-auto
+}
+
+.pos-br {
+    @apply bottom-0 right-0
+}
+
+// select colors
+.color-primary {
+    @apply bg-primary
+}
+
+.color-1 {
+    @apply bg-[#000000]
+}
+
+.color-2 {
+    @apply bg-[#F37C34]
+}
+
+.color-3 {
+    @apply bg-[#777777]
+}
+
+.color-4 {
+    &:not(svg) {
+        @apply bg-[#FFFFFF] text-black outline outline-[1px] outline-gray-200;
+
+        &:hover {
+            @apply outline outline-[1px] outline-gray-400
+        }
+    }
+
+    &>* {
+        @apply fill-black
     }
 }

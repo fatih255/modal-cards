@@ -13,16 +13,16 @@ export const widgetsSlice = createSlice({
     name: 'widgets',
     initialState,
     reducers: {
-        add: (state, action: PayloadAction<string>) => {
+        addWidgets: (state, action: PayloadAction<string>) => {
             state.widgets.push(action.payload)
         },
-        remove: (state, action: PayloadAction<string>) => {
+        removeWidgets: (state, action: PayloadAction<string>) => {
             state.widgets = state.widgets.filter(w => w !== action.payload)
         }
     }
 })
 
-export const { add, remove } = widgetsSlice.actions
+export const { addWidgets, removeWidgets } = widgetsSlice.actions
 
 export const getWidgets = (state: RootState) => state.widgets
 

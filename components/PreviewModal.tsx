@@ -16,9 +16,9 @@ export default function PreviewModal() {
                         Subscribe and Get an Extra
                         <br /><span className="font-semibold underline">25% Off</span> on your first purchase.
                     </p>
-                    <input className="px-4 py-3 my-4 w-full rounded-xl text-gray-700 border border-[#BBBBBB] focus:outline focus:outline-gray-300" placeholder="Email address" />
+                    <input className="px-4 py-3 my-4 w-full rounded-xl text-gray-700 border border-design-gray-400 focus:outline focus:outline-gray-300" placeholder="Email address" />
                     <button className="p-3 font-semibold rounded-xl bg-black hover:bg-opacity-70 text-white  w-full transition-all duration-300">Subscribe</button>
-                    <span className="mt-4 block w-full max-w-[250px] text-left text-xs text-[#777777] leading-[18px]">By signing up, you agree to  <u>Privacy Policy </u>
+                    <span className="mt-4 block w-full max-w-[250px] text-left text-xs text-design-gray-900 leading-[18px]">By signing up, you agree to  <u>Privacy Policy </u>
                         and <u>Terms of Use.</u> </span>
                 </div>
             </div>

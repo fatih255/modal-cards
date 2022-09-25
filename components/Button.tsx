@@ -7,12 +7,13 @@ type Props = {
     size?: 'small' | 'large' | 'medium' | 'modal-default'
     shadow?: boolean
     onClick?: React.MouseEventHandler<HTMLButtonElement>
+    className?: string
 }
 
 
-export default function Button({ text, theme = 'primary', size = "small", shadow = false, onClick }: Props) {
+export default function Button({ text, theme = 'primary', size = "small", shadow = false, onClick, className }: Props) {
     return (
-        <button onClick={onClick} className={`${getClass(theme, size, shadow)} hover:bg-opacity-80 transition-all duration-300  font-inter self-center`}>
+        <button onClick={onClick} className={`${getClass(theme, size, shadow)} hover:bg-opacity-80 transition-all duration-300  font-inter self-center ${className ?? ''} `}>
             {text}
         </button>
     )

@@ -3,6 +3,7 @@
 @import "~tailwindcss/utilities";
 @import 'fonts';
 @import 'modal';
+@import 'panel';
 
 html * {
     font-family: Poppins, sans-serif;
@@ -24,9 +25,20 @@ html * {
     }
 }
 
+
+.child-font-inter * {
+    @apply font-inter;
+}
+
 .child-m-auto * {
     @apply m-auto;
 }
+
+.flex-center{
+    justify-content: center;
+    align-items: center;
+}
+
 
 @mixin createVariants($apply, $dynamicapply, $className, $start, $per, $end) {
     @for $i from 0 to $end/$per {

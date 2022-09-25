@@ -3,7 +3,7 @@ type BalloonImageWidgetType = {
     width: string
     height: string
     bgColor: string
-    image: JSX.Element
+    imageName: string
 }
 
 export type { BalloonImageWidgetType }

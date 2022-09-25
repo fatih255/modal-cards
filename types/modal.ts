@@ -1,6 +1,7 @@
 
-type commonType = {
+type commonModalType = {
     layout?: string
+    content?: string[]
 }
 
 const defaultValues = {
@@ -8,7 +9,5 @@ const defaultValues = {
 }
 
 
-
-
-export type { commonType }
+export type { commonModalType }
 export { defaultValues }

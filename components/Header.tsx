@@ -3,12 +3,14 @@ import Logo from 'svgs/logo.svg'
 import DropdownIcon from 'svgs/dropdown.svg'
 import Button from './Button'
 import Flexing from './Flexing'
+import { scrollStep } from '../lib/utils'
+import { useAppSelector } from '../redux/hooks'
 type Props = {}
 
 export default function Header({ }: Props) {
 
     const signInHandler = () => {
-
+        scrollStep('1')
     }
 
     return (
