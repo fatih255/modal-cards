@@ -13,6 +13,7 @@ import PositionSelect from './PositionSelect'
 import RadioButton from './RadioButton'
 import { AppearanceStep } from './steps'
 import ContentStep from './steps/ContentStep'
+import SettingsAndCodeStep from './steps/SettingsAndCodeStep'
 
 //modals
 
@@ -28,6 +29,7 @@ export default function Panel({ }: Props) {
 
     //when selectedmodal first render props scrolling
     useEffectOneTime(() => {
+    
         scrollStep('2')
     })
 
@@ -42,6 +44,7 @@ export default function Panel({ }: Props) {
                     <AppearanceStep />
                     <div className="h-24" />
                     <ContentStep />
+                    <SettingsAndCodeStep />
                 </div>
                 {/* Modal Preview Zone */}
                 <div className="flex-[70%] flex self-start justify-center relative min-h-[96vh] h-full">

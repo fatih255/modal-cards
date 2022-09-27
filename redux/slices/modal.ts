@@ -1,9 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { modalContents } from '../../lib/modalConstants';
+
 
 type ModalType = {
     selectedModalName: string | undefined
     ModalProps: {
-        content: string[] | null
+        content: string[] | undefined
+        image: string | null
     }
     LayoutProps: {
         size: string
@@ -14,12 +17,13 @@ type ModalType = {
 export const ModalInitialState: ModalType = {
     selectedModalName: undefined,
     ModalProps: {
-        content: null
+        content:undefined,
+        image: null
     },
     LayoutProps: {
         size: "max-w-[600px] max-h-[600px]",
         position: "pos-mc",
-        colors: 'color-primary'
+        colors: 'color-primary',
     }
 }
 
@@ -29,6 +33,7 @@ export const ModalSlice = createSlice({
     reducers: {
         selectModal: (state, action: PayloadAction<string>) => {
             state.selectedModalName = action.payload
+            state.ModalProps.content = modalContents.get('SecurityCodeModal')
 
         },
         updateLayoutProps: (state, action: PayloadAction<{ name: string, value: string }>) => {
@@ -37,8 +42,12 @@ export const ModalSlice = createSlice({
         updateModalProps: (state, action: PayloadAction<{ name: string, value: string[] }>) => {
             state.ModalProps = { ...state.ModalProps, [action.payload.name]: action.payload.value }
         },
+        updateModalContent: (state, action: PayloadAction<{ ContentIndex: string | number, ContentText: string }>) => {
+            if (!state.ModalProps.content) return
+            state.ModalProps.content[Number(action.payload.ContentIndex)] = action.payload.ContentText
+        },
     }
 })
 
-export const { selectModal, updateLayoutProps, updateModalProps } = ModalSlice.actions
+export const { selectModal, updateLayoutProps, updateModalProps, updateModalContent } = ModalSlice.actions
 export default ModalSlice.reducer

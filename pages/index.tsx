@@ -8,10 +8,10 @@ import FeaturesCounter from '../components/FeaturesCounter'
 import PreviewModal from '../components/PreviewModal'
 
 //Modal Generator Steps
-import ChooseYourTemplateStep from '../components/steps/ChooseYourTemplateStep'// Step 1
+import { ChooseYourTemplateStep } from '../components/steps'// Step 1
 
 import { useAppSelector } from '../redux/hooks'
-import { conditionalRender } from '../lib/utils'  
+import { conditionalRender } from '../lib/utils'
 import Panel from '../components/Panel'
 
 
@@ -68,7 +68,12 @@ const Home: NextPage = () => {
 
           {/* Step-1 ---Choose your template  */}
           <ChooseYourTemplateStep />
-          {/* Step-2  -Appearance (Size, colors, logo) and Step-3 -Content inside Panel Component */}
+          {
+          /* 
+          Step-2  -Appearance (Size, colors, logo) and Step-3 -Content inside Panel Component 
+          ---if selected modal render Panel
+          */
+          }
           {conditionalRender(selectedModalName, <Panel />)}
         </Flexing>
       </section>

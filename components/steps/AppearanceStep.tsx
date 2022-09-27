@@ -3,7 +3,7 @@ import NumberItem from '../NumberItem'
 import RadioButton from '../RadioButton'
 import PositionSelect from '../PositionSelect'
 import { useAppDispatch } from '../../redux/hooks'
-import { updateLayoutProps } from '../../redux/slices/modal'
+import { updateLayoutProps, updateModalProps } from '../../redux/slices/modal'
 import { colorSelectPalette } from '../../lib/contants'
 import ColorSelect from '../ColorSelect'
 import Dropzone from '../Dropzone'
@@ -36,7 +36,7 @@ export default function AppearanceStep({ }: Props) {
             <ColorSelect colors={colorSelectPalette} />
             {/* Upload Logo */}
             <label>Upload Logo</label>
-            <Dropzone />
+            <Dropzone returnedValue={(value) => dispatch(updateModalProps({ name: 'image', value: value }))} />
         </>
     )
 }
