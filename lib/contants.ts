@@ -2,7 +2,7 @@ export const colorSelectPalette = ['color-primary', 'color-1', 'color-2', 'color
 
 export const modals = [
     { name: "SecurityCodeModal", thumbnail: 'images/modals/01.png' },
-    { name: "02", thumbnail: 'images/modals/02.png' },
+    { name: "InstallLocalNowModal", thumbnail: 'images/modals/02.png' },
     { name: "03", thumbnail: 'images/modals/03.png' },
     { name: "04", thumbnail: 'images/modals/04.png' },
     { name: "05", thumbnail: 'images/modals/05.png' },

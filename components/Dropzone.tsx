@@ -1,9 +1,9 @@
-import React, { useCallback, useRef, useState } from 'react'
-import UploadCloudIcon from 'svgs/upload-cloud.svg'
-import NoImageIcon from 'svgs/no-image.svg'
+import React, { useRef } from 'react'
+import UploadCloudIcon from 'icons/upload-cloud.svg'
+import NoImageIcon from 'icons/no-image.svg'
 import { useDropzone } from 'react-dropzone'
 import { AiOutlineFileExcel, AiOutlineFileAdd } from 'react-icons/ai'
-import { useEffectOneTime } from '../lib/hooks'
+import { useEffectOneTime } from 'lib/hooks'
 import cn from 'classnames'
 
 

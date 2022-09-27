@@ -1,15 +1,16 @@
 import React from 'react'
-import CloseModalIcon from 'svgs/modal/close-modal.svg'
-import { useAppSelector } from '../../../redux/hooks'
-import { ModalInitialState } from '../../../redux/slices/modal'
-import { defaultLayoutType } from '../../../types/layout'
+import CloseModalIcon from 'icons/modal/close-modal.svg'
+import { defaultLayoutType } from 'types/layout'
+import { useAppSelector } from 'redux/hooks'
+
 
 export default function DefaultLayout({ children }: defaultLayoutType) {
 
-    const { LayoutProps: { size , position} } = useAppSelector(state => state.modal)
+    const { LayoutProps: { size, position } } = useAppSelector(state => state.modal)
     const closeModalHandler = () => {
         //close modal handler
     }
+
     return (
         <div id="layout" className={`default w-full h-full absolute 
         ${size} 

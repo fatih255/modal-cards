@@ -21,7 +21,7 @@ export default function ContentStep({ }: Props) {
             {/* Step-3 ---Content */}
             <NumberItem value="3 Content" />
             <label className="!mt-0">Edit your content</label>
-            {content && content.map((text, index) => <ContentInput onChange={async (value) => onchangeHandler(index , value)} key={`content-${index + 1}`} contentClass={`content-${index + 1}`} text={text} />)}
+            {content && content.map((text, index) => <ContentInput onChange={async (value) => onchangeHandler(index, value)} key={`content-${index}`} text={text} />)}
 
         </div>
     )

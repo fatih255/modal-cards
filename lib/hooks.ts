@@ -4,7 +4,7 @@ import { colorSelectPalette } from "./contants";
 import { twColors } from "./utils";
 
 
-export const useEffectOneTime = (callback: () => void, depencies: [] = []) => {
+export const useEffectOneTime = (callback: () => void, depencies: any[] = []) => {
     const EffectRan = useRef(false);
     useEffect(() => {
         !EffectRan.current || depencies && callback()
@@ -19,7 +19,6 @@ export const useChanges = () => {
     const { ModalProps: { content, image }, LayoutProps: { size, position, colors } } = useAppSelector(state => state.modal)
     const LayoutRef = useRef<null | HTMLElement>(null)
     const ImageRef = useRef<null | HTMLElement>(null)
-    const ColorChangeableElements = useRef<null | HTMLElement[]>(null)
     useEffect(() => {
         LayoutRef.current = document.getElementById('layout') as HTMLElement;
         ImageRef.current = document.querySelector('.modal-image') as HTMLElement;

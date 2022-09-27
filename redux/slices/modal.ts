@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { modalContents } from '../../lib/modalConstants';
+import { getmodalConstants, modalContentConstants } from '../../lib/modalConstants';
 
 
-type ModalType = {
-    selectedModalName: string | undefined
+export type ModalType = {
+    selectedModalName: string | null
     ModalProps: {
-        content: string[] | undefined
+        content: string[] | []
         image: string | null
     }
     LayoutProps: {
@@ -15,9 +15,9 @@ type ModalType = {
     }
 }
 export const ModalInitialState: ModalType = {
-    selectedModalName: undefined,
+    selectedModalName: null,
     ModalProps: {
-        content:undefined,
+        content: [],
         image: null
     },
     LayoutProps: {
@@ -33,13 +33,13 @@ export const ModalSlice = createSlice({
     reducers: {
         selectModal: (state, action: PayloadAction<string>) => {
             state.selectedModalName = action.payload
-            state.ModalProps.content = modalContents.get('SecurityCodeModal')
+            state.ModalProps.content = getmodalConstants(action.payload)
 
         },
         updateLayoutProps: (state, action: PayloadAction<{ name: string, value: string }>) => {
             state.LayoutProps = { ...state.LayoutProps, [action.payload.name]: action.payload.value }
         },
-        updateModalProps: (state, action: PayloadAction<{ name: string, value: string[] }>) => {
+        updateModalProps: (state, action: PayloadAction<{ name: string, value: string}>) => {
             state.ModalProps = { ...state.ModalProps, [action.payload.name]: action.payload.value }
         },
         updateModalContent: (state, action: PayloadAction<{ ContentIndex: string | number, ContentText: string }>) => {
@@ -50,4 +50,8 @@ export const ModalSlice = createSlice({
 })
 
 export const { selectModal, updateLayoutProps, updateModalProps, updateModalContent } = ModalSlice.actions
+
+
+
+
 export default ModalSlice.reducer

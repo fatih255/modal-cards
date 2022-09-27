@@ -1,9 +1,9 @@
 import React from 'react'
 //icons
-import CamperIcon from 'svgs/camper.svg'
-import CloseModalIcon from 'svgs/closemodal.svg'
-import GrowEmailIcon from 'svgs/growemail.svg'
-import IncreaseSalesIcon from 'svgs/increasesales.svg'
+import CamperIcon from 'icons/camper.svg'
+import CloseModalIcon from 'icons/closemodal.svg'
+import GrowEmailIcon from 'icons/growemail.svg'
+import IncreaseSalesIcon from 'icons/increasesales.svg'
 
 export default function PreviewModal() {
     return (

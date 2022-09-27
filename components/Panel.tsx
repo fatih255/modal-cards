@@ -1,21 +1,15 @@
-import React, { useEffect, useRef } from 'react'
-import { colorSelectPalette } from '../lib/contants'
-import { useChanges, useEffectOneTime } from '../lib/hooks'
-import { scrollStep } from '../lib/utils'
-import { useAppDispatch, useAppSelector } from '../redux/hooks'
-import { updateLayoutProps } from '../redux/slices/modal'
-import ColorSelect from './ColorSelect'
-import ContentInput from './ContentInput'
-import Dropzone from './Dropzone'
+import React from 'react'
+import { useEffectOneTime } from 'lib/hooks'
+import { scrollStep } from 'lib/utils'
+import { useAppSelector } from 'redux/hooks'
 import ModalLoader from './ModalLoader'
-import NumberItem from './NumberItem'
-import PositionSelect from './PositionSelect'
-import RadioButton from './RadioButton'
+
+
+//steps
 import { AppearanceStep } from './steps'
 import ContentStep from './steps/ContentStep'
 import SettingsAndCodeStep from './steps/SettingsAndCodeStep'
 
-//modals
 
 
 type Props = {
@@ -29,12 +23,12 @@ export default function Panel({ }: Props) {
 
     //when selectedmodal first render props scrolling
     useEffectOneTime(() => {
-    
+
         scrollStep('2')
     })
 
     // this hook allows us to show on the screen when there is a change on the layout props
-    useChanges()
+
 
     return (
         <div data-step="2" className="pt-[2vh] min-h-[96vh]">

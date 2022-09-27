@@ -1,7 +1,8 @@
 import React from 'react'
-import { scrollStep } from '../lib/utils'
-import { useAppDispatch, useAppSelector } from '../redux/hooks'
-import { selectModal } from '../redux/slices/modal'
+import { scrollStep } from 'lib/utils'
+import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import { selectModal } from 'redux/slices/modal'
+
 import Button from './Button'
 
 export type ModalCardProps = {

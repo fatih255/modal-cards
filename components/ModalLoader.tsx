@@ -1,27 +1,15 @@
 import dynamic from "next/dynamic";
 import React, { Suspense } from "react";
 
+
 type Props = {
-    name?: string | null
+    name: string | null
 }
 
-function ModalLoader({ name = null }: Props) {
+function ModalLoader({ name }: Props) {
 
-    let Modal = <></>
-    switch (name) {
-        case "SecurityCodeModal":
-            const Comp = dynamic(() => import(`../components/modals/SecurityCodeModal`), { suspense: true });
-            Modal = <Comp />
-            break;
-        default:
-            Modal = <></>
-    }
-    return (
-        <Suspense>
-            {Modal}
-        </Suspense>
-    )
-
-
+    const SelectedModal = dynamic(() => import(`components/modals/${name}`), { suspense: false, ssr: true });
+    return <Suspense><SelectedModal /></Suspense>
 }
+
 export default React.memo(ModalLoader)

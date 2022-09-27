@@ -1,10 +1,9 @@
 import React from 'react'
-import Logo from 'svgs/logo.svg'
-import DropdownIcon from 'svgs/dropdown.svg'
+import Logo from 'icons/logo.svg'
+import DropdownIcon from 'icons/dropdown.svg'
 import Button from './Button'
 import Flexing from './Flexing'
-import { scrollStep } from '../lib/utils'
-import { useAppSelector } from '../redux/hooks'
+import { scrollStep } from 'lib/utils'
 type Props = {}
 
 export default function Header({ }: Props) {

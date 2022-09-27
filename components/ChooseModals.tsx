@@ -2,6 +2,7 @@ import React from 'react'
 import ModalCard from './ModalCard'
 import PaginationContent from './PaginationContent'
 
+
 type Props = {
   modals: {
     name: string

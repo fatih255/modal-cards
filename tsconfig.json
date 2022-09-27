@@ -7,6 +7,11 @@
       "dom.iterable",
       "esnext"
     ],
+    "baseUrl": ".",
+    "paths": {
+      "icons/*": ["public/icons/*"],
+     
+  },
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -23,8 +28,9 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "components/steps/Content.Steptsx"  ],
+    "**/*.tsx",
+    "components/steps/Content.Steptsx"
+  ],
   "exclude": [
     "node_modules"
   ]

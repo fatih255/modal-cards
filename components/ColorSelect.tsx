@@ -1,6 +1,7 @@
 import React from 'react'
-import { useAppDispatch } from '../redux/hooks'
-import { updateLayoutProps } from '../redux/slices/modal'
+import { useAppDispatch } from 'redux/hooks'
+import { updateLayoutProps } from 'redux/slices/modal'
+
 
 
 type Props = {

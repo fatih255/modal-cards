@@ -1,5 +1,5 @@
 import React from 'react'
-import CheckIcon from 'svgs/check.svg'
+import CheckIcon from 'icons/check.svg'
 type Props = {
     texts: string[],
     className?: string

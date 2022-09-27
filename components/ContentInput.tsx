@@ -2,14 +2,9 @@ import React from 'react'
 
 type Props = {
     text: string,
-    contentClass: string,
     onChange: (value:string)=>{}
 }
 
-/*
-props explain:
-contentClass This props is the class of the element whose text in the modal will change.
-*/
 
 export default function ContentInput({ text, onChange }: Props) {
 
