@@ -15,11 +15,12 @@ import SettingsAndCodeStep from './steps/SettingsAndCodeStep'
 type Props = {
 
 }
+export default React.memo(Panel)
 
-export default function Panel({ }: Props) {
+function Panel({ }: Props) {
 
 
-    const { selectedModalName } = useAppSelector(state => state.modal)
+    const selectedModalName = useAppSelector(state => state.modal.selectedModalName)
 
     //when selectedmodal first render props scrolling
     useEffectOneTime(() => {
@@ -28,7 +29,6 @@ export default function Panel({ }: Props) {
     })
 
     // this hook allows us to show on the screen when there is a change on the layout props
-
 
     return (
         <div data-step="2" className="pt-[2vh] min-h-[96vh]">
@@ -41,7 +41,7 @@ export default function Panel({ }: Props) {
                     <SettingsAndCodeStep />
                 </div>
                 {/* Modal Preview Zone */}
-                <div className="flex-[70%] flex self-start justify-center relative min-h-[96vh] h-full">
+                <div className="flex-[70%] flex self-start justify-center relative min-h-[96vh] rounded-lg h-full bg-gray-50">
                     <ModalLoader name={selectedModalName} />
                 </div>
             </div>

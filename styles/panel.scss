@@ -1,5 +1,5 @@
 .panel {
-    @apply flex h-full;
+    @apply flex h-full gap-8;
 
     label {
         @apply text-sm mt-7 mb-4 font-inter;

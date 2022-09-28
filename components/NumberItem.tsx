@@ -5,7 +5,7 @@ type Props = {
     bracketsClassName?: string
 }
 
-export default function NumberItem({ value, bracketsClassName = "font-normal" }: Props) {
+function NumberItem({ value, bracketsClassName = "font-normal" }: Props) {
 
     const [number, ...textarr] = value.split(" ")
     const paranthesesText = textarr.join(' ').match(/\((.*)\)/)?.[0]
@@ -23,3 +23,4 @@ export default function NumberItem({ value, bracketsClassName = "font-normal" }:
     )
 }
 
+export default React.memo(NumberItem)

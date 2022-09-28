@@ -5,7 +5,7 @@ import NumberItem from '../NumberItem'
 
 type Props = {}
 
-export default function ChooseYourTemplateStep({ }: Props) {
+function ChooseYourTemplateStep({ }: Props) {
   return (
     <div data-step="1" className="pt-[2vh] h-[100vh]">
       <NumberItem value="1 Choose your template" />
@@ -13,3 +13,4 @@ export default function ChooseYourTemplateStep({ }: Props) {
     </div>
   )
 }
+export default React.memo(ChooseYourTemplateStep)

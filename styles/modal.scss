@@ -1,5 +1,13 @@
 .default {
-    @apply absolute w-full h-full bg-white px-16 py-10 flex flex-col gap-8 justify-center items-center shadow-2xl rounded-lg;
+    @apply absolute w-full h-max bg-white flex flex-col gap-8 shadow-2xl rounded-lg overflow-hidden text-center;
+
+    &.p-none {
+        @apply p-0
+    }
+
+    .inner {
+        @apply flex flex-col gap-8
+    }
 
     * {
         @apply font-inter
@@ -7,6 +15,16 @@
 
     button:not(.no-w-full) {
         @apply w-full
+    }
+
+    & {
+        .p-none {
+            @apply p-0
+        }
+
+        .m-none {
+            @apply m-0
+        }
     }
 
     .input {
@@ -29,8 +47,49 @@
     .description {
         @apply font-inter text-xl font-normal leading-6 text-center
     }
+}
 
-  
+//sizes
+.small {
+    @apply px-12 py-8 max-w-sm;
+
+    img {
+        @apply max-h-[50%]
+    }
+
+    .inner {
+        @apply px-12 pb-8 flex-col text-left
+    }
+
+    .modal-radio-container {
+        p {
+            @apply text-left justify-center items-center
+        }
+    }
+}
+
+.medium {
+    @apply px-14 py-10 max-w-md;
+
+    img {
+        @apply max-h-[56%]
+    }
+
+    .inner {
+        @apply px-14 pb-10
+    }
+}
+
+.large {
+    @apply px-16 py-12 max-w-lg;
+
+    img {
+        @apply max-h-full
+    }
+
+    .inner {
+        @apply px-16 pb-12
+    }
 }
 
 // position classes

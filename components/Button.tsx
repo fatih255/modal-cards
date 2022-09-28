@@ -1,7 +1,7 @@
 import React from 'react';
 
 type Props = {
-    text: string
+    text: string | JSX.Element
     theme?: 'light' | 'primary' | 'primary-light' | 'light-bordered'
     size?: 'small' | 'large' | 'medium' | 'modal-default'
     shadow?: boolean

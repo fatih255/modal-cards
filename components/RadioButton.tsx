@@ -14,7 +14,6 @@ export default function RadioButton({ options, returnedValue }: Props) {
     const selectOptionHandler = (value: string) => {
         setSelectedOptionValue(value)
         returnedValue(value)
-
     }
 
     return (

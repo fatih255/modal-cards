@@ -10,7 +10,7 @@ import Dropzone from '../Dropzone'
 type Props = {}
 
 
-export default function AppearanceStep({ }: Props) {
+ function AppearanceStep({ }: Props) {
 
     const dispatch = useAppDispatch()
 
@@ -23,9 +23,9 @@ export default function AppearanceStep({ }: Props) {
                 returnedValue={(value) => dispatch(updateLayoutProps({ name: 'size', value: value }))}
                 options={
                     [
-                        { text: "Small", value: "max-w-[500px] max-h-[500px]" },
-                        { text: "Medium", value: "max-w-[600px] max-h-[600px]" },
-                        { text: "Large", value: "max-w-[700px] max-h-[700px]" },
+                        { text: "Small", value: "small" },
+                        { text: "Medium", value: "medium" },
+                        { text: "Large", value: "large" },
                     ]
                 } />
             {/* Select Position */}
@@ -40,3 +40,5 @@ export default function AppearanceStep({ }: Props) {
         </>
     )
 }
+
+export default React.memo(AppearanceStep)

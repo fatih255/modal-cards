@@ -1,9 +1,12 @@
 
-type defaultLayoutType = {
+type layoutTypes = {
     children: JSX.Element | JSX.Element[]
+    className?: string
 }
 
 
 
 
-export type { defaultLayoutType }
+
+
+export type { layoutTypes }

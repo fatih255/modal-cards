@@ -1,19 +1,23 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useEffectOneTime } from '../../lib/hooks'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { updateModalContent } from '../../redux/slices/modal'
+import { updateModalContentText } from '../../redux/slices/modal'
 import ContentInput from '../ContentInput'
 import NumberItem from '../NumberItem'
 
 type Props = {}
 
+
+
 export default function ContentStep({ }: Props) {
 
     const dispatch = useAppDispatch()
-    const { ModalProps: { content } } = useAppSelector(state => state.modal)
+
+
+    const texts = useAppSelector(state => state.modal.ModalProps.content.texts)
 
     const onchangeHandler = (ContentIndex: string | number, ContentText: string) => {
-        dispatch(updateModalContent({ ContentIndex, ContentText }))
+        dispatch(updateModalContentText({ ContentIndex, ContentText }))
     }
 
     return (
@@ -21,7 +25,7 @@ export default function ContentStep({ }: Props) {
             {/* Step-3 ---Content */}
             <NumberItem value="3 Content" />
             <label className="!mt-0">Edit your content</label>
-            {content && content.map((text, index) => <ContentInput onChange={async (value) => onchangeHandler(index, value)} key={`content-${index}`} text={text} />)}
+            {texts && useMemo(() => texts.map((text, index) => <ContentInput onChange={async (value) => onchangeHandler(index, value)} key={`text-content-${index}`} text={text} />), [texts])}
 
         </div>
     )

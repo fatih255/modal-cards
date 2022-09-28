@@ -10,24 +10,24 @@ type Props = {}
 
 export default function SecurityCodeModal({ }: Props) {
 
-    const { ModalProps: { content, image }, LayoutProps: { colors } } = useAppSelector(state => state.modal)
+    const { ModalProps: { content: { texts }, image }, LayoutProps: { colors } } = useAppSelector(state => state.modal)
 
 
     return <WithModalLayout>
-        <div className={cn({ 'h-[22%]': !image }, 'relative w-[24%]  max-w-md rounded-full flex justify-center items-center overflow-hidden')}>
+        <div className={cn('w-[40%] relative  max-w-md rounded-full flex justify-center items-center overflow-hidden ')}>
             {
                 image ? <img className="w-[100%] h-[100%] object-cover" src={image} /> : <>
-                    <SecurityCodeIcon className={`${colors} z-20 w-[60%] h-[60%]`} />
-                    <div className={`absolute top-0 left-0 w-full h-full bg-primary rounded-full z-10 ${colors} `}></div>
+                    <SecurityCodeIcon className={`${colors} z-20 p-[24%] aspect-square `} />
+                    <div className={`absolute inset-0 bg-primary rounded-full z-10 ${colors} `}></div>
                 </>
             }
         </div>
-        <h1 className="title content-1">{content[0]}</h1>
-        <p className="description content-2">{content[1]}</p>
-        <Input className="content-3" placeholder={content[2]} />
+        <h1 className="title">{texts[0]}</h1>
+        <p className="description ">{texts[1]}</p>
+        <Input placeholder={texts[2]} />
         <div className="flex gap-3 w-full items-stretch flex-wrap">
-            <Button className={`${colors} flex-1`} size="modal-default" text={content[3]} />
-            <Button className="flex-1" theme='light-bordered' size="modal-default" text={content[4]} />
+            <Button className={`${colors} flex-1`} size="modal-default" text={texts[3]} />
+            <Button className="flex-1" theme='light-bordered' size="modal-default" text={texts[4]} />
         </div>
     </WithModalLayout>
 }
