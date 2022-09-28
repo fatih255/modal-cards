@@ -1,4 +1,4 @@
-import { ModalInitialState, ModalType } from "redux/slices/modal";
+import { ModalType } from "redux/slices/modal";
 
 
 
@@ -6,13 +6,15 @@ export const modalConstants = new Map([
     [
         'SecurityCodeModal',
         {
-            contents: [
-                'Security Code',
-                'This code expires in 24 hours',
-                'Code',
-                'Cancel',
-                'Continue'
-            ],
+            contents: {
+                texts: [
+                    'Security Code',
+                    'This code expires in 24 hours',
+                    'Code',
+                    'Cancel',
+                    'Continue'
+                ]
+            },
             layout: {
                 className: "items-center justify-start",
                 size: "medium",
@@ -24,12 +26,15 @@ export const modalConstants = new Map([
     [
         'InstallLocalNowModal',
         {
-            contents: [
-                'Install local now',
-                'We’ve gone native, try it!',
-                'Continue',
-                'Not now',
-            ],
+            contents: {
+                texts: [
+                    'Install local now',
+                    'We’ve gone native, try it!',
+                    'Continue',
+                    'Not now',
+                ],
+                image: 'images/install-local-now.png'
+            },
             layout: {
                 className: "p-none",
                 size: "medium",
@@ -41,22 +46,23 @@ export const modalConstants = new Map([
     [
         'ChooseBestForYouModal',
         {
-            contents: [
-                'PLANS',
-                'Choose best for you',
-                'Only pay for the capacity that you use.',
-                'Cancel',
-                'Continue',
-                'radios',
-                [
-                    { title: 'Starter', description: '1 free (then $15 per meember / month)' },
-                    { title: 'Pro', description: '$19 per member/month' },
-                    { title: 'Business', description: '$29 per member/month' }
+            contents: {
+                texts: [
+                    'PLANS',
+                    'Choose best for you',
+                    'Only pay for the capacity that you use.',
+                    'Cancel',
+                    'Continue',
+                ],
+                radios: [
+                    { title: 'Starter', description: '1 free (then $15 per meember / month)', value: 'starter' },
+                    { title: 'Pro', description: '$19 per member/month', value: 'pro' },
+                    { title: 'Business', description: '$29 per member/month', value: 'business' }
                 ]
-            ],
+            },
             layout: {
                 className: "top-center-modal",
-                size: "medium",
+                size: "medium max-w-[32rem]",
                 position: "pos-mc",
                 colors: 'color-primary',
             }
@@ -65,13 +71,15 @@ export const modalConstants = new Map([
     [
         'DeleteYourProfileModal',
         {
-            contents: [
-                'Delete your profile',
-                'Your profile will be automatically deleted after 1 month.',
-                'You won’t be able to access to your profile after *30.08.2021.*',
-                'Delete my profile',
-                'Cancel'
-            ],
+            contents: {
+                texts: [
+                    'Delete your profile',
+                    'Your profile will be automatically deleted after 1 month.',
+                    'You won’t be able to access to your profile after *30.08.2021.*',
+                    'Delete my profile',
+                    'Cancel'
+                ]
+            },
             layout: {
                 className: "items-center justify-start",
                 size: "medium",
@@ -84,30 +92,7 @@ export const modalConstants = new Map([
 
 
 
-function getValues(modalName: string, value: string) {
-    const arr = modalConstants.get(modalName)
-    if (!arr) return {}
-    const propertyIndex = arr.contents.findIndex((x) => x === value) + 1
-    const filteredArray = arr.contents.filter((x) => typeof x === "string" && x !== value);
+export const getModalContants = (modalName: string) => {
 
-    //if not have radio 
-    if (propertyIndex === 0) {
-        return {
-            texts: [...filteredArray, arr.contents[propertyIndex]]
-        }
-    }
-    return {
-        texts: filteredArray,
-        [value]: arr.contents[propertyIndex]
-    }
-
+    return modalConstants.get(modalName) as ModalType
 }
-export const getModalLayoutConstants = (modalName: string) => {
-
-    return modalConstants.get(modalName)?.layout as ModalType['LayoutProps']
-}
-
-export const getModalContentConstants = (modalName: string) => {
-    return getValues(modalName, 'radios') as ModalType['ModalProps']['content']
-}
-

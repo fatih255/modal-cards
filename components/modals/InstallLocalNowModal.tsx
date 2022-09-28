@@ -8,10 +8,10 @@ type Props = {}
 
 export default function InstallLocalNowModal({ }: Props) {
 
-    const { ModalProps: { content: { texts }, image }, LayoutProps: { colors } } = useAppSelector(state => state.modal)
+    const { contents: { texts, image }, layout: { colors } } = useAppSelector(state => state.modal)
     return (
         <WithModalLayout>
-            <img src="images/install-local-now.png" className="w-full object-cover " />
+            <img src={image} className="w-full object-cover " />
             <div className="inner">
                 <h1 className="title">{texts[0]}</h1>
                 <p className="description">{texts[1]}</p>

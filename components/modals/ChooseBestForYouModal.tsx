@@ -1,10 +1,11 @@
 import Button from 'components/Button'
+import ModalLogo from 'components/ModalLogo'
 import ModalRadios from 'components/ModalRadios'
 import WithModalLayout from 'components/WithModalLayout'
 import React from 'react'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { selectRadioButton } from 'redux/slices/modal'
-import cn from 'classnames'
+
 
 
 type Props = {}
@@ -12,10 +13,11 @@ type Props = {}
 export default function ChooseBestForYouModal({ }: Props) {
 
     const dispatch = useAppDispatch()
-    const { ModalProps: { content: { texts, radios } }, LayoutProps: { colors } } = useAppSelector(state => state.modal)
+    const { contents: { texts, radios }, layout: { colors, logo } } = useAppSelector(state => state.modal)
 
     return (
         <WithModalLayout>
+            <ModalLogo logo={logo} />
             <div className="flex flex-col gap-4 mb-5 pt-2">
                 <span className="text-primary leading-[22px] uppercase">{texts[0]}</span>
                 <h1 className="title">{texts[1]}</h1>

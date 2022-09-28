@@ -12,6 +12,24 @@
     input {
         @apply px-4 py-[6px]
     }
+
+    //radio button tabpanel
+    .selected-radio-tab-btn {
+        @apply bg-primary bg-opacity-80 text-white delay-200
+    }
+
+    .radio-tab-hide,
+    .radio-tab-show {
+        @apply overflow-hidden trans-300 origin-bottom
+    }
+
+    .radio-tab-hide {
+        @apply opacity-0 h-0
+    }
+
+    .radio-tab-show {
+        @apply opacity-100 
+    }
 }
 
 .dropzone {

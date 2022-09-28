@@ -5,7 +5,7 @@ import { useAppSelector } from 'redux/hooks'
 
 export default function DefaultLayout({ children }: layoutTypes) {
 
-    const { LayoutProps: { size, position, className } } = useAppSelector(state => state.modal)
+    const { layout: { size, position, className } } = useAppSelector(state => state.modal)
     const closeModalHandler = () => {
         //close modal handler
     }

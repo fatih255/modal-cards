@@ -13,7 +13,7 @@ export type ModalCardProps = {
 export default function ModalCard({ name, thumbnail }: ModalCardProps) {
 
   const dispatch = useAppDispatch()
-  const { selectedModalName } = useAppSelector(state => state.modal)
+  const selectedModalName = useAppSelector(state => state.modal.selectedModalName)
 
   const onClickHandler = (name: string) => {
     // choose template

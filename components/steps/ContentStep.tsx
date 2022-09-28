@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
-import { useEffectOneTime } from '../../lib/hooks'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { updateModalContentText } from '../../redux/slices/modal'
 import ContentInput from '../ContentInput'
 import NumberItem from '../NumberItem'
+import ModalRadioButtonPanel from 'components/ModalRadioButtonPanel'
 
 type Props = {}
 
@@ -14,9 +14,9 @@ export default function ContentStep({ }: Props) {
     const dispatch = useAppDispatch()
 
 
-    const texts = useAppSelector(state => state.modal.ModalProps.content.texts)
+    const texts = useAppSelector(state => state.modal.contents.texts)
 
-    const onchangeHandler = (ContentIndex: string | number, ContentText: string) => {
+    const onContentTextChangeHandler = (ContentIndex: string | number, ContentText: string) => {
         dispatch(updateModalContentText({ ContentIndex, ContentText }))
     }
 
@@ -25,8 +25,8 @@ export default function ContentStep({ }: Props) {
             {/* Step-3 ---Content */}
             <NumberItem value="3 Content" />
             <label className="!mt-0">Edit your content</label>
-            {texts && useMemo(() => texts.map((text, index) => <ContentInput onChange={async (value) => onchangeHandler(index, value)} key={`text-content-${index}`} text={text} />), [texts])}
-
+            {texts && useMemo(() => texts.map((text, index) => <ContentInput onChange={async (value) => onContentTextChangeHandler(index, value)} key={`text-content-${index}`} text={text} />), [texts])}
+            <ModalRadioButtonPanel />
         </div>
     )
 }

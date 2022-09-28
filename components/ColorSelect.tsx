@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAppDispatch } from 'redux/hooks'
-import { updateLayoutProps } from 'redux/slices/modal'
+import { updateLayout } from 'redux/slices/modal'
 
 
 
@@ -17,7 +17,7 @@ export default function ColorSelect({ colors }: Props) {
 
     const Color = ({ color }: ColorProps) => {
         const selectColorHandler = () => {
-            dispatch(updateLayoutProps({ name: 'colors', value: color }))
+            dispatch(updateLayout({ name: 'colors', value: color }))
         }
         return <div onClick={selectColorHandler} className={`${color} w-[42px] h-[42px] rounded-[10px] !outline-none border border-black border-opacity-30 cursor-pointer box-border`} />
     }
