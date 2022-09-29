@@ -4,7 +4,6 @@ import RadioButton from 'components/RadioButton'
 import PositionSelect from 'components/PositionSelect'
 import { useAppDispatch } from 'redux/hooks'
 import { updateLayout } from 'redux/slices/modal'
-import { colorSelectPalette } from 'lib/contants'
 import ColorSelect from 'components/ColorSelect'
 import Dropzone from 'components/Dropzone'
 
@@ -34,7 +33,7 @@ function AppearanceStep({ }: Props) {
             <PositionSelect returnedValue={(value) => dispatch(updateLayout({ name: 'position', value: value }))} />
             {/* Select Colors */}
             <label>Colors</label>
-            <ColorSelect colors={colorSelectPalette} />
+            <ColorSelect colorPaletteSize={5} />
             {/* Upload Logo */}
             <label>Upload Logo</label>
             <Dropzone returnedValue={(value) => dispatch(updateLayout({ name: 'logo', value: value }))} />

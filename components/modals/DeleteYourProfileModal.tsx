@@ -28,8 +28,8 @@ export default function DeleteYourProfileModal({ }: Props) {
         <ModalLogo
             ifNotLogoJSX={
                 <>
-                    <TrashIcon className={`${colors} z-20 p-[32%] aspect-square `} />
-                    <div className={`absolute inset-0 bg-primary rounded-full z-10 ${colors} `}></div>
+                    <TrashIcon className={`${colors.bg} z-20 p-[32%] aspect-square `} />
+                    <div className={`balloon absolute inset-0 bg-primary rounded-full z-10 ${colors.bg} `}></div>
                 </>
             }
             logo={logo} />
@@ -38,7 +38,7 @@ export default function DeleteYourProfileModal({ }: Props) {
         <p className="description">{texts[1]}</p>
         <p className="px-[15%] text-design-gray-900 leading-[19.36px]">{informationTextGenerate(texts[2])}</p>
         <div className="flex flex-col gap-3 w-full items-stretch flex-wrap">
-            <Button className={`${colors} flex-1`} size="modal-default" text={texts[3]} />
+            <Button className={`${colors.bg} flex-1`} size="modal-default" text={texts[3]} />
             <Button className="flex-1" theme='light-bordered' size="modal-default" text={texts[4]} />
         </div>
     </WithModalLayout>

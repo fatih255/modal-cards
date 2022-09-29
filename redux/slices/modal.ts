@@ -3,7 +3,7 @@ import { getModalContants } from '../../lib/modalConstants';
 
 
 export type ModalType = {
-    selectedModalName: string | null
+    selectedModalName: string | undefined
     contents: {
         texts: string[] | []
         radios: { title: string, description: string, value: string, selected?: boolean }[] | [],
@@ -13,13 +13,16 @@ export type ModalType = {
     layout: {
         className: string
         size: string
-        position: string
-        colors: string
-        logo: string | null
+        position?: string
+        colors: {
+            bg: string,
+            text: string
+        }
+        logo: string | undefined
     }
 }
 export const ModalInitialState: ModalType = {
-    selectedModalName: null,
+    selectedModalName: undefined,
     contents: {
         texts: [],
         radios: [],
@@ -27,11 +30,14 @@ export const ModalInitialState: ModalType = {
 
     },
     layout: {
-        className: "top-center-modal",
-        size: "max-w-[600px] max-h-[600px]",
+        className: "",  //this attr getting from modal contants becuase each modal able to take different classname and size
+        size: "",  //this attr getting from modal contants becuase each modal able to take different classname and size
         position: "pos-mc",
-        colors: 'color-primary',
-        logo: null,
+        colors: {
+            bg: "modal-bg-color-1",
+            text: "modal-text-color-1"
+        },
+        logo: undefined,
     }
 }
 
@@ -42,9 +48,9 @@ export const ModalSlice = createSlice({
         selectModal: (state, action: PayloadAction<string>) => {
             state.selectedModalName = action.payload
             state.contents = getModalContants(action.payload).contents
-            state.layout = getModalContants(action.payload).layout
+            state.layout = { ...state.layout, ...getModalContants(action.payload).layout }
         },
-        updateLayout: (state, action: PayloadAction<{ name: string, value: string }>) => {
+        updateLayout: (state, action: PayloadAction<{ name: string, value: string | object }>) => {
 
             state.layout = { ...state.layout, [action.payload.name]: action.payload.value }
         },

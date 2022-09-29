@@ -19,7 +19,6 @@ export const modalConstants = new Map([
                 className: "items-center justify-start",
                 size: "medium",
                 position: "pos-mc",
-                colors: 'color-primary',
             }
         }
     ],
@@ -39,7 +38,6 @@ export const modalConstants = new Map([
                 className: "p-none",
                 size: "medium",
                 position: "pos-mc",
-                colors: 'color-primary',
             }
         }
     ],
@@ -64,7 +62,7 @@ export const modalConstants = new Map([
                 className: "top-center-modal",
                 size: "medium max-w-[32rem]",
                 position: "pos-mc",
-                colors: 'color-primary',
+
             }
         }
     ],
@@ -83,8 +81,6 @@ export const modalConstants = new Map([
             layout: {
                 className: "items-center justify-start",
                 size: "medium",
-                position: "pos-mc",
-                colors: 'color-primary',
             }
         }
     ]

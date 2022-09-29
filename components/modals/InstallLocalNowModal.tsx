@@ -16,7 +16,7 @@ export default function InstallLocalNowModal({ }: Props) {
                 <h1 className="title">{texts[0]}</h1>
                 <p className="description">{texts[1]}</p>
                 <div className="flex flex-col gap-3 w-full items-stretch ">
-                    <Button className={`${colors} flex-1`} size="modal-default" text={texts[2]} />
+                    <Button className={`${colors.bg} flex-1`} size="modal-default" text={texts[2]} />
                     <Button className="flex-1" theme='light-bordered' size="modal-default" text={texts[3]} />
                 </div>
             </div>

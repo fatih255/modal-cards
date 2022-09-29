@@ -13,14 +13,13 @@ export default function SecurityCodeModal({ }: Props) {
 
     const { contents: { texts }, layout: { colors, logo } } = useAppSelector(state => state.modal)
 
-
     return <WithModalLayout>
 
         <ModalLogo
             ifNotLogoJSX={
                 <>
-                    <SecurityCodeIcon className={`${colors} z-20 p-[24%] aspect-square `} />
-                    <div className={`absolute inset-0 bg-primary rounded-full z-10 ${colors} `}></div>
+                    <SecurityCodeIcon className={` z-20 p-[24%] aspect-square ${colors.bg}`} />
+                    <div className={`balloon absolute inset-0 rounded-full z-10 ${colors.bg} `}></div>
                 </>
             }
             logo={logo} />
@@ -29,7 +28,7 @@ export default function SecurityCodeModal({ }: Props) {
         <p className="description ">{texts[1]}</p>
         <Input placeholder={texts[2]} />
         <div className="flex gap-3 w-full items-stretch flex-wrap">
-            <Button className={`${colors} flex-1`} size="modal-default" text={texts[3]} />
+            <Button className={`${colors.bg} flex-1`} size="modal-default" text={texts[3]} />
             <Button className="flex-1" theme='light-bordered' size="modal-default" text={texts[4]} />
         </div>
     </WithModalLayout>

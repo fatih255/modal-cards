@@ -130,32 +130,74 @@
 }
 
 // select colors
-.color-primary {
-    @apply bg-primary
-}
+// call colors with modal-bg-color-{$colorid} and modal-text-color-{$colorid}
+$colors: "1"#7D4AEA,
+"2"#000000,
+"3"#F37C34,
+"4"#777777,
+"5"#FFFFFF;
 
-.color-1 {
-    @apply bg-[#000000]
-}
+@each $id,
+$hex in $colors {
+    .modal-bg-color-#{$id} {
+        &:not(svg, .radio) {
+            @apply bg-[#{$hex}];
+        }
 
-.color-2 {
-    @apply bg-[#F37C34]
-}
+        @if $hex !=#FFFFFF {
+            &.radio {
+                &.selected {
+                    @apply bg-[#{$hex}] border-[#{$hex}]
+                }
 
-.color-3 {
-    @apply bg-[#777777]
-}
+                &:hover {
+                    @apply border-[#{$hex}]
+                }
 
-.color-4 {
-    &:not(svg) {
-        @apply bg-[#FFFFFF] text-black outline outline-[1px] outline-gray-200;
+                .group &:hover {
+                    @apply ring-[#{$hex}] ring-opacity-[0.18]
+                }
+            }
+        }
 
-        &:hover {
-            @apply outline outline-[1px] outline-gray-400
+        @if $hex==#FFFFFF {
+            &:not(svg, .balloon, .radio) {
+                @apply text-black outline outline-[1px] outline-gray-200;
+            }
+
+            &.radio {
+                &.selected {
+                    @apply bg-black border-black;
+                }
+
+                &:hover {
+                    @apply border-black
+                }
+
+                .group &:hover {
+                    @apply ring-black ring-opacity-[0.18]
+                }
+            }
+
+            &.balloon {
+                @apply text-black border-[1px] border-gray-300;
+            }
+
+            & path {
+                @apply fill-black
+            }
+
+            &:not(.radio):hover {
+                @apply outline outline-[1px] outline-gray-400
+            }
         }
     }
 
-    &>* {
-        @apply fill-black
+    .modal-text-color-#{$id} {
+        @apply text-[#{$hex}]
     }
+}
+
+.radio {
+    @apply relative overflow-hidden trans-300 self-start rounded-full w-[23px] h-[23px] bg-white border border-[#717791] ring-white ring-[4.5px]
 }
