@@ -38,8 +38,28 @@ function makeStickyContainer(selector: string, nestedStickyBgColor: string = "wh
   type containerValuesType = { container: HTMLElement, sticky: number, rect: DOMRect }[]
 
   const fixedContainerInfos: containerValuesType = []
+  const heightDivTopValues: string[] = []
+  const heightDivAreaSizes: string[] = []
 
-  document.querySelectorAll(selector).forEach((element) => {
+
+  //fixed content
+  let heightDiv = document.createElement("div") as HTMLDivElement;
+  let nestedStickyBgDiv = document.createElement("div") as HTMLDivElement;
+  //nested Sticky background div
+  nestedStickyBgDiv.classList.add("sticky-nested-background")
+  nestedStickyBgDiv.style.backgroundColor = nestedStickyBgColor
+  nestedStickyBgDiv.style.position = "absolute"
+  nestedStickyBgDiv.style.width = "100%"
+  nestedStickyBgDiv.style.height = "100%"
+  nestedStickyBgDiv.style.margin = "auto"
+  nestedStickyBgDiv.style.zIndex = "-1"
+  nestedStickyBgDiv.style.inset = "0"
+  nestedStickyBgDiv.style.transform = "translateY(-20%)"
+  //height div
+  heightDiv.classList.add("sticky-fixed-height")
+
+
+  document.querySelectorAll(selector).forEach((element, index) => {
     const container = element as HTMLElement;
     const sticky = container.offsetTop;
 
@@ -48,7 +68,16 @@ function makeStickyContainer(selector: string, nestedStickyBgColor: string = "wh
 
     if (isScrollable) return container.setAttribute("style", ` width:${containerRect.width}px; flex:none `)
 
+    const nestedSticky = container.parentElement?.classList.contains(selector.replace(".", "")) || container.parentElement?.parentElement?.classList.contains(selector.replace(".", ""))
 
+    if (nestedSticky) {
+      const currentStyle = window.getComputedStyle(container)
+      heightDivTopValues.push(container.style.top)
+      heightDivAreaSizes.push(parseInt(currentStyle.height) + parseInt(currentStyle.marginTop) + parseInt(currentStyle.marginBottom) + "px")
+      heightDiv.style.height = heightDivAreaSizes[index]
+      heightDiv.style.top = heightDivTopValues[index]
+      nestedStickyBgDiv.style.top = heightDivTopValues[index]
+    }
 
     fixedContainerInfos.push({ container, sticky, rect: containerRect })
   })
@@ -57,51 +86,34 @@ function makeStickyContainer(selector: string, nestedStickyBgColor: string = "wh
     fixedContainerInfos && doFixContainers(fixedContainerInfos)
   };
 
-  //fixed content
-  let heightDiv: null | HTMLDivElement = null;
-  let nestedStickyBgDiv: null | HTMLDivElement = null;
-  function doFixContainers(values: containerValuesType) {
-    values.forEach(({ container, sticky, rect }) => {
 
-      const nestedSticky = container.parentElement?.classList.contains(selector.replace(".", ""))
+  let addednestedStickyContainers = false
+  function doFixContainers(values: containerValuesType) {
+    values.forEach(({ container, sticky, rect }, index) => {
+
+      //support 2d nested
+      const nestedSticky = container.parentElement?.classList.contains(selector.replace(".", "")) || container.parentElement?.parentElement?.classList.contains(selector.replace(".", ""))
+
 
       if (document.documentElement.scrollTop > sticky) {
         !nestedSticky && container.setAttribute("style", ` position: fixed; top:0; left:${rect.left}px; width:${rect.width}px; height:${rect.height}px; `)
-        nestedSticky && container.children[0].setAttribute("style", `margin:0;   position: fixed; top:0; left:${rect.left}px; width:${container.children[0].getBoundingClientRect().width}px; height:${rect.height}px; `)
-      } else {
-
-
         if (nestedSticky) {
-          if (!heightDiv) (heightDiv = document.createElement("div"))
-          if (!nestedStickyBgDiv) (nestedStickyBgDiv = document.createElement("div"))
-          if (!container.querySelector(".sticky-fixed-height")) {
-            const currentStyle = window.getComputedStyle(container)
-
-            //nested Sticky background div
-            nestedStickyBgDiv.classList.add("sticky-nested-background")
-            nestedStickyBgDiv.style.backgroundColor = nestedStickyBgColor
-            nestedStickyBgDiv.style.position = "absolute"
-            nestedStickyBgDiv.style.width = "100%"
-            nestedStickyBgDiv.style.height = "100%"
-            nestedStickyBgDiv.style.margin = "auto"
-            nestedStickyBgDiv.style.zIndex = "-1"
-            nestedStickyBgDiv.style.inset = "0"
-            nestedStickyBgDiv.style.transform="translateY(-20%)"
-            container.children[0].append(nestedStickyBgDiv)
-
-    
-            //height div
-            heightDiv.classList.add("sticky-fixed-height")
-            heightDiv.style.height = parseInt(currentStyle.height) + parseInt(currentStyle.marginTop) + parseInt(currentStyle.marginBottom) + "px"
+          container.children[0].setAttribute("style", `margin:0;   position: fixed; top:0; left:${rect.left}px; width:${container.children[0].getBoundingClientRect().width}px; height:${rect.height}px;  z-index:9999`)
+          if (addednestedStickyContainers) {
             container.append(heightDiv)
+            container.children[0].append(nestedStickyBgDiv)
           }
+        }
 
-          container.setAttribute("style", `position:relative; width:100%; height:${heightDiv.style.height}`)
-          return container.children[0].setAttribute("style", `margin:0;   position:absolute; width:100%; height:${heightDiv.style.height}`)
+      } else {
+        if (nestedSticky) {
+          container.setAttribute("style", `position:relative; width:100%; height:${heightDivAreaSizes[index]}`)
+          return container.children[0].setAttribute("style", `margin:0;   position:absolute; width:100%; height:${heightDivAreaSizes[index]}`)
         }
         container.removeAttribute("style")
       }
     })
+    addednestedStickyContainers = true
   }
 
 

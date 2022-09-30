@@ -28,8 +28,7 @@ function Panel({ }: Props) {
         scrollStep('2')
     })
 
-    // this hook allows us to show on the screen when there is a change on the layout props
-
+  
 
     return (
         <div data-step="2" className="pt-[2vh] min-h-[96vh]">
