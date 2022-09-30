@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getModalContants } from '../../lib/modalConstants';
+import { getModalContants, modalConstants } from '../../lib/modalConstants';
 
 
 export type ModalType = {
@@ -18,7 +18,10 @@ export type ModalType = {
             bg: string,
             text: string
         }
-        logo: string | undefined
+        logo: {
+            default: string | null
+            uploaded: string | null
+        }
     }
 }
 export const ModalInitialState: ModalType = {
@@ -37,7 +40,10 @@ export const ModalInitialState: ModalType = {
             bg: "modal-bg-color-1",
             text: "modal-text-color-1"
         },
-        logo: undefined,
+        logo: {
+            default: null,
+            uploaded: null
+        },
     }
 }
 
@@ -46,9 +52,18 @@ export const ModalSlice = createSlice({
     initialState: ModalInitialState,
     reducers: {
         selectModal: (state, action: PayloadAction<string>) => {
+            const selectedModalConstants = getModalContants(action.payload)
             state.selectedModalName = action.payload
-            state.contents = getModalContants(action.payload).contents
-            state.layout = { ...state.layout, ...getModalContants(action.payload).layout }
+            state.contents = selectedModalConstants.contents
+
+            state.layout = {
+                ...state.layout,
+                ...selectedModalConstants.layout,
+                logo: {
+                    uploaded: state.layout.logo.uploaded, default: selectedModalConstants.layout.logo?.default
+                }
+            }
+
         },
         updateLayout: (state, action: PayloadAction<{ name: string, value: string | object }>) => {
 

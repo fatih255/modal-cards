@@ -19,6 +19,9 @@ export const modalConstants = new Map([
                 className: "items-center justify-start",
                 size: "medium",
                 position: "pos-mc",
+                logo: {
+                    default: "security-code.svg"
+                }
             }
         }
     ],
@@ -62,7 +65,9 @@ export const modalConstants = new Map([
                 className: "top-center-modal",
                 size: "medium max-w-[32rem]",
                 position: "pos-mc",
-
+                logo: {
+                    default: null
+                }
             }
         }
     ],
@@ -81,6 +86,9 @@ export const modalConstants = new Map([
             layout: {
                 className: "items-center justify-start",
                 size: "medium",
+                logo: {
+                    default: "trash.svg"
+                }
             }
         }
     ]

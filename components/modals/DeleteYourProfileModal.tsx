@@ -1,9 +1,6 @@
 import React from 'react'
-import TrashIcon from 'icons/modal/trash.svg'
 import { useAppSelector } from 'redux/hooks'
 import Button from 'components/Button'
-import Input from 'components/Input'
-import cn from 'classnames'
 import WithModalLayout from 'components/WithModalLayout'
 import ModalLogo from 'components/ModalLogo'
 
@@ -11,7 +8,7 @@ type Props = {}
 
 export default function DeleteYourProfileModal({ }: Props) {
 
-    const { contents: { texts }, layout: { colors, logo } } = useAppSelector(state => state.modal)
+    const { contents: { texts }, layout: { colors} } = useAppSelector(state => state.modal)
 
     const informationTextGenerate = (str: string) => {
         const txt = str.split(/(\*(.*)\*)/g).filter((x) => !x.includes("*"))
@@ -25,14 +22,7 @@ export default function DeleteYourProfileModal({ }: Props) {
 
     return <WithModalLayout>
 
-        <ModalLogo
-            ifNotLogoJSX={
-                <>
-                    <TrashIcon className={`${colors.bg} z-20 p-[32%] aspect-square `} />
-                    <div className={`balloon absolute inset-0 bg-primary rounded-full z-10 ${colors.bg} `}></div>
-                </>
-            }
-            logo={logo} />
+        <ModalLogo />
 
         <h1 className="title">{texts[0]}</h1>
         <p className="description">{texts[1]}</p>

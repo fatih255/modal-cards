@@ -13,13 +13,14 @@ import { ChooseYourTemplateStep } from '../components/steps'// Step 1
 import { useAppSelector } from '../redux/hooks'
 import { conditionalRender } from '../lib/utils'
 import Panel from '../components/Panel'
+import { shallowEqual } from 'react-redux'
 
 
 
 
 const Home: NextPage = () => {
 
-  const { selectedModalName } = useAppSelector(state => state.modal)
+  const selectedModalName = useAppSelector(state => state.modal.selectedModalName,shallowEqual)
 
 
   return (
@@ -62,7 +63,7 @@ const Home: NextPage = () => {
       <section className="pt-24">
         <Flexing>
           <h2 className="mb-4 text-4xl font-semibold tracking-tighter">Modal Card Generator</h2>
-          <p className="leading-[24px] max-w-[459px] ">Measure your return on email marketing efforts easier and
+          <p className="leading-[24px] max-w-[459px] mb-14 ">Measure your return on email marketing efforts easier and
             faster by using thebest online tools. Popupsmart is ready to
             help you build an efficient email list!</p>
 

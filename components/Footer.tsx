@@ -4,6 +4,6 @@ type Props = {}
 
 export default function Footer({}: Props) {
   return (
-    <div>Footer</div>
+    <div className="h-[2000px]">Footer</div>
   )
 }

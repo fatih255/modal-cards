@@ -5,12 +5,15 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
+    "addon-redux": "^2.0.11",
     "classnames": "^2.3.2",
-    "next": "12.3.1",
+    "next": "^12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.2",
@@ -19,15 +22,27 @@
     "sass": "^1.55.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@storybook/addon-actions": "^6.5.12",
+    "@storybook/addon-essentials": "^6.5.12",
+    "@storybook/addon-interactions": "^6.5.12",
+    "@storybook/addon-links": "^6.5.12",
+    "@storybook/builder-webpack5": "^6.5.12",
+    "@storybook/manager-webpack5": "^6.5.12",
+    "@storybook/react": "^6.5.12",
+    "@storybook/testing-library": "0.0.13",
     "@svgr/webpack": "^6.3.1",
     "@types/node": "18.7.18",
     "@types/react": "18.0.20",
     "@types/react-dom": "18.0.6",
     "autoprefixer": "^10.4.12",
+    "babel-loader": "^8.2.5",
     "eslint": "8.23.1",
     "eslint-config-next": "12.3.1",
+    "eslint-plugin-storybook": "^0.6.4",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8",
+    "tsconfig-paths-webpack-plugin": "^4.0.0",
     "typescript": "4.8.3"
   }
 }

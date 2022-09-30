@@ -5,7 +5,7 @@ type Props = {
     className?: string
 }
 
-export default function CheckList({ texts, className }: Props) {
+ function CheckList({ texts, className }: Props) {
     return (
         <div className={`flex gap-4 ${className ?? ''}`}>
             {
@@ -19,3 +19,5 @@ export default function CheckList({ texts, className }: Props) {
         </div>
     )
 }
+
+export default React.memo(CheckList)

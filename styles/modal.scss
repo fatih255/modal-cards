@@ -140,7 +140,7 @@ $colors: "1"#7D4AEA,
 @each $id,
 $hex in $colors {
     .modal-bg-color-#{$id} {
-        &:not(svg, .radio) {
+        &:not(img, .radio) {
             @apply bg-[#{$hex}];
         }
 
@@ -161,10 +161,12 @@ $hex in $colors {
         }
 
         @if $hex==#FFFFFF {
-            &:not(svg, .balloon, .radio) {
+            &:not(img, .balloon, .radio) {
                 @apply text-black outline outline-[1px] outline-gray-200;
             }
-
+            &.logo{
+                @apply bg-black
+            }
             &.radio {
                 &.selected {
                     @apply bg-black border-black;

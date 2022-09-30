@@ -1,13 +1,13 @@
 import React from 'react'
 import type { AppProps } from 'next/app'
 //tailwind & sass
-import '../styles/index.scss'
+import 'styles/index.scss'
 //redux
 import { Provider } from 'react-redux'
-import { store } from '../redux/store'
+import { store } from 'redux/store'
 //components
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Header from 'components/Header'
+import Footer from 'components/Footer'
 
 
 

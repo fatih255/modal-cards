@@ -13,11 +13,11 @@ type Props = {}
 export default function ChooseBestForYouModal({ }: Props) {
 
     const dispatch = useAppDispatch()
-    const { contents: { texts, radios }, layout: { colors, logo } } = useAppSelector(state => state.modal)
+    const { contents: { texts, radios }, layout: { colors } } = useAppSelector(state => state.modal)
 
     return (
         <WithModalLayout>
-            <ModalLogo logo={logo} />
+            <ModalLogo />
             <div className="flex flex-col gap-4 mb-5 pt-2">
                 <span className={`${colors.text} leading-[22px] uppercase`}>{texts[0]}</span>
                 <h1 className="title">{texts[1]}</h1>

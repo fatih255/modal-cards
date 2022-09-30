@@ -5,7 +5,7 @@ import CloseModalIcon from 'icons/closemodal.svg'
 import GrowEmailIcon from 'icons/growemail.svg'
 import IncreaseSalesIcon from 'icons/increasesales.svg'
 
-export default function PreviewModal() {
+function PreviewModal() {
     return (
         <div className="relative flex bg-white max-w-[800px] rounded-[40px] bg-no-repeat -translate-y-[50%]">
             <div className="flex-1 text-center p-8 w-full ">
@@ -44,3 +44,5 @@ export default function PreviewModal() {
         </div>
     )
 }
+
+export default React.memo(PreviewModal)
