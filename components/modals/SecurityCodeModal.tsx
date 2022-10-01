@@ -4,12 +4,18 @@ import Button from 'components/Button'
 import Input from 'components/Input'
 import WithModalLayout from 'components/WithModalLayout'
 import ModalLogo from 'components/ModalLogo'
+import { shallowEqual } from 'react-redux'
 
 type Props = {}
 
 export default function SecurityCodeModal({ }: Props) {
 
-    const { contents: { texts }, layout: { colors, logo } } = useAppSelector(state => state.modal)
+    const { texts, colors } = useAppSelector(state => Object(
+        {
+            texts: state.modal.contents.texts,
+            image: state.modal.contents.image,
+            colors: state.modal.layout.colors,
+        }), shallowEqual)
 
     return <WithModalLayout>
 

@@ -2,13 +2,13 @@ import { useEffectOneTime } from 'lib/hooks'
 import React, { useMemo, useRef } from 'react'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { ModalType, updateRadioButton } from 'redux/slices/modal'
-import Button from './Button'
-import ContentInput from './ContentInput'
+import Button from '../Button'
+import ContentInput from '../ContentInput'
 
 type Props = {
 }
 
-function ModalRadioButtonPanel({ }: Props) {
+function EditRadioButtons({ }: Props) {
 
     const dispatch = useAppDispatch()
 
@@ -85,4 +85,4 @@ function ModalRadioButtonPanel({ }: Props) {
     )
 }
 
-export default React.memo(ModalRadioButtonPanel)
+export default React.memo(EditRadioButtons)

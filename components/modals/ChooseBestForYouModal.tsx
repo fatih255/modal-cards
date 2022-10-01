@@ -3,6 +3,7 @@ import ModalLogo from 'components/ModalLogo'
 import ModalRadios from 'components/ModalRadios'
 import WithModalLayout from 'components/WithModalLayout'
 import React from 'react'
+import { shallowEqual } from 'react-redux'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { selectRadioButton } from 'redux/slices/modal'
 
@@ -13,7 +14,12 @@ type Props = {}
 export default function ChooseBestForYouModal({ }: Props) {
 
     const dispatch = useAppDispatch()
-    const { contents: { texts, radios }, layout: { colors } } = useAppSelector(state => state.modal)
+    const { texts, colors, radios } = useAppSelector(state => Object(
+        {
+            radios: state.modal.contents.radios,
+            texts: state.modal.contents.texts,
+            colors: state.modal.layout.colors,
+        }), shallowEqual)
 
     return (
         <WithModalLayout>

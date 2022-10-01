@@ -10,7 +10,46 @@
     }
 
     input {
-        @apply px-4 py-[6px]
+        @apply px-[12px] py-[9px];
+    }
+
+    .hover-ring {
+        @apply ring-4 ring-white trans-400;
+
+        &:hover {
+            @apply ring-primary ring-opacity-[0.1]
+        }
+    }
+
+    .default-input {
+        @extend .hover-ring;
+        @apply my-2;
+
+        &::placeholder {
+            @apply font-poppins leading-[18px] text-design-gray-900 text-sm;
+        }
+
+        &:hover {
+            @apply border-primary border-opacity-40
+        }
+
+        &:focus {
+            @apply ring-primary border-primary ring-opacity-[0.15] border-opacity-80
+        }
+
+        &:focus-within {
+            @apply outline-none border-opacity-80
+        }
+
+        @apply outline-none trans-400 w-full font-inter text-sm leading-[18px] rounded-lg min-h-[36px] border box-border border-design-gray-500
+    }
+
+    .hover-ring-high {
+        @apply ring-[3px] ring-white trans-400;
+    }
+
+    .actived-switch {
+        right: calc(100% - 12px);
     }
 
     //radio button tabpanel
@@ -28,7 +67,7 @@
     }
 
     .radio-tab-show {
-        @apply opacity-100 
+        @apply opacity-100
     }
 }
 

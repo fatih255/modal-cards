@@ -2,13 +2,20 @@ import React from 'react'
 import Button from 'components/Button'
 import { useAppSelector } from 'redux/hooks'
 import WithModalLayout from 'components/WithModalLayout'
+import { shallowEqual } from 'react-redux'
 
 
 type Props = {}
 
 export default function InstallLocalNowModal({ }: Props) {
 
-    const { contents: { texts, image }, layout: { colors } } = useAppSelector(state => state.modal)
+    const { texts, image, colors } = useAppSelector(state => Object(
+        {
+            texts: state.modal.contents.texts,
+            image: state.modal.contents.image,
+            colors: state.modal.layout.colors,
+        }), shallowEqual)
+
     return (
         <WithModalLayout>
             <img src={image} className="w-full object-cover " />

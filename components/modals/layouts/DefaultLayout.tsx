@@ -2,10 +2,11 @@ import React from 'react'
 import CloseModalIcon from 'icons/modal/close-modal.svg'
 import { layoutTypes } from 'types/layout'
 import { useAppSelector } from 'redux/hooks'
+import { shallowEqual } from 'react-redux'
 
 export default function DefaultLayout({ children }: layoutTypes) {
 
-    const { layout: { size, position, className } } = useAppSelector(state => state.modal)
+    const { size, position, className } = useAppSelector(state => state.modal.layout, shallowEqual)
     const closeModalHandler = () => {
         //close modal handler
     }

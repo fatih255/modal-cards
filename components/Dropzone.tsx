@@ -5,25 +5,31 @@ import { useDropzone } from 'react-dropzone'
 import { AiOutlineFileExcel, AiOutlineFileAdd } from 'react-icons/ai'
 import { useEffectOneTime } from 'lib/hooks'
 import cn from 'classnames'
+import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import { updateLayout, upload } from 'redux/slices/modal'
+import { shallowEqual } from 'react-redux'
 
 
 type Props = {
-    returnedValue: (data: string) => {}
+    uploadFor: 'image' | 'logo'
 }
 
-export default function Dropzone({ returnedValue }: Props) {
+export default function Dropzone({ uploadFor }: Props) {
 
-    const previewImageRef = useRef<HTMLImageElement | null>(null)
+    const dispatch = useAppDispatch()
+    const { uploaded, assetURL } = useAppSelector(state => Object(
+        {
+            uploaded: state.modal.uploaded[uploadFor],
+            assetURL: state.modal.contents[uploadFor]
+        }), shallowEqual)
+console.log( uploaded, assetURL )
+
     const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
         onDropAccepted: (acceptedFiles) => {
             const reader = new FileReader();
             reader.addEventListener("load", () => {
                 // convert image file to base64 string
-                if (previewImageRef.current) {
-                    previewImageRef.current.src = reader.result as string;
-                    previewImageRef.current.style.display = "block"
-                    returnedValue(reader.result as string)
-                }
+                dispatch(upload({ name: uploadFor, value: reader.result as string }))
             }, false);
 
             if (acceptedFiles[0]) {
@@ -75,7 +81,9 @@ export default function Dropzone({ returnedValue }: Props) {
                 !isDragActive &&
                 <>
                     <div className="relative p-6 rounded-xl bg-primary bg-opacity-[0.1]">
-                        <img ref={previewImageRef} className="rounded-xl bg-white hidden top-0 left-0 absolute w-[76px] h-[76px]" />
+                        {
+                            uploaded && assetURL && <img src={assetURL} className="rounded-xl bg-white top-0 left-0 absolute w-[76px] h-[76px]" />
+                        }
                         <NoImageIcon />
                     </div>
                     <div>
@@ -90,3 +98,4 @@ export default function Dropzone({ returnedValue }: Props) {
         </div>
     )
 }
+

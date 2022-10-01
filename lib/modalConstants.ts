@@ -13,15 +13,14 @@ export const modalConstants = new Map([
                     'Code',
                     'Cancel',
                     'Continue'
-                ]
+                ],
+                logo: "icons/modal/security-code.svg"
             },
             layout: {
                 className: "items-center justify-start",
                 size: "medium",
                 position: "pos-mc",
-                logo: {
-                    default: "security-code.svg"
-                }
+
             }
         }
     ],
@@ -59,15 +58,13 @@ export const modalConstants = new Map([
                     { title: 'Starter', description: '1 free (then $15 per meember / month)', value: 'starter' },
                     { title: 'Pro', description: '$19 per member/month', value: 'pro' },
                     { title: 'Business', description: '$29 per member/month', value: 'business' }
-                ]
+                ],
+                logo: ''
             },
             layout: {
                 className: "top-center-modal",
                 size: "medium max-w-[32rem]",
                 position: "pos-mc",
-                logo: {
-                    default: null
-                }
             }
         }
     ],
@@ -81,14 +78,12 @@ export const modalConstants = new Map([
                     'You won’t be able to access to your profile after *30.08.2021.*',
                     'Delete my profile',
                     'Cancel'
-                ]
+                ],
+                logo: "icons/modal/trash.svg"
             },
             layout: {
                 className: "items-center justify-start",
                 size: "medium",
-                logo: {
-                    default: "trash.svg"
-                }
             }
         }
     ]

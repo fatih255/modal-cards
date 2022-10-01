@@ -9,6 +9,7 @@ import ModalLoader from './ModalLoader'
 import { AppearanceStep } from './steps'
 import ContentStep from './steps/ContentStep'
 import SettingsAndCodeStep from './steps/SettingsAndCodeStep'
+import TargetingRulesStep from './steps/TargetingRulesStep'
 
 
 
@@ -28,7 +29,7 @@ function Panel({ }: Props) {
         scrollStep('2')
     })
 
-  
+
 
     return (
         <div data-step="2" className="pt-[2vh] min-h-[96vh]">
@@ -38,6 +39,7 @@ function Panel({ }: Props) {
                     <AppearanceStep />
                     <ContentStep />
                     <SettingsAndCodeStep />
+                    <TargetingRulesStep />
                 </div>
                 {/* Modal Preview Zone */}
                 <div className="dosticky flex-[70%] flex self-start justify-center relative min-h-[96vh] rounded-lg h-full bg-gray-50 ">
