@@ -25,14 +25,14 @@ function Panel({ }: Props) {
 
     //when selectedmodal first render props scrolling
     useEffectOneTime(() => {
-        makeStickyContainer('.dosticky', "white", 80, { crossSticky: 0, crossTop: -18 })
+        makeStickyContainer('.dosticky', "white", 80, { crossSticky: 0, crossTop: -18 },'.close-sticky')
         scrollStep('2')
     })
 
 
 
     return (
-        <div data-step="2" className="pt-[2vh] min-h-[96vh]">
+        <div data-step="2" className="pt-[2vh] h-full ">
             <div className="panel">
                 {/* Modal Editing Zone */}
                 <div className="flex-[30%] flex flex-col justify-start items-start dosticky scrollable-sticky">

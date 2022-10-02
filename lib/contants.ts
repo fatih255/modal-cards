@@ -38,3 +38,30 @@ export const modals = [
     { name: "35", thumbnail: 'images/modals/35.png' },
     { name: "36", thumbnail: 'images/modals/36.png' },
 ]
+
+export const FrequentlyAskedQuestions = [
+    {
+        title: "How do I pay for the essentials or premium plan?",
+        description: `You can pay with a credit card or via net banking (if you’re in United States). We willrenew your subscription automatically at the end of every billing cycle. You can paywith a credit card or via net banking (if you’re in United States). We will renew your subscription automatically at the end of every billing cycle.`
+    },
+    {
+        title: "Can I cancel my essentials or premium plan subscription at my time?",
+        description: `You can pay with a credit card or via net banking (if you’re in United States). We willrenew your subscription automatically at the end of every billing cycle. You can paywith a credit card or via net banking (if you’re in United States). We will renew your subscription automatically at the end of every billing cycle.`
+    },
+    {
+        title: "How do I pay for the essentials or premium plan?",
+        description: `You can pay with a credit card or via net banking (if you’re in United States). We willrenew your subscription automatically at the end of every billing cycle. You can paywith a credit card or via net banking (if you’re in United States). We will renew your subscription automatically at the end of every billing cycle.`
+    },
+    {
+        title: "We need to add new users to our team, how will that be billed?",
+        description: `You can pay with a credit card or via net banking (if you’re in United States). We willrenew your subscription automatically at the end of every billing cycle. You can paywith a credit card or via net banking (if you’re in United States). We will renew your subscription automatically at the end of every billing cycle.`
+    },
+    {
+        title: "How do I pay for the essentials or premium plan?",
+        description: `You can pay with a credit card or via net banking (if you’re in United States). We willrenew your subscription automatically at the end of every billing cycle. You can paywith a credit card or via net banking (if you’re in United States). We will renew your subscription automatically at the end of every billing cycle.`
+    },
+    {
+        title: "Can I cancel my essentials or premium plan subscription at my time?",
+        description: `You can pay with a credit card or via net banking (if you’re in United States). We willrenew your subscription automatically at the end of every billing cycle. You can paywith a credit card or via net banking (if you’re in United States). We will renew your subscription automatically at the end of every billing cycle.`
+    }
+]

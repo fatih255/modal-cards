@@ -5,11 +5,23 @@ import Button from 'components/Button'
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { dark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import InfoIcon from 'icons/info.svg'
+import { generateCode } from 'lib/utils';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { updateSettings } from 'redux/slices/modal';
+import { shallowEqual } from 'react-redux';
 type Props = {}
 
 export default function SettingsAndCodeStep({ }: Props) {
 
     const codeString = '<script type="text/javascript" src="https://popupsmart.com/freechat.js"></script><script> window.start.init({ title: "Hi there :v:", message: "How may we help you? Just send us a message now to get assistance.", color: "#FA764F", position: "right", placeholder: "Enter your message", withText: "Write with", viaWhatsapp: "Or write us directly via Whatsapp", gty: "Go to your", awu: "and write us", connect: "Connect now", button: "Write us", device: "everywhere", services: [{"name":"whatsapp","content":null}]})</script>'
+
+    const dispatch = useAppDispatch()
+    const { sendFormSubmission, sendClickData } = useAppSelector(state => Object(
+        {
+            sendFormSubmission: state.modal.settings.sendFormSubmission,
+            sendClickData: state.modal.settings.sendClickData
+        }), shallowEqual)
+
 
     return (
         <>
@@ -22,18 +34,22 @@ export default function SettingsAndCodeStep({ }: Props) {
                 Webhook to Send data
             </span>
             <span className="font-poppins text-sm">Enter youe Webhook URL</span>
-            <p className=" mb-2 mt-[2px] font-poppins text-xs leading-[14px]">You can  create a simple one with <b className="font-semibold">make.com</b></p>
-            <InputText placeholder="Your Webhook URL" />
+            <p className=" mb-2 mt-[2px] font-poppins text-xs leading-[14px]">
+                You can  create a simple one with <b className="font-semibold">make.com</b>
+            </p>
+            <InputText onChange={(data) => dispatch(updateSettings({ name: "webHookUrl", value: data }))} placeholder="Your Webhook URL" />
             <div>
-                <CheckBoxList items={
-                    [
-                        { text: "Send form submissions", value: "send-from-submissions" },
-                        { text: "Send click data", value: "send-click-data" },
-                    ]
-                } />
+                <CheckBoxList
+                    returnedValue={(data) => dispatch(updateSettings({ name: data, value: true }))}
+                    items={
+                        [
+                            { checked: sendFormSubmission, text: "Send form submissions", value: "send-from-submissions" },
+                            { checked: sendClickData, text: "Send click data", value: "send-click-data" },
+                        ]
+                    } />
             </div>
             <div className="mt-[50px] mb-[30px]">
-                <Button size="large" shadow={true} text="Get your Code" />
+                <Button onClick={() => console.log(generateCode())} size="large" shadow={true} text="Get your Code" />
             </div>
             <div className="bg-[#333333] rounded-lg border-[10px] border-b-[14px] border-[#333333]">
                 <SyntaxHighlighter language="javascript" style={dark} customStyle={{ borderRadius: 8, height: 260, width: '100%' }}>

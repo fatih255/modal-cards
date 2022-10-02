@@ -26,9 +26,17 @@ export type ModalType = {
         image: boolean
     },
     settings: {
+        visitorDevice: string
         browserLanguages: string[]
-
+        afterXSeconds: string | null
+        afterPercentageScroll: string | null
+        trafficSource: string | null
+        exitIntentTargetting: boolean | null
+        webHookUrl: string | null
+        sendFormSubmission: boolean
+        sendClickData: boolean
     }
+    activedSettings: (keyof ModalType['settings'])[] | any[]
 }
 export const ModalInitialState: ModalType = {
     selectedModalName: undefined,
@@ -52,14 +60,24 @@ export const ModalInitialState: ModalType = {
         image: false
     },
     settings: {
-        browserLanguages: ['english', 'french']
-    }
+        browserLanguages: ['english', 'french'],
+        visitorDevice: "desktop",
+        afterXSeconds: '12',
+        afterPercentageScroll: '50',
+        trafficSource: null,
+        exitIntentTargetting: false,
+        webHookUrl: null,
+        sendFormSubmission: false,
+        sendClickData: false
+    },
+    activedSettings: ['visitorDevice', 'browserLanguages', 'sendFormSubmission', 'sendClickData']
 }
 
 export const ModalSlice = createSlice({
     name: 'modal',
     initialState: ModalInitialState,
     reducers: {
+
 
         //select methods
 
@@ -81,7 +99,14 @@ export const ModalSlice = createSlice({
 
         //update methods
 
-        updateSettings: (state, action: PayloadAction<{ name: string, value: string | string[] | null }>) => {
+        settingStatus: (state, action: PayloadAction<keyof ModalType['settings']>) => { //payload is settings name
+
+            const isSettingsActive = state.activedSettings.some(setting => setting === action.payload);
+            if (isSettingsActive) state.activedSettings = [...state.activedSettings.filter(setting => setting !== action.payload)]
+            if (!isSettingsActive) state.activedSettings = state.activedSettings = [...state.activedSettings, action.payload]
+
+        },
+        updateSettings: (state, action: PayloadAction<{ name: keyof ModalType['settings'], value: string | string[] | boolean | null }>) => {
             state.settings = { ...state.settings, [action.payload.name]: action.payload.value }
         },
         updateLayout: (state, action: PayloadAction<{ name: string, value: string | object }>) => {
@@ -107,7 +132,17 @@ export const ModalSlice = createSlice({
     }
 })
 
-export const { selectModal, updateLayout, updateContents, updateModalContentText, selectRadioButton, updateRadioButton, updateSettings, upload } = ModalSlice.actions
+export const {
+    selectModal,
+    updateLayout,
+    updateContents,
+    updateModalContentText,
+    selectRadioButton,
+    updateRadioButton,
+    updateSettings,
+    upload,
+    settingStatus
+} = ModalSlice.actions
 
 
 

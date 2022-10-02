@@ -1,27 +1,43 @@
 
 import React from 'react'
+import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import { settingStatus, updateSettings } from 'redux/slices/modal'
+
+//icons
 import DesktopIcon from 'icons/desktop.svg'
 import MobileIcon from 'icons/mobile.svg'
 
+//panel components
+import { CheckBoxButton, Switch } from 'components/panelComponents'
+import { shallowEqual } from 'react-redux'
 
 
 type Props = {}
 
-//panel components
-import { CheckBoxButton, Switch } from 'components/panelComponents'
 
 export default function VisitorDeviceSelect({ }: Props) {
+
+    const { visitorDevice, activeSettings } = useAppSelector(state => Object({ visitorDevice: state.modal.settings.visitorDevice, activeSettings: state.modal.activedSettings }), shallowEqual)
+    const dispatch = useAppDispatch()
+
     return (
         <div>
-            <Switch className="!mt-4" text="Visitor Device" />
-            <CheckBoxButton
-                returnedValue={(data) => { console.log(data) }}
-                items={
-                    [
-                        { text: "Desktop", value: "desktop", icon: <DesktopIcon fill="#999999" /> },
-                        { text: "Mobile", value: "mobile", icon: <MobileIcon fill="#999999" /> },
-                    ]
-                } />
+            <Switch
+                className="!mt-4"
+                text="Visitor Device"
+                fieldName="visitorDevice"
+                activeDefault={activeSettings.includes("visitorDevice")}
+                returnedValue={({ fieldName }) => dispatch(settingStatus(fieldName))}
+            >
+                <CheckBoxButton
+                    returnedValue={(data) => { dispatch(updateSettings({ name: "visitorDevice", value: data })) }}
+                    items={
+                        [
+                            { checked: visitorDevice.includes('desktop'), text: "Desktop", value: "desktop", icon: <DesktopIcon fill="#999999" /> },
+                            { checked: visitorDevice.includes('mobile'), text: "Mobile", value: "mobile", icon: <MobileIcon fill="#999999" /> },
+                        ]
+                    } />
+            </Switch>
         </div>
     )
 }

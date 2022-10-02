@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { updateModalContentText } from 'redux/slices/modal'
 import { shallowEqual } from 'react-redux'
 
+
 //panel components
 import { InputText } from 'components/panelComponents'
 

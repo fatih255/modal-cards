@@ -2,11 +2,7 @@ import React from 'react'
 import NumberItem from 'components/NumberItem'
 
 // Tools used by Targeting Rules Step
-import BrowserLanguageSelect from 'components/paneltools/BrowserLanguageSelect'
-
-//panel components
-import { InputText, Switch, CheckBoxButton } from 'components/panelComponents'
-import VisitorDeviceSelect from 'components/paneltools/VisitorDeviceSelect'
+import { AfterPercentageScroll, AfterXSeconds, BrowserLanguageSelect, ExitIntentTargetting, TrafficSource, VisitorDeviceSelect } from 'components/paneltools'
 
 
 type Props = {}
@@ -19,20 +15,12 @@ export default function TargetingRulesStep({ }: Props) {
             <div className="dosticky">
                 <NumberItem value="4 Targeting Rules" />
             </div>
-
             <VisitorDeviceSelect />
-            <Switch text="After X seconds" />
-            <InputText text="3" />
-            <Switch text="After % Scroll" />
-            <InputText text="12" />
-            <Switch className="mb-[10px]" text="Traffic Source" />
-            <InputText placeholder="Enter your traffic source domain" />
-
-            <div className="mt-[30px]">
-                <Switch text="Browser Language" />
-                <BrowserLanguageSelect />
-            </div>
-            <Switch text="Exit Intent Targetting" />
+            <AfterXSeconds />
+            <AfterPercentageScroll />
+            <TrafficSource />
+            <BrowserLanguageSelect />
+            <ExitIntentTargetting />
         </div>
     )
 }

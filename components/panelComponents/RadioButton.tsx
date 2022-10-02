@@ -4,12 +4,13 @@ import cn from 'classnames'
 type Props = {
     options: { text: string, value: string }[],
     returnedValue: (data: string) => {}
+    defaultValue?: string
 }
 
-export default function RadioButton({ options, returnedValue }: Props) {
+export default function RadioButton({ options, returnedValue, defaultValue }: Props) {
 
 
-    const [selectedOptionValue, setSelectedOptionValue] = useState(options.length % 2 === 0 ? options[0].value : options[1].value)
+    const [selectedOptionValue, setSelectedOptionValue] = useState(defaultValue ?? options.length % 2 === 0 ? options[0].value : options[1].value)
 
     const selectOptionHandler = (value: string) => {
         setSelectedOptionValue(value)
