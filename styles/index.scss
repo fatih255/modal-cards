@@ -25,8 +25,10 @@ html * {
     }
 }
 
-
 .child-font-inter * {
+    @apply font-inter;
+}
+.child-font-poppins * {
     @apply font-inter;
 }
 
@@ -34,15 +36,26 @@ html * {
     @apply m-auto;
 }
 
-.flex-center{
+.flex-center {
     justify-content: center;
     align-items: center;
 }
 
-
 @mixin createVariants($apply, $dynamicapply, $className, $start, $per, $end) {
     @for $i from 0 to $end/$per {
         .#{$className}-#{$start+$per*$i} {
+            @if $dynamicapply=='duration' {
+                @apply #{$apply} #{'duration-[#{$start+$per*$i}ms]'}
+
+            }
+
+            @else {
+                @apply #{$apply}
+            }
+        }
+
+        //children all trans use
+        .child-all-#{$className}-#{$start+$per*$i} *{
             @if $dynamicapply=='duration' {
                 @apply #{$apply} #{'duration-[#{$start+$per*$i}ms]'}
 

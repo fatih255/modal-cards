@@ -2,8 +2,9 @@ import React from 'react'
 import NumberItem from 'components/NumberItem'
 
 
-// Tools used by this Step
-import { UploadLogo, PositionSelect, ColorPalette, ChangeModalSize } from 'components/paneltools'
+// Tools used by AppearanceStep
+import { EditPosition, UploadLogo, ChangeModalSize, EditColor } from 'components/paneltools'
+
 
 
 type Props = {}
@@ -13,15 +14,17 @@ function AppearanceStep({ }: Props) {
 
     return (
         <>
+            
             <div className="dosticky">
                 <NumberItem value="2 Appearance (Size, colors, logo)" />
             </div>
-            <label className="mt-2">Size</label>    {/* Select Sizes */}
+            <hr className="h-8 border-none " />
+            <label className="!mt-0">Size</label>    {/* Select Sizes */}
             <ChangeModalSize />
             <label>Position</label>
-            <PositionSelect />                      {/* Select Position */}
+            <EditPosition />                      {/* Select Position */}
             <label>Colors</label>
-            <ColorPalette colorPaletteSize={5} />
+            <EditColor />
             <UploadLogo />                          {/* Upload Logo */}
         </>
     )

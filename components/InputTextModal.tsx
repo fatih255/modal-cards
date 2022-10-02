@@ -6,7 +6,7 @@ type Props = {
     className?: string
 }
 
-export default function Input({ type = 'text', placeholder = '', className = '' }: Props) {
+export default function InputTextModal({ type = 'text', placeholder = '', className = '' }: Props) {
     return (
         <input
             className={`input ${className}`}

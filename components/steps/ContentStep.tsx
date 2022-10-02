@@ -1,7 +1,7 @@
 import React from 'react'
 import NumberItem from 'components/NumberItem'
 
-// Tools used by this Step
+// Tools used by Content Step
 import { EditRadioButtons, EditTextFields, UploadImage } from 'components/paneltools'
 
 type Props = {}
@@ -14,9 +14,11 @@ export default function ContentStep({ }: Props) {
     return (
         <div data-step="3" className="flex flex-col w-full mt-6 ">
             {/* Step-3 ---Content */}
+            <hr className="h-14 border-none " />
             <div className="dosticky">
                 <NumberItem value="3 Content" />
             </div>
+            <hr className="h-2 border-none " />
 
             <label className="!mt-0">Edit your content</label>
 

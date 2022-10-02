@@ -1,11 +1,11 @@
 import EditRadioButtons from './EditRadioButtons'
 import UploadImage from './UploadImage'
 import EditTextFields from './EditTextFields'
-import ColorPalette from './ColorPalette'
+import EditColor from './EditColor'
 import UploadLogo from './UploadLogo'
-import PositionSelect from './PositionSelect'
+import EditPosition from './EditPosition'
 import ChangeModalSize from './ChangeModalSize'
 
 
 
-export { EditRadioButtons, UploadImage, EditTextFields, ColorPalette, UploadLogo, PositionSelect, ChangeModalSize }
+export { EditRadioButtons, UploadImage, EditTextFields, EditColor, UploadLogo, EditPosition, ChangeModalSize }

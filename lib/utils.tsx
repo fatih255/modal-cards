@@ -33,7 +33,7 @@ function conditionalRender(condition: string | null | undefined, jsx: JSX.Elemen
                     --calculated any height value so smoothy effects :)
 
 */
-function makeStickyContainer(selector: string, nestedStickyBgColor: string = "white") {
+function makeStickyContainer(selector: string, nestedStickyBgColor: string = "white", nestedStickyHeight: number = 100, fineAdjustment: { crossTop: number, crossSticky: number }={crossTop:0 ,crossSticky:0}) {
 
   type containerValuesType = { container: HTMLElement, sticky: number, rect: DOMRect }[]
 
@@ -50,33 +50,38 @@ function makeStickyContainer(selector: string, nestedStickyBgColor: string = "wh
   nestedStickyBgDiv.style.backgroundColor = nestedStickyBgColor
   nestedStickyBgDiv.style.position = "absolute"
   nestedStickyBgDiv.style.width = "100%"
-  nestedStickyBgDiv.style.height = "100%"
+  nestedStickyBgDiv.style.height = nestedStickyHeight + "px"
   nestedStickyBgDiv.style.margin = "auto"
   nestedStickyBgDiv.style.zIndex = "-1"
   nestedStickyBgDiv.style.inset = "0"
-  nestedStickyBgDiv.style.transform = "translateY(-20%)"
+  // nestedStickyBgDiv.style.transform = "translateY(-20%)"
   //height div
   heightDiv.classList.add("sticky-fixed-height")
 
 
   document.querySelectorAll(selector).forEach((element, index) => {
     const container = element as HTMLElement;
-    const sticky = container.offsetTop;
+    const nestedSticky = container.parentElement?.classList.contains(selector.replace(".", "")) || container.parentElement?.parentElement?.classList.contains(selector.replace(".", ""))
+
+    let sticky = container.offsetTop
 
     const isScrollable = container.classList.contains("scrollable-sticky")
     const containerRect = container.getBoundingClientRect()
 
     if (isScrollable) return container.setAttribute("style", ` width:${containerRect.width}px; flex:none `)
 
-    const nestedSticky = container.parentElement?.classList.contains(selector.replace(".", "")) || container.parentElement?.parentElement?.classList.contains(selector.replace(".", ""))
+    const currentStyle = window.getComputedStyle(container)
 
     if (nestedSticky) {
+
       const currentStyle = window.getComputedStyle(container)
       heightDivTopValues.push(container.style.top)
       heightDivAreaSizes.push(parseInt(currentStyle.height) + parseInt(currentStyle.marginTop) + parseInt(currentStyle.marginBottom) + "px")
+
       heightDiv.style.height = heightDivAreaSizes[index]
       heightDiv.style.top = heightDivTopValues[index]
       nestedStickyBgDiv.style.top = heightDivTopValues[index]
+
     }
 
     fixedContainerInfos.push({ container, sticky, rect: containerRect })
@@ -94,11 +99,16 @@ function makeStickyContainer(selector: string, nestedStickyBgColor: string = "wh
       //support 2d nested
       const nestedSticky = container.parentElement?.classList.contains(selector.replace(".", "")) || container.parentElement?.parentElement?.classList.contains(selector.replace(".", ""))
 
+      let stickyselection = sticky
+      if (nestedSticky) {
+        stickyselection = stickyselection + fineAdjustment.crossSticky 
 
-      if (document.documentElement.scrollTop > sticky) {
+      }
+     
+      if (document.documentElement.scrollTop > stickyselection) {
         !nestedSticky && container.setAttribute("style", ` position: fixed; top:0; left:${rect.left}px; width:${rect.width}px; height:${rect.height}px; `)
         if (nestedSticky) {
-          container.children[0].setAttribute("style", `margin:0;   position: fixed; top:0; left:${rect.left}px; width:${container.children[0].getBoundingClientRect().width}px; height:${rect.height}px;  z-index:9999`)
+          container.children[0].setAttribute("style", ` position: fixed; top:${fineAdjustment.crossTop}px; left:${rect.left}px; width:${container.children[0].getBoundingClientRect().width}px; height:${nestedStickyHeight}px;   z-index:9999`)
           if (addednestedStickyContainers) {
             container.append(heightDiv)
             container.children[0].append(nestedStickyBgDiv)
@@ -108,7 +118,7 @@ function makeStickyContainer(selector: string, nestedStickyBgColor: string = "wh
       } else {
         if (nestedSticky) {
           container.setAttribute("style", `position:relative; width:100%; height:${heightDivAreaSizes[index]}`)
-          return container.children[0].setAttribute("style", `margin:0;   position:absolute; width:100%; height:${heightDivAreaSizes[index]}`)
+          return container.children[0].setAttribute("style", `  position:absolute; width:100%;`)
         }
         container.removeAttribute("style")
       }

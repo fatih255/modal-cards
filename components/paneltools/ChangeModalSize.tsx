@@ -1,7 +1,9 @@
 import React from 'react'
-import RadioButton from 'components/RadioButton'
 import { useAppDispatch } from 'redux/hooks'
 import { updateLayout } from 'redux/slices/modal'
+
+//panel components 
+import { RadioButton } from 'components/panelComponents'
 
 type Props = {}
 

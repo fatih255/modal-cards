@@ -1,8 +1,10 @@
 import React from 'react'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { updateModalContentText } from 'redux/slices/modal'
-import ContentInput from 'components/ContentInput'
 import { shallowEqual } from 'react-redux'
+
+//panel components
+import { InputText } from 'components/panelComponents'
 
 
 type Props = {}
@@ -20,7 +22,7 @@ export default function EditTextFields({ }: Props) {
         <>
             {
                 texts && texts.map((text: string, index: string | number) =>
-                    <ContentInput onChange={async (value) => onContentTextChangeHandler(index, value)}
+                    <InputText onChange={async (value) => onContentTextChangeHandler(index, value)}
                         key={`text-content-${index}`} text={text} />)
             }
         </>

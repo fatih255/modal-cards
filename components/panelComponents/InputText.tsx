@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 
 type Props = {
     text?: string,
@@ -7,7 +7,7 @@ type Props = {
 }
 
 
-function ContentInput({ text = '', placeholder = '', onChange }: Props) {
+function InputText({ text = '', placeholder = '', onChange }: Props) {
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         onChange && onChange(e.target.value)
@@ -16,11 +16,11 @@ function ContentInput({ text = '', placeholder = '', onChange }: Props) {
         <input
             placeholder={placeholder}
             onChange={onChangeHandler}
-            defaultValue={useMemo(() => text, [text])}
+            defaultValue={text}
             type="text"
             className="default-input"
         />
 
     )
 }
-export default React.memo(ContentInput)
+export default React.memo(InputText)

@@ -24,6 +24,10 @@ export type ModalType = {
     uploaded: {
         logo: boolean
         image: boolean
+    },
+    settings: {
+        browserLanguages: string[]
+
     }
 }
 export const ModalInitialState: ModalType = {
@@ -46,6 +50,9 @@ export const ModalInitialState: ModalType = {
     uploaded: {
         logo: false,
         image: false
+    },
+    settings: {
+        browserLanguages: ['english', 'french']
     }
 }
 
@@ -74,8 +81,10 @@ export const ModalSlice = createSlice({
 
         //update methods
 
+        updateSettings: (state, action: PayloadAction<{ name: string, value: string | string[] | null }>) => {
+            state.settings = { ...state.settings, [action.payload.name]: action.payload.value }
+        },
         updateLayout: (state, action: PayloadAction<{ name: string, value: string | object }>) => {
-
             state.layout = { ...state.layout, [action.payload.name]: action.payload.value }
         },
         updateContents: (state, action: PayloadAction<{ name: string, value: string }>) => {
@@ -98,7 +107,7 @@ export const ModalSlice = createSlice({
     }
 })
 
-export const { selectModal, updateLayout, updateContents, updateModalContentText, selectRadioButton, updateRadioButton, upload } = ModalSlice.actions
+export const { selectModal, updateLayout, updateContents, updateModalContentText, selectRadioButton, updateRadioButton, updateSettings, upload } = ModalSlice.actions
 
 
 

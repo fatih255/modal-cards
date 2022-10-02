@@ -25,7 +25,7 @@ function Panel({ }: Props) {
 
     //when selectedmodal first render props scrolling
     useEffectOneTime(() => {
-        makeStickyContainer('.dosticky', "white")
+        makeStickyContainer('.dosticky', "white", 80, { crossSticky: 0, crossTop: -18 })
         scrollStep('2')
     })
 
@@ -38,8 +38,8 @@ function Panel({ }: Props) {
                 <div className="flex-[30%] flex flex-col justify-start items-start dosticky scrollable-sticky">
                     <AppearanceStep />
                     <ContentStep />
-                    <SettingsAndCodeStep />
                     <TargetingRulesStep />
+                    <SettingsAndCodeStep />
                 </div>
                 {/* Modal Preview Zone */}
                 <div className="dosticky flex-[70%] flex self-start justify-center relative min-h-[96vh] rounded-lg h-full bg-gray-50 ">

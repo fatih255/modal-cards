@@ -1,9 +1,11 @@
+import React, { useRef } from 'react'
+import Button from 'components/Button'
 import { useEffectOneTime } from 'lib/hooks'
-import React, { useMemo, useRef } from 'react'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
-import { ModalType, updateRadioButton } from 'redux/slices/modal'
-import Button from '../Button'
-import ContentInput from '../ContentInput'
+import { updateRadioButton } from 'redux/slices/modal'
+
+//panel components
+import { InputText } from 'components/panelComponents'
 
 type Props = {
 }
@@ -69,11 +71,11 @@ function EditRadioButtons({ }: Props) {
                         />
                         <div className={`radio-tab-${index} ${index === 0 ? 'radio-tab-show' : 'radio-tab-hide'} my-2 origin-top`}>
                             <span className="font-inter text-sm">Title</span>
-                            <ContentInput onChange={async (value) => onContentRadioChangeHandler({ ...radio, radioIndex: index, title: value })} text={radio.title} />
+                            <InputText onChange={async (value) => onContentRadioChangeHandler({ ...radio, radioIndex: index, title: value })} text={radio.title} />
                             <span className="font-inter text-sm">Description</span>
-                            <ContentInput onChange={async (value) => onContentRadioChangeHandler({ ...radio, radioIndex: index, description: value })} text={radio.description} />
+                            <InputText onChange={async (value) => onContentRadioChangeHandler({ ...radio, radioIndex: index, description: value })} text={radio.description} />
                             <span className="font-inter text-sm">Value</span>
-                            <ContentInput onChange={async (value) => onContentRadioChangeHandler({ ...radio, radioIndex: index, value: value })} text={radio.value} />
+                            <InputText onChange={async (value) => onContentRadioChangeHandler({ ...radio, radioIndex: index, value: value })} text={radio.value} />
                         </div>
                     </div>
                 </React.Fragment>)

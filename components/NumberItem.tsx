@@ -18,7 +18,7 @@ function NumberItem({ value, className = '', bracketsClassName = "font-normal" }
 
     return (
         <>
-            <div className={` flex gap-4 items-center font-semibold text-lg tracking-tighter   mb-12 mt-10 ${className} `}>
+            <div className={` flex gap-4 items-center font-semibold text-lg tracking-tighter   mb-4 mt-4 ${className} `}>
                 <span className=" bg-design-gray-200 px-[15px] py-[17px] leading-[0px] rounded-full ">{number}</span>
                 <div>
                     <span>{text}</span>

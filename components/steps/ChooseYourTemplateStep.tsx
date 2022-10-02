@@ -1,7 +1,9 @@
 import React from 'react'
-import { modals } from '../../lib/contants'
-import ChooseModals from '../ChooseModals'
-import NumberItem from '../NumberItem'
+import ChooseModals from 'components/ChooseModals'
+import NumberItem from 'components/NumberItem'
+import { modals } from 'lib/contants'
+
+
 
 type Props = {}
 

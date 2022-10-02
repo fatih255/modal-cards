@@ -1,21 +1,21 @@
 import React, { useState } from 'react'
-import { useAppDispatch } from 'redux/hooks'
-import { updateLayout } from 'redux/slices/modal'
 import cn from 'classnames'
 
 type Props = {
-
+    returnedValue: (data: {
+        name: string,
+        value: string | object
+    }) => {}
 }
 
-export default function PositionSelect({ }: Props) {
+export default function SelectPosition({ returnedValue }: Props) {
 
     const [selectedPosition, setSelectedPosition] = useState('pos-mc')
     const positions = ['pos-tl', 'pos-tc', 'pos-tr', 'pos-ml', 'pos-mc', 'pos-mr', 'pos-bl', 'pos-bc', 'pos-br'] // as well as position classes
     //positions:top-left, top-center, top-right, middle-left, middle-center, middle-right, bottom-left, bottom-center, bottom-right
 
-    const dispatch = useAppDispatch()
     const selectPositionHandler = (value: string) => {
-        dispatch(updateLayout({ name: 'position', value: value }))
+        returnedValue({ name: 'position', value: value })
         setSelectedPosition(value)
     }
 

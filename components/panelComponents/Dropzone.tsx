@@ -22,7 +22,7 @@ export default function Dropzone({ uploadFor }: Props) {
             uploaded: state.modal.uploaded[uploadFor],
             assetURL: state.modal.contents[uploadFor]
         }), shallowEqual)
-console.log( uploaded, assetURL )
+
 
     const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
         onDropAccepted: (acceptedFiles) => {

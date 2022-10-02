@@ -1,7 +1,9 @@
 import React from 'react'
 import { shallowEqual } from 'react-redux'
 import { useAppSelector } from 'redux/hooks'
-import Dropzone from 'components/Dropzone'
+
+//panel components
+import { Dropzone } from 'components/panelComponents'
 
 
 type Props = {}

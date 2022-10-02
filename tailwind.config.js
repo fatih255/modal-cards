@@ -20,7 +20,9 @@ module.exports = {
             400: '#BBBBBB',
             500: '#DDDDDD',
             900: '#777777',
-
+          },
+          red:{
+            500:'#EA0F0F'
           }
         }
       },
