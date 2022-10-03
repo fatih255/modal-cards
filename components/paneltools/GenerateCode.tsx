@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import cn from 'classnames';
 import Button from 'components/Button'
+import generateCode from 'lib/generateCode';
 
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { dark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
-import { generateCode } from 'lib/utils';
+
 import InfoIcon from 'icons/info.svg'
+
 
 
 type Props = {}

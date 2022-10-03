@@ -3,11 +3,15 @@ import NumberItem from 'components/NumberItem'
 
 // Tools used by Targeting Rules Step
 import { AfterPercentageScroll, AfterXSeconds, BrowserLanguageSelect, ExitIntentTargetting, TrafficSource, VisitorDeviceSelect } from 'components/paneltools'
+import ModalEventListeners from 'components/ModalEventListeners'
+
+
 
 
 type Props = {}
 
 export default function TargetingRulesStep({ }: Props) {
+
     return (
         <div data-step="4" className="flex flex-col w-full mt-6 ">
             {/* Step-3 ---Content */}
@@ -21,6 +25,7 @@ export default function TargetingRulesStep({ }: Props) {
             <TrafficSource />
             <BrowserLanguageSelect />
             <ExitIntentTargetting />
+            <ModalEventListeners />
         </div>
     )
 }

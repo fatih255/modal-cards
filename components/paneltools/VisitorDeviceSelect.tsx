@@ -17,7 +17,11 @@ type Props = {}
 
 export default function VisitorDeviceSelect({ }: Props) {
 
-    const { visitorDevice, activeSettings } = useAppSelector(state => Object({ visitorDevice: state.modal.settings.visitorDevice, activeSettings: state.modal.activedSettings }), shallowEqual)
+    const { visitorDevice, isActiveVisitorDevice } = useAppSelector(state => Object(
+        {
+            visitorDevice: state.modal.settings.visitorDevice,
+            isActiveVisitorDevice: state.modal.activedSettings.includes("visitorDevice")
+        }), shallowEqual)
     const dispatch = useAppDispatch()
 
     return (
@@ -26,7 +30,7 @@ export default function VisitorDeviceSelect({ }: Props) {
                 className="!mt-4"
                 text="Visitor Device"
                 fieldName="visitorDevice"
-                activeDefault={activeSettings.includes("visitorDevice")}
+                activeDefault={isActiveVisitorDevice}
                 returnedValue={({ fieldName }) => dispatch(settingStatus(fieldName))}
             >
                 <CheckBoxButton

@@ -12,10 +12,10 @@ type Props = {}
 export default function BrowserLanguageSelect({ }: Props) {
 
 
-    const { browserLanguages, activeSettings } = useAppSelector(state => Object(
+    const { browserLanguages, isActivedBrowserLanguage } = useAppSelector(state => Object(
         {
             browserLanguages: state.modal.settings.browserLanguages,
-            activeSettings: state.modal.activedSettings
+            isActivedBrowserLanguage: state.modal.activedSettings.includes("browserLanguages")
         }), shallowEqual)
 
     const dispatch = useAppDispatch()
@@ -27,7 +27,7 @@ export default function BrowserLanguageSelect({ }: Props) {
                 text="Browser Language"
                 fieldName="browserLanguages"
                 returnedValue={({ fieldName }) => dispatch(settingStatus(fieldName))}
-                activeDefault={activeSettings.includes("browserLanguages")}
+                activeDefault={isActivedBrowserLanguage}
             >
                 <InputSelect
                     onChange={(data) => dispatch(updateSettings({ name: "browserLanguages", value: data }))}

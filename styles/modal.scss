@@ -1,5 +1,15 @@
 .default {
+    @extend .open;
     @apply absolute w-full h-max bg-white flex flex-col gap-8 shadow-2xl rounded-lg overflow-hidden text-center;
+
+    &.open {
+     
+        @apply animate-fade-in
+    }
+
+    &.close {
+        @apply animate-fade-out
+    }
 
     &.p-none {
         @apply p-0

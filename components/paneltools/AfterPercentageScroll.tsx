@@ -13,10 +13,10 @@ type Props = {}
 export default function AfterPercentageScroll({ }: Props) {
 
 
-    const { afterPercentageScroll, activeSettings } = useAppSelector(state => Object(
+    const { afterPercentageScroll, isAfterPercentageScroll } = useAppSelector(state => Object(
         {
             afterPercentageScroll: state.modal.settings.afterPercentageScroll,
-            activeSettings: state.modal.activedSettings
+            isAfterPercentageScroll: state.modal.activedSettings.includes("afterPercentageScroll")
         }
     ), shallowEqual)
     const dispatch = useAppDispatch()
@@ -27,7 +27,7 @@ export default function AfterPercentageScroll({ }: Props) {
             returnedValue={({ fieldName }) => dispatch(settingStatus(fieldName))}
             text="After % Scroll"
             fieldName="afterPercentageScroll"
-            activeDefault={activeSettings.includes("afterPercentageScroll")}
+            activeDefault={isAfterPercentageScroll}
         >
             <InputText
                 onChange={(value) => dispatch(updateSettings({ name: "afterPercentageScroll", value: value }))}

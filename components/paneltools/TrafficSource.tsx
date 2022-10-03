@@ -11,7 +11,12 @@ type Props = {}
 
 export default function TrafficSource({ }: Props) {
 
-    const { trafficSource, activeSettings } = useAppSelector(state => Object({ trafficSource: state.modal.settings.trafficSource, activeSettings: state.modal.activedSettings }), shallowEqual)
+    const { trafficSource, isActiveTrafficSource } = useAppSelector(state => Object(
+        {
+            trafficSource: state.modal.settings.trafficSource,
+            isActiveTrafficSource: state.modal.activedSettings.includes("trafficSource")
+        }), shallowEqual)
+
     const dispatch = useAppDispatch()
 
 
@@ -21,7 +26,7 @@ export default function TrafficSource({ }: Props) {
             className="mb-[10px]"
             text="Traffic Source"
             returnedValue={({ fieldName }) => dispatch(settingStatus(fieldName))}
-            activeDefault={activeSettings.includes("trafficSource")}
+            activeDefault={isActiveTrafficSource}
         >
             <InputText text={trafficSource} onChange={(value) => dispatch(updateSettings({ name: "trafficSource", value: value }))} placeholder="Enter your traffic source domain" />
         </Switch>

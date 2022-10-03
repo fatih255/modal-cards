@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getModalContants, modalConstants } from '../../lib/modalConstants';
+import { getModalContants } from 'lib/modalConstants';
 
 
 export type ModalType = {
@@ -103,7 +103,12 @@ export const ModalSlice = createSlice({
 
             const isSettingsActive = state.activedSettings.some(setting => setting === action.payload);
             if (isSettingsActive) state.activedSettings = [...state.activedSettings.filter(setting => setting !== action.payload)]
-            if (!isSettingsActive) state.activedSettings = state.activedSettings = [...state.activedSettings, action.payload]
+            if (!isSettingsActive) {
+                state.activedSettings = state.activedSettings = [...state.activedSettings, action.payload]
+            }
+
+            if (action.payload === "exitIntentTargetting")
+                state.settings.exitIntentTargetting = !state.settings.exitIntentTargetting;
 
         },
         updateSettings: (state, action: PayloadAction<{ name: keyof ModalType['settings'], value: string | string[] | boolean | null }>) => {
