@@ -1,5 +1,5 @@
 import React from 'react'
-import { useEffectOneTime } from 'lib/hooks'
+import { useEffectOneTime, useLayoutHeightTransformer } from 'lib/hooks'
 import { makeStickyContainer, scrollStep } from 'lib/utils'
 import { useAppSelector } from 'redux/hooks'
 import ModalLoader from './ModalLoader'
@@ -23,12 +23,14 @@ function Panel({ }: Props) {
 
     const selectedModalName = useAppSelector(state => state.modal.selectedModalName)
 
+   
     //when selectedmodal first render props scrolling
     useEffectOneTime(() => {
-        makeStickyContainer('.dosticky', "white", 80, { crossSticky: 0, crossTop: -18 },'.close-sticky')
+        useLayoutHeightTransformer({ selectors: { from: '.panel', to: '.preview-inner' }, centeredBySelector: '.preview-outer', divideHeight: 2 })
+
+        makeStickyContainer('.dosticky', "white", 80, { crossSticky: 0, crossTop: -18 }, { selector: '.close-sticky', offsetCross: 50 })
         scrollStep('2')
     })
-
 
 
     return (
@@ -42,8 +44,10 @@ function Panel({ }: Props) {
                     <SettingsAndCodeStep />
                 </div>
                 {/* Modal Preview Zone */}
-                <div className="dosticky flex-[70%] flex self-start justify-center relative min-h-[96vh] rounded-lg h-full bg-gray-50 ">
-                    <ModalLoader name={selectedModalName} />
+                <div className={`dosticky preview-outer scrollbar-style-1 bold-scroll flex-[70%] flex self-start min-h-[96vh] justify-center relative rounded-lg overflow-y-scroll bg-gray-50`}>
+                    <div className="preview-inner" style={{ position: 'absolute', top: 0, width: '100%' }}>
+                        <ModalLoader name={selectedModalName} />
+                    </div>
                 </div>
             </div>
         </div>

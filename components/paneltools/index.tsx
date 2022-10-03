@@ -11,10 +11,15 @@ import BrowserLanguageSelect from './BrowserLanguageSelect'
 import ExitIntentTargetting from './ExitIntentTargetting'
 import TrafficSource from './TrafficSource'
 import VisitorDeviceSelect from './VisitorDeviceSelect'
-
+import GenerateCode from './GenerateCode'
+import EditWebhookURL from './EditWebhookURL'
+import FormSubmissionAndSendClickData from './FormSubmissionAndSendClickData'
 
 
 export {
+    FormSubmissionAndSendClickData,
+    EditWebhookURL,
+    GenerateCode,
     VisitorDeviceSelect,
     AfterPercentageScroll,
     AfterXSeconds,

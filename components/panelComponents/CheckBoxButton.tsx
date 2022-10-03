@@ -12,7 +12,7 @@ export default function CheckBoxButton({ items, returnedValue }: Props) {
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>, value: string) => {
         if (e.target.checked) setcheckedItem(value)
-        returnedValue && returnedValue(checkedItem)
+        returnedValue && returnedValue(value)
     }
 
 

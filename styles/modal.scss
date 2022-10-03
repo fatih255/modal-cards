@@ -98,7 +98,7 @@
 }
 
 .pos-tc {
-    @apply top-0 mx-auto
+    @apply inset-0 mx-auto mb-auto
 }
 
 .pos-tr {
@@ -122,7 +122,7 @@
 }
 
 .pos-bc {
-    @apply bottom-0 mx-auto
+    @apply inset-0 mx-auto mt-auto
 }
 
 .pos-br {
@@ -164,9 +164,11 @@ $hex in $colors {
             &:not(img, .balloon, .radio) {
                 @apply text-black outline outline-[1px] outline-gray-200;
             }
-            &.logo{
+
+            &.logo {
                 @apply bg-black
             }
+
             &.radio {
                 &.selected {
                     @apply bg-black border-black;
@@ -202,4 +204,15 @@ $hex in $colors {
 
 .radio {
     @apply relative overflow-hidden trans-300 self-start rounded-full w-[23px] h-[23px] bg-white border border-[#717791] ring-white ring-[4.5px]
+}
+
+//layout visitor device responsive
+#layout {
+    &.mobile {
+        @apply lg:hidden
+    }
+
+    &.desktop {
+        @apply hidden lg:flex
+    }
 }

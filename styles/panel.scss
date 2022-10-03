@@ -147,6 +147,18 @@
                 @apply bg-primary bg-opacity-30 trans-600
             }
         }
+
+        &.bold-scroll::-webkit-scrollbar {
+            @apply bg-white w-[20px]
+        }
+
+        &.bold-scroll::-webkit-scrollbar-thumb {
+            @apply overflow-hidden bg-design-gray-500 rounded-3xl p-[6px] border-[6px] border-transparent border-solid bg-clip-padding;
+
+            &:hover {
+                @apply bg-primary bg-opacity-30 trans-600
+            }
+        }
     }
 
     code {
@@ -154,8 +166,16 @@
     }
 
     pre {
+        padding: 0 !important;
+        width: fit-content !important;
         background-color: #333333 !important;
         overflow: hidden !important;
+        @apply font-medium text-xs;
+
+        @font-face {
+            font-family: Roboto Mono;
+            src: url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+        }
     }
 }
 

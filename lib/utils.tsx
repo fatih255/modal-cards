@@ -16,24 +16,53 @@ function conditionalRender(condition: string | null | undefined, jsx: JSX.Elemen
 }
 
 //generate code method
-function generateCode(): {} {
+function generateCode(): string {
 
   const { settings, activedSettings } = store.getState().modal
-  
 
-  const activeSettingsValues = Object
+
+  const activeSettingsValues: ModalType["settings"] = Object
     .keys(settings)
     .filter(setting => activedSettings.includes(setting as keyof ModalType['settings']))
     .map(setting => Object({ [setting]: settings[setting as keyof ModalType['settings']] }))
     .reduce((acc, c) => Object({ ...acc, ...Object.assign(acc, c) }), {})
 
-  const modalHTML = document.getElementById("layout")?.outerHTML
-  const generatedObj = {
-    html: modalHTML,                //modal layout html
-    settings: activeSettingsValues  //this value return activated settings values
+  //GenerateCode Stages
+
+  //  1.Stage: clone current modal layout
+  let modalElement = document.getElementById("layout");
+  if (!modalElement) return ''
+  let modalElement_cloned = modalElement.cloneNode(true) as HTMLElement;
+
+
+  //  2.Stage: check check whether there is a targeting  visitor device,
+  //  if there is a targeted visitor device add a responsive class
+  if (activeSettingsValues.visitorDevice) {
+    modalElement_cloned.classList.add(activeSettingsValues.visitorDevice)
   }
 
-  return generatedObj
+  //3.Stage: Add the hostname to the beginning of the image's source url string
+  modalElement_cloned.querySelectorAll("img").forEach(img => img.src = img.src)
+
+  // Final Stage: create code between script tags
+  const generatedCode = `
+  <script>
+    document.body.innerHTML = '${modalElement_cloned.outerHTML}';
+    var cssId = "modalCardCSS"; 
+    var head = document.getElementsByTagName("head")[0];
+    var link = document.createElement("link");
+    link.id = cssId;
+    link.rel = "stylesheet";
+    link.type = "text/css";
+    link.href ="https://633a7bffa39a490df7495584--leafy-mermaid-eb53cb.netlify.app/_next/static/css/c51015471aa6e4bc.css";
+    link.media = "all";
+    head.appendChild(link);
+  </script>
+  `
+
+
+
+  return generatedCode
 }
 
 
@@ -60,7 +89,13 @@ function generateCode(): {} {
                     --calculated any height value so smoothy effects :)
 
 */
-function makeStickyContainer(selector: string, nestedStickyBgColor: string = "white", nestedStickyHeight: number = 100, fineAdjustment: { crossTop: number, crossSticky: number } = { crossTop: 0, crossSticky: 0 }, closeStickySeletor?: string) {
+function makeStickyContainer(
+  selector: string,
+  nestedStickyBgColor: string = "white",
+  nestedStickyHeight: number = 100,
+  fineAdjustment: { crossTop: number, crossSticky: number } = { crossTop: 0, crossSticky: 0 },
+  closeStickySeletor?: { selector: string, offsetCross: number }
+) {
 
   type containerValuesType = { container: HTMLElement, sticky: number, rect: DOMRect }[]
 
@@ -69,7 +104,7 @@ function makeStickyContainer(selector: string, nestedStickyBgColor: string = "wh
   const heightDivAreaSizes: string[] = []
   let closeStickyElement: HTMLElement | null = null;
   if (closeStickySeletor) {
-    const closeSticky = document.querySelector(closeStickySeletor) as HTMLElement
+    const closeSticky = document.querySelector(closeStickySeletor.selector) as HTMLElement
     closeStickyElement = closeSticky
   }
 
@@ -95,6 +130,8 @@ function makeStickyContainer(selector: string, nestedStickyBgColor: string = "wh
     const nestedSticky = container.parentElement?.classList.contains(selector.replace(".", "")) || container.parentElement?.parentElement?.classList.contains(selector.replace(".", ""))
 
     let sticky = container.offsetTop
+
+
 
     const isScrollable = container.classList.contains("scrollable-sticky")
     const containerRect = container.getBoundingClientRect()
@@ -134,11 +171,13 @@ function makeStickyContainer(selector: string, nestedStickyBgColor: string = "wh
 
       }
 
-      if (closeStickyElement && document.documentElement.scrollTop + container.offsetHeight > closeStickyElement.offsetTop) {
+      if (closeStickySeletor && closeStickyElement && document.documentElement.scrollTop + container.offsetHeight > closeStickyElement.offsetTop-closeStickySeletor.offsetCross) {
+
         nestedSticky && container.children[0].setAttribute("style", `display:none `)
-        !nestedSticky && container.setAttribute("style", `position:absolute; top:${closeStickyElement.offsetTop - container.offsetHeight}px; left:${rect.left}px; width:${rect.width}px;`)
+        !nestedSticky && container.setAttribute("style", `position:absolute; top:${closeStickyElement.offsetTop - closeStickySeletor.offsetCross - container.offsetHeight}px; left:${rect.left}px; width:${rect.width}px;`)
         return
       }
+
       if (document.documentElement.scrollTop > stickyselection) {
         !nestedSticky && container.setAttribute("style", ` position: fixed; top:0; left:${rect.left}px; width:${rect.width}px; height:${rect.height}px; `)
 

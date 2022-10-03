@@ -2,6 +2,7 @@
   "name": "modal-cards-fatih-inci",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://633a7bffa39a490df7495584--leafy-mermaid-eb53cb.netlify.app/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
