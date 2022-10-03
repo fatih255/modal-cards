@@ -19,6 +19,8 @@ function conditionalRender(condition: string | null | undefined, jsx: JSX.Elemen
 function generateCode(): {} {
 
   const { settings, activedSettings } = store.getState().modal
+  
+
   const activeSettingsValues = Object
     .keys(settings)
     .filter(setting => activedSettings.includes(setting as keyof ModalType['settings']))
@@ -27,8 +29,8 @@ function generateCode(): {} {
 
   const modalHTML = document.getElementById("layout")?.outerHTML
   const generatedObj = {
-    html: modalHTML,
-    settings: activeSettingsValues
+    html: modalHTML,                //modal layout html
+    settings: activeSettingsValues  //this value return activated settings values
   }
 
   return generatedObj
