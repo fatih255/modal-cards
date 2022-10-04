@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 
-export const useEffectOneTime = (callback: () => void, depencies: any[] = []) => {
+export const useEffectOneTime = (callback: () => void, depencies: string[] | number[] | object[] = []) => {
     const EffectRan = useRef(false);
     useEffect(() => {
         !EffectRan.current || depencies && callback()
