@@ -25,9 +25,10 @@ function Panel({ }: Props) {
     const selectedModalName = useAppSelector(state => state.modal.selectedModalName)
 
 
+    useLayoutHeightTransformer({ selectors: { from: '.panel', to: '.preview-inner' }, centeredBySelector: '.preview-outer', divideHeight: 2 })
     //when selectedmodal first render props scrolling
     useEffectOneTime(() => {
-        useLayoutHeightTransformer({ selectors: { from: '.panel', to: '.preview-inner' }, centeredBySelector: '.preview-outer', divideHeight: 2 })
+      
 
         makeStickyContainer('.dosticky', "white", 80, { crossSticky: 0, crossTop: -18 }, { selector: '.close-sticky', offsetCross: 90 })
 

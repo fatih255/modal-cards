@@ -22,19 +22,21 @@ type Props = {
 }
 export const useLayoutHeightTransformer = ({ selectors: { from, to }, centeredBySelector, divideHeight = 1 }: Props) => {
 
-    const fromElement = document.querySelector(from) as HTMLElement
-    const heightFrom = fromElement.getBoundingClientRect().height
+    useEffectOneTime(() => {
+        const fromElement = document.querySelector(from) as HTMLElement
+        const heightFrom = fromElement.getBoundingClientRect().height
 
-    const toElement = document.querySelector(to) as HTMLElement
-    toElement.style.height = heightFrom / divideHeight + "px"
+        const toElement = document.querySelector(to) as HTMLElement
+        toElement.style.height = heightFrom / divideHeight + "px"
 
-    if (centeredBySelector) {
-        const centeredBySelectorElement = document.querySelector(centeredBySelector) as HTMLElement
-        console.log()
-        centeredBySelectorElement.scrollTo({
-            top: parseFloat(toElement.style.height) / 6,
+        if (centeredBySelector) {
+            const centeredBySelectorElement = document.querySelector(centeredBySelector) as HTMLElement
+            console.log()
+            centeredBySelectorElement.scrollTo({
+                top: parseFloat(toElement.style.height) / 6,
 
-        })
-    }
+            })
+        }
+    })
 }
 
