@@ -1,6 +1,6 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import Button from 'components/Button'
-import { useEffectOneTime } from 'lib/hooks'
+
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { updateRadioButton } from 'redux/slices/modal'
 
@@ -19,7 +19,7 @@ function EditRadioButtons({ }: Props) {
 
     //get height for transition height effect css
     const radioTabHeightRef = useRef(0) //  I use ref during I get the height value from the HTML element because I use it one time. Therefore I didn't need to use setstate
-    useEffectOneTime(() => {
+    useEffect(() => {
         const radioTab = document.querySelector(`.radio-tab-show`) as HTMLElement
         if (radioTab && radioTabHeightRef.current === 0) {
             radioTabHeightRef.current = radioTab.getBoundingClientRect().height

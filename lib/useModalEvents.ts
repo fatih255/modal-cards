@@ -23,17 +23,13 @@ function useModalEvents(eventType: string, status?: boolean | null, value?: stri
         if (!modalElement) return
 
         const openModalAction = () => {
-            if (modalElement.classList.contains("close")) {
-                modalElement.classList.remove('close');
-                modalElement.classList.add('open');
-            }
+            modalElement.classList.remove('close');
+            modalElement.classList.add('open');
         }
 
         const closeModal = () => {
-            if (modalElement.classList.contains("open")) {
-                modalElement.classList.remove('open');
-                modalElement.classList.add('close');
-            }
+            modalElement.classList.remove('open');
+            modalElement.classList.add('close');
         }
 
 
@@ -130,7 +126,7 @@ function useModalEvents(eventType: string, status?: boolean | null, value?: stri
             timer && window.clearTimeout(timer);
 
         }
-    }, [status, value,eventType])
+    }, [status, value, eventType])
 
 }
 

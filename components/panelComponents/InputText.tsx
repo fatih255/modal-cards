@@ -6,10 +6,11 @@ type Props = {
     onChange?: (value: string) => {}
     type?: string
     max?: number
+    className?:string
 }
 
 
-function InputText({ text = '', placeholder = '', onChange, type = "text", max }: Props) {
+function InputText({ text = '', placeholder = '', onChange, type = "text", max ,className=''}: Props) {
 
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +31,7 @@ function InputText({ text = '', placeholder = '', onChange, type = "text", max }
             onChange={onChangeHandler}
             defaultValue={text}
             type={type}
-            className="default-input"
+            className={`default-input ${className}`}
         />
 
     )

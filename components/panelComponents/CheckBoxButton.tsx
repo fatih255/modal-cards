@@ -17,9 +17,6 @@ export default function CheckBoxButton({ items, returnedValue }: Props) {
 
 
 
-
-
-
     return (
         <div className="flex gap-5">
             {

@@ -1,8 +1,7 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import cn from 'classnames'
 import DropdownIcon from 'icons/input-dropdown.svg'
 import SelectRemoveIcon from 'icons/select-remove.svg'
-import { useEffectOneTime } from 'lib/hooks'
 
 
 type Props = {
@@ -24,7 +23,7 @@ function InputSelect({ closeText = "close", clearAllText = "Clear All", selectAl
     const [activeSelectPanel, setActiveSelectPanel] = useState(false)
 
     const isFirstRender = useRef(true)
-    useEffectOneTime(() => {
+    useEffect(() => {
         if (!isFirstRender.current) {
             const values = checkedItems.map(x => x.value) as string[]
             values.length > 0 && onChange && onChange(values)

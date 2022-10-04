@@ -1,5 +1,5 @@
-import React from 'react'
-import { useEffectOneTime, useLayoutHeightTransformer } from 'lib/hooks'
+import React, { useEffect, useRef } from 'react'
+import { layoutHeightTransformer } from 'lib/layoutHeightTransformer'
 import { scrollStep } from 'lib/utils'
 import { useAppSelector } from 'redux/hooks'
 import ModalLoader from './ModalLoader'
@@ -25,15 +25,19 @@ function Panel({ }: Props) {
     const selectedModalName = useAppSelector(state => state.modal.selectedModalName)
 
 
-    useLayoutHeightTransformer({ selectors: { from: '.panel', to: '.preview-inner' }, centeredBySelector: '.preview-outer', divideHeight: 2 })
+
     //when selectedmodal first render props scrolling
-    useEffectOneTime(() => {
-      
-
-        makeStickyContainer('.dosticky', "white", 80, { crossSticky: 0, crossTop: -18 }, { selector: '.close-sticky', offsetCross: 90 })
-
-        scrollStep('2')
-    })
+    const EffectRan = useRef<boolean>(false)
+    useEffect(() => {
+        if (!EffectRan.current) {
+            makeStickyContainer('.dosticky', "white", 80, { crossSticky: 0, crossTop: -18 }, { selector: '.close-sticky', offsetCross: 90 })
+            layoutHeightTransformer({ selectors: { from: '.panel', to: '.preview-inner' }, centeredBySelector: '.preview-outer', divideHeight: 2 })
+            scrollStep('2')
+        }
+        return () => {
+            EffectRan.current = true
+        }
+    }, [])
 
 
     return (

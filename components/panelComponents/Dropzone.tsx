@@ -1,12 +1,11 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import UploadCloudIcon from 'icons/upload-cloud.svg'
 import NoImageIcon from 'icons/no-image.svg'
 import { useDropzone } from 'react-dropzone'
 import { AiOutlineFileExcel, AiOutlineFileAdd } from 'react-icons/ai'
-import { useEffectOneTime } from 'lib/hooks'
 import cn from 'classnames'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
-import { updateLayout, upload } from 'redux/slices/modal'
+import { upload } from 'redux/slices/modal'
 import { shallowEqual } from 'react-redux'
 
 
@@ -44,7 +43,7 @@ export default function Dropzone({ uploadFor }: Props) {
     })
 
     const DropzoneContainerRef = useRef<HTMLDivElement | null>(null)
-    useEffectOneTime(() => {
+    useEffect(() => {
         if (DropzoneContainerRef.current) {
             const { height } = DropzoneContainerRef.current.getBoundingClientRect();
             DropzoneContainerRef.current.style.minHeight = height + "px"

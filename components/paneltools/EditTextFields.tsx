@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { updateModalContentText } from 'redux/slices/modal'
 import { shallowEqual } from 'react-redux'
@@ -18,6 +18,7 @@ export default function EditTextFields({ }: Props) {
     const onContentTextChangeHandler = (ContentIndex: string | number, ContentText: string) => {
         dispatch(updateModalContentText({ ContentIndex, ContentText }))
     }
+
 
     return (
         <>
