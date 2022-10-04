@@ -130,7 +130,7 @@ function useModalEvents(eventType: string, status?: boolean | null, value?: stri
             timer && window.clearTimeout(timer);
 
         }
-    }, [status, value])
+    }, [status, value,eventType])
 
 }
 
