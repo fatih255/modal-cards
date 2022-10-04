@@ -29,9 +29,9 @@ export default function generateCode(): string {
     //3.Stage: Add the hostname to the beginning of the image's source url string
     modalElement_cloned.querySelectorAll("img").forEach(img => img.src = img.src)
 
-    //4.Stage: Import event listeners
-    // modalElement_cloned.
-
+    
+    
+    //4.Stage: write event listeners
     // Final Stage: create code between script tags
     const generatedCode = `
     <script>
@@ -64,12 +64,12 @@ export default function generateCode(): string {
         function scrollEventOnDocument(value){
            
                 let scrollTop = window.scrollY;
-                let docHeight = document.body.offsetHeight;
+                let docHeight = document.documentElement.offsetHeight;
                 let winHeight = window.innerHeight;
                 let scrollPercent = scrollTop / (docHeight - winHeight);
                 let scrollPercentRounded = Math.round(scrollPercent * 100);
     
-                scrollPercentRounded < Number(value) && closeModal()
+                if(scrollPercentRounded < Number(value))  closeModalAction()
                 if (scrollPercentRounded === Number(value) && modalElement.classList.contains('close')) {
                     openModalAction()
                 } 
@@ -77,9 +77,11 @@ export default function generateCode(): string {
 
         // x Second Time Out x after show modal
         function xSecondTimeOut(value){
-            timer = Number(value) > 0 && setTimeout(() => {
-                openModalAction()
-            }, Number(value) * 1000);
+            if(Number(value) > 0){
+                timer = Number(value) > 0 && setTimeout(() => {
+                    openModalAction()
+                }, Number(value) * 1000);
+            }
         }
 
         //exit indent targeting show modal
@@ -89,9 +91,9 @@ export default function generateCode(): string {
             }
         };
 
-        ${activeSettingsValues.afterPercentageScroll ? `window.addEventListener("scroll", scrollEventOnDocument(${activeSettingsValues.afterPercentageScroll}));` : ''}
-        ${activeSettingsValues.exitIntentTargetting ? `document.addEventListener("mouseout" , exitIntentTargetting(${activeSettingsValues.exitIntentTargetting}));` : ''}
-        ${activeSettingsValues.afterXSeconds ? `xSecondTimeOut(${activeSettingsValues.afterXSeconds});` : ''}
+        ${activeSettingsValues.afterPercentageScroll ? `window.addEventListener("scroll", ()=> scrollEventOnDocument(${settings['afterPercentageScroll']}));` : ''}
+        ${activeSettingsValues.exitIntentTargetting ? `document.addEventListener("mouseout" ,()=> exitIntentTargetting(${settings['exitIntentTargetting']}));` : ''}
+        ${activeSettingsValues.afterXSeconds ? `xSecondTimeOut(${settings['afterXSeconds']});` : ''}
         
        
 
