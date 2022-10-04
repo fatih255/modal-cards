@@ -11,6 +11,7 @@ import { AppearanceStep } from './steps'
 import ContentStep from './steps/ContentStep'
 import SettingsAndCodeStep from './steps/SettingsAndCodeStep'
 import TargetingRulesStep from './steps/TargetingRulesStep'
+import centerScroll from 'lib/centerScroll'
 
 
 
@@ -29,16 +30,19 @@ function Panel({ }: Props) {
     //when selectedmodal first render props scrolling
     const EffectRan = useRef<boolean>(false)
     useEffect(() => {
+
         if (!EffectRan.current) {
             makeStickyContainer('.dosticky', "white", 80, { crossSticky: 0, crossTop: -18 }, { selector: '.close-sticky', offsetCross: 90 })
             layoutHeightTransformer({ selectors: { from: '.panel', to: '.preview-inner' }, centeredBySelector: '.preview-outer', divideHeight: 2 })
-            scrollStep('2')
+
         }
+
+        centerScroll({ selector: ".preview-outer" })
+        scrollStep('2')
         return () => {
             EffectRan.current = true
         }
-    }, [])
-
+    }, [selectedModalName])
 
     return (
         <div data-step="2" className="pt-[2vh] h-full ">

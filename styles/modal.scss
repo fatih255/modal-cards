@@ -2,12 +2,23 @@
     @apply absolute w-full h-max bg-white flex flex-col gap-8 shadow-2xl rounded-lg overflow-hidden text-center;
 
     &.open {
-     
         @apply animate-fade-in
     }
 
     &.close {
         @apply animate-fade-out
+    }
+
+    &.for-generated {
+        @apply fixed opacity-0 pointer-events-none w-full h-max bg-white flex flex-col gap-8 shadow-2xl rounded-lg overflow-hidden text-center;
+
+        &.open {
+            @apply opacity-100 pointer-events-auto animate-fade-in
+        }
+
+        &.close {
+            @apply opacity-0 pointer-events-none animate-fade-out
+        }
     }
 
     &.p-none {

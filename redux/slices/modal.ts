@@ -70,7 +70,7 @@ export const ModalInitialState: ModalType = {
         sendFormSubmission: false,
         sendClickData: false
     },
-    activedSettings: ['visitorDevice', 'browserLanguages', 'sendFormSubmission', 'sendClickData']
+    activedSettings: ['visitorDevice', 'browserLanguages']
 }
 
 export const ModalSlice = createSlice({

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 type Props = {
     items: { text: string, value: string, checked?: boolean }[]
@@ -13,9 +13,9 @@ export default function CheckBoxList({ items, returnedValue }: Props) {
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>, value: string) => {
 
         if (e.target.checked) setCheckedItems(prevState => [...prevState, value])
-        if (e.target.checked) setCheckedItems(prevState => prevState.filter(itemValue => itemValue !== value))
+        if (!e.target.checked) setCheckedItems(prevState => prevState.filter(itemValue => itemValue !== value))
 
-        returnedValue && returnedValue(checkedItems)
+        returnedValue && returnedValue({ name: e.target.getAttribute('data-value'), value: e.target.checked })
     }
 
     return (

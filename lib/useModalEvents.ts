@@ -55,7 +55,8 @@ function useModalEvents(eventType: string, status?: boolean | null, value?: stri
             let scrollPercent = scrollTop / (docHeight - winHeight);
             let scrollPercentRounded = Math.round(scrollPercent * 100);
 
-            scrollPercentRounded < Number(value) && closeModal()
+            //scrollPercentRounded < Number(value) && closeModal()
+            scrollPercentRounded === 0 && closeModal()
             if (scrollPercentRounded === Number(value) && modalElement.classList.contains('close')) {
                 openModalAction()
             }
@@ -90,6 +91,7 @@ function useModalEvents(eventType: string, status?: boolean | null, value?: stri
                     break;
                 case "afterPercentageScroll":
                     returnForStatusFalse = () => {
+
                         window.removeEventListener("scroll", scrollEventOnDocument)
                         previewContainer.removeEventListener("scroll", scrollEventOnPreviewContainer)
                     }

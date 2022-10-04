@@ -19,11 +19,11 @@ export default function FormSubmissionAndSendClickData({ }: Props) {
     return (
         <div>
             <CheckBoxList
-                returnedValue={(data) => dispatch(updateSettings({ name: data, value: true }))}
+                returnedValue={(data) => dispatch(updateSettings({ name: data.name, value: data.value }))}
                 items={
                     [
-                        { checked: sendFormSubmission, text: "Send form submissions", value: "send-from-submissions" },
-                        { checked: sendClickData, text: "Send click data", value: "send-click-data" },
+                        { checked: sendFormSubmission, text: "Send form submissions", value: "sendFormSubmission" },
+                        { checked: sendClickData, text: "Send click data", value: "sendClickData" },
                     ]
                 } />
         </div>

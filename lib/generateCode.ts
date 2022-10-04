@@ -24,17 +24,18 @@ export default function generateCode(): string {
     //  if there is a targeted visitor device add a responsive class
     if (activeSettingsValues.visitorDevice) {
         modalElement_cloned.classList.add(activeSettingsValues.visitorDevice)
+        modalElement_cloned.classList.add('for-generated')
     }
 
     //3.Stage: Add the hostname to the beginning of the image's source url string
     modalElement_cloned.querySelectorAll("img").forEach(img => img.src = img.src)
 
-    
-    
+
+
     //4.Stage: write event listeners
     // Final Stage: create code between script tags
     const generatedCode = `
-    <script>
+    
         document.body.innerHTML = '${modalElement_cloned.outerHTML}';
         var cssId = "modalCardCSS"; 
         var head = document.getElementsByTagName("head")[0];
@@ -92,12 +93,12 @@ export default function generateCode(): string {
         };
 
         ${activeSettingsValues.afterPercentageScroll ? `window.addEventListener("scroll", ()=> scrollEventOnDocument(${settings['afterPercentageScroll']}));` : ''}
-        ${activeSettingsValues.exitIntentTargetting ? `document.addEventListener("mouseout" ,()=> exitIntentTargetting(${settings['exitIntentTargetting']}));` : ''}
+        ${activeSettingsValues.exitIntentTargetting ? `document.addEventListener("mouseout" , exitIntentTargetting);` : ''}
         ${activeSettingsValues.afterXSeconds ? `xSecondTimeOut(${settings['afterXSeconds']});` : ''}
         
        
 
-    </script>
+    
     `
 
 
