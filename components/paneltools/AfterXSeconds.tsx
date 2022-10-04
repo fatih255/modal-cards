@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { settingStatus, updateSettings } from 'redux/slices/modal'
 
@@ -20,15 +20,7 @@ export default function AfterXSeconds({ }: Props) {
     ), shallowEqual)
     const dispatch = useAppDispatch()
 
-    //delay for prevent more rendering and fix preview issues
-    const timeOver = useRef<boolean>(false)
-    useEffect(() => {
-        let timer1 = setTimeout(() => timeOver.current=true, 4000);
-        return () => {
-            timeOver.current=false
-            clearTimeout(timer1);
-        }
-    }, [afterXSeconds])
+
 
     return (
         <Switch
@@ -38,7 +30,7 @@ export default function AfterXSeconds({ }: Props) {
             activeDefault={isActiveAfterXSeconds}
         >
             <InputText
-                onChange={(value) => setTimeout(() => timeOver.current && dispatch(updateSettings({ name: "afterXSeconds", value: value })), 3000)}
+                onChange={(value) => dispatch(updateSettings({ name: "afterXSeconds", value: value }))}
                 text={afterXSeconds}
             />
         </Switch>

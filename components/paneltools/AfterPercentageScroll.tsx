@@ -30,6 +30,8 @@ export default function AfterPercentageScroll({ }: Props) {
             activeDefault={isAfterPercentageScroll}
         >
             <InputText
+                max={100}
+                type="number"
                 onChange={(value) => dispatch(updateSettings({ name: "afterPercentageScroll", value: value }))}
                 text={afterPercentageScroll}
             />

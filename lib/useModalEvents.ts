@@ -7,9 +7,10 @@ Mouse Events
     exitIntentTargetting
 */
 
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 
 function useModalEvents(eventType: string, status?: boolean | null, value?: string) {
+
 
 
     useEffect(() => {
@@ -22,8 +23,27 @@ function useModalEvents(eventType: string, status?: boolean | null, value?: stri
         if (!modalElement) return
 
         const openModalAction = () => {
-            modalElement.classList.remove('close');
-            modalElement.classList.add('open');
+            if (modalElement.classList.contains("close")) {
+                modalElement.classList.remove('close');
+                modalElement.classList.add('open');
+            }
+        }
+
+        const closeModal = () => {
+            if (modalElement.classList.contains("open")) {
+                modalElement.classList.remove('open');
+                modalElement.classList.add('close');
+            }
+        }
+
+
+        const scrollToTop = () => {
+            if (previewContainer.scrollTop > 0) {
+                previewContainer.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                })
+            }
         }
 
         //event functions
@@ -32,47 +52,46 @@ function useModalEvents(eventType: string, status?: boolean | null, value?: stri
                 openModalAction()
             }
         };
-        const calculateScrollPercentage = (scrolltop: number, docheigh: number, winheight: number) => {
+        const calculateScrollPercentageAndShow = (scrolltop: number, docheigh: number, winheight: number) => {
             let scrollTop = scrolltop;
             let docHeight = docheigh;
             let winHeight = winheight;
             let scrollPercent = scrollTop / (docHeight - winHeight);
             let scrollPercentRounded = Math.round(scrollPercent * 100);
-            console.log(scrollPercentRounded, value)
+
+            scrollPercentRounded < Number(value) && closeModal()
             if (scrollPercentRounded === Number(value) && modalElement.classList.contains('close')) {
-                return true;
+                openModalAction()
             }
         }
 
+
         const scrollEventOnPreviewContainer = () => {
+
             //for preview we need show on this scroll event on preview container scroll
-            const canOpenOnPreviewContainer = calculateScrollPercentage(previewContainer.scrollTop, previewContainer.scrollHeight, previewContainer.offsetHeight);
-            if (canOpenOnPreviewContainer) {
-                openModalAction()
-            }
+            calculateScrollPercentageAndShow(previewContainer.scrollTop, previewContainer.scrollHeight, previewContainer.offsetHeight);
+
         }
         const scrollEventOnDocument = () => {
             //for generate Code -- is calculating for doc element
-            /*   const canOpenOnDocument = calculateScrollPercentage(window.scrollY, document.body.offsetHeight, window.innerHeight);
-              if (canOpenOnDocument) {
-                  modalElement.classList.remove('close');
-                  modalElement.classList.add('open');
-              } */
+            /* calculateScrollPercentageAndShow(window.scrollY, document.body.offsetHeight, window.innerHeight);
+              */
         }
 
-        let timer: number | undefined;
+        let timer: NodeJS.Timeout | false = false;
         const xSecondTimeOut = () => {
-            window.clearTimeout(timer);
-            timer = window.setTimeout(() => {
-                openModalAction()
-                console.log(Number(value))
-            }, Number(value) * 100);
 
+            timer = Number(value) > 0 && setTimeout(() => {
+                openModalAction()
+            }, Number(value) * 1000);
         }
 
         let returnForStatusFalse: any = false;
         if (status === false) {
             switch (eventType) {
+                case "afterXSeconds":
+                    returnForStatusFalse = () => { timer && window.clearTimeout(timer) };
+                    break;
                 case "afterPercentageScroll":
                     returnForStatusFalse = () => {
                         window.removeEventListener("scroll", scrollEventOnDocument)
@@ -89,9 +108,12 @@ function useModalEvents(eventType: string, status?: boolean | null, value?: stri
 
         switch (eventType) {
             case "afterXSeconds":
+                console.log("acc")
+                closeModal()
                 xSecondTimeOut()
                 break;
             case "afterPercentageScroll":
+                scrollToTop()
                 window.addEventListener("scroll", scrollEventOnDocument)
                 previewContainer.addEventListener("scroll", scrollEventOnPreviewContainer)
                 break;
@@ -105,6 +127,8 @@ function useModalEvents(eventType: string, status?: boolean | null, value?: stri
             document.removeEventListener('mouseout', mouseOutEvent);
             window.removeEventListener("scroll", scrollEventOnDocument)
             previewContainer.removeEventListener("scroll", scrollEventOnPreviewContainer)
+            timer && window.clearTimeout(timer);
+
         }
     }, [status, value])
 

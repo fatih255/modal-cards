@@ -1,5 +1,4 @@
 .default {
-    @extend .open;
     @apply absolute w-full h-max bg-white flex flex-col gap-8 shadow-2xl rounded-lg overflow-hidden text-center;
 
     &.open {
