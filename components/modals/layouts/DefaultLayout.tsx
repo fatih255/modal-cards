@@ -21,7 +21,7 @@ export default function DefaultLayout({ children }: layoutTypes) {
     return (
         <div id="layout"
             className={`default ${className} ${size} ${position}`}>
-            <button className="no-w-full absolute top-0 right-0 hover:scale-110  trans-300 m-[6%]" onClick={closeModalHandler}>
+            <button id="close-modal-btn" className="no-w-full absolute top-0 right-0 hover:scale-110  trans-300 m-[6%]" onClick={closeModalHandler}>
                 <CloseModalIcon className="svg-gray-600" />
             </button>
             {children}
