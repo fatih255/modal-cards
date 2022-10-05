@@ -37,6 +37,7 @@ export type ModalType = {
         sendClickData: boolean
     }
     activedSettings: (keyof ModalType['settings'])[] | any[]
+
 }
 export const ModalInitialState: ModalType = {
     selectedModalName: undefined,
@@ -138,6 +139,7 @@ export const ModalSlice = createSlice({
 })
 
 export const {
+
     selectModal,
     updateLayout,
     updateContents,

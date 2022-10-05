@@ -19,7 +19,7 @@ export default function generateCode(): string {
     if (!modalElement) return ''
     let modalElement_cloned = modalElement.cloneNode(true) as HTMLElement;
 
-
+    console.log(activeSettingsValues)
     //  2.Stage: check check whether there is a targeting  visitor device,
     //  if there is a targeted visitor device add a responsive class
     if (activeSettingsValues.visitorDevice) {
@@ -33,10 +33,9 @@ export default function generateCode(): string {
     modalElement_cloned.querySelectorAll("img").forEach(img => img.src = img.src)
 
 
-
     //4.Stage: write event listeners
     // Final Stage: create code between script tags
-    const generatedCode = `
+    const generatedCode = `<script>
     
         document.body.innerHTML = '${modalElement_cloned.outerHTML}';
         var cssId = "modalCardCSS"; 
@@ -49,87 +48,99 @@ export default function generateCode(): string {
         link.media = "all";
         head.appendChild(link);
 
-        const modalElement = document.getElementById('layout')
-        const modalCloseButton=document.getElementById('close-modal-btn')
-        modalCloseButton.addEventListener("click",closeModalAction)
+        link.onload=()=>{
 
-        function openModalAction(){
-
-            //modalElement.classList.remove('close'); this section use when you want to show more than once
-
-            modalElement.classList.add('open');
-            sessionStorage.setItem("modalopened", "true");
-            removeEvent()
-        }
-        function closeModalAction(){
-                modalElement.classList.remove('open');
-                modalElement.classList.add('close');
-        }
-
-
-        //if modal is not opened this session dont show again
-        let isModalOpened = sessionStorage.getItem("modalopened");
-
-        // event functions
-        // scroll percentage 
-        function scrollEventOnDocument(){
-
-                const value =${settings['afterPercentageScroll']}
-
-                let scrollTop = window.scrollY;
-                let docHeight = document.documentElement.offsetHeight;
-                let winHeight = window.innerHeight;
-                let scrollPercent = scrollTop / (docHeight - winHeight);
-                let scrollPercentRounded = Math.round(scrollPercent * 100);
+            const modalElement = document.getElementById('layout')
+            const modalCloseButton=document.getElementById('close-modal-btn')
+            modalCloseButton.addEventListener("click",closeModalAction)
     
-                // if(scrollPercentRounded < Number(value))  
-
-                if (scrollPercentRounded === Number(value))  openModalAction()
-        } 
-
-        // x Second Time Out x after show modal
-
-        const xSecondTimeOut = setTimeout(() => {
-            openModalAction()
-        }, Number(${settings['afterXSeconds']}) * 1000)
-
-
-        //exit indent targeting show modal
-        function exitIntentTargetting(e){
-            if (!e.relatedTarget) openModalAction()
-        };
-
-        
-        if(!isModalOpened){
-            ${activeSettingsValues.afterPercentageScroll ? 'window.addEventListener("scroll", scrollEventOnDocument);' : ''}
-          
-            //exitIntentTargetting just use desktop
-            ${activeSettingsValues.exitIntentTargetting ? 'if(typeof screen.orientation === "undefined") document.addEventListener("mouseout" , exitIntentTargetting);' : ''}
-            ${activeSettingsValues.afterXSeconds ? 'xSecondTimeOut' : ''}
-        }
-        
-        function removeEvent(eventName){
-            switch (eventName) {
-                case 'afterPercentageScroll':
-                    window.removeEventListener("scroll", scrollEventOnDocument);
-                    break;
-                case 'exitIntentTargetting':
-                    document.removeEventListener("mouseout" , exitIntentTargetting)
-                    break;
-                default:
-                    window.removeEventListener("scroll", scrollEventOnDocument);
-                    document.removeEventListener("mouseout" , exitIntentTargetting)
-                    window.clearTimeout(xSecondTimeOut)
-                    break;
+            function openModalAction(){
+    
+                //modalElement.classList.remove('close'); this section use when you want to show more than once
+                
+                modalElement.classList.add('open');
+                sessionStorage.setItem("modalopened", "true");
+                removeEvent()
             }
-         
-        }
-       
-       
-
+            function closeModalAction(){
+                    modalElement.classList.remove('open');
+                    modalElement.classList.add('close');
+            }
     
-    `
+    
+            //if modal is not opened this session dont show again
+            let isModalOpened = sessionStorage.getItem("modalopened");
+    
+            // event functions
+            // scroll percentage 
+            function scrollEventOnDocument(){
+    
+                    const value =${settings['afterPercentageScroll']}
+    
+                    let scrollTop = window.scrollY;
+                    let docHeight = document.documentElement.offsetHeight;
+                    let winHeight = window.innerHeight;
+                    let scrollPercent = scrollTop / (docHeight - winHeight);
+                    let scrollPercentRounded = Math.round(scrollPercent * 100);
+        
+                    // if(scrollPercentRounded < Number(value))  
+    
+                    if (scrollPercentRounded === Number(value))  openModalAction()
+            } 
+    
+            // x Second Time Out x after show modal
+    
+            const xSecondTimeOut = setTimeout(() => {
+                openModalAction()
+            }, Number(${settings['afterXSeconds']}) * 1000)
+    
+    
+            //exit indent targeting show modal
+            function exitIntentTargetting(e){
+                if (!e.relatedTarget) openModalAction()
+            };
+    
+            
+            let haveTrafficSource="${activeSettingsValues.trafficSource}"
+            if(!isModalOpened && !haveTrafficSource || !isModalOpened && document.referrer === haveTrafficSource){
+    
+    
+                //if not have any listener, show modal directly
+                ${
+                    !activeSettingsValues.afterPercentageScroll && 
+                    !activeSettingsValues.exitIntentTargetting && 
+                    !activeSettingsValues.afterXSeconds && `
+                        openModalAction()
+                `}
+                
+                ${activeSettingsValues.afterPercentageScroll ? 'window.addEventListener("scroll", scrollEventOnDocument);' : ''}
+                //exitIntentTargetting just use desktop
+                ${activeSettingsValues.exitIntentTargetting ? 'if(typeof screen.orientation === "undefined") document.addEventListener("mouseout" , exitIntentTargetting);' : ''}
+                ${activeSettingsValues.afterXSeconds ? 'xSecondTimeOut' : ''}
+            }
+            
+            function removeEvent(eventName){
+                switch (eventName) {
+                    case 'afterPercentageScroll':
+                        window.removeEventListener("scroll", scrollEventOnDocument);
+                        break;
+                    case 'exitIntentTargetting':
+                        document.removeEventListener("mouseout" , exitIntentTargetting)
+                        break;
+                    default:
+                        window.removeEventListener("scroll", scrollEventOnDocument);
+                        document.removeEventListener("mouseout" , exitIntentTargetting)
+                        window.clearTimeout(xSecondTimeOut)
+                        break;
+                }
+             
+            }
+           
+       
+            
+        }
+        </script>`
 
-
+    console.log(generatedCode)
     return generatedCode
 }

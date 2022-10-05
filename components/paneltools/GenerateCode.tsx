@@ -10,10 +10,11 @@ import { dark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import InfoIcon from 'icons/info.svg'
 
 
-
 type Props = {}
 
 export default function GenerateCode({ }: Props) {
+
+
 
     const [codeString, setCodeString] = useState<string>('')
 
