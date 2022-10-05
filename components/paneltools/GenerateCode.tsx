@@ -31,7 +31,7 @@ export default function GenerateCode({ }: Props) {
             btnElement.style.opacity = "1"
         }, 4000)
     }
-
+ 
     return (
         <>
             <div className="mt-[50px] mb-[30px]">
