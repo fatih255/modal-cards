@@ -5,8 +5,6 @@
 
 
 ## Latest state of the case
-- [ ] https://github.com/octo-org/octo-repo/issues/740
-- [ ] Add delight to the experience when all tasks are complete :tada:
 
 - [x] Next.js with Typescript
 - [x] UI with scss & tailwind
