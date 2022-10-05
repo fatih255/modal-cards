@@ -88,11 +88,7 @@ export default function generateCode(): string {
                     if (scrollPercentRounded === Number(value))  openModalAction()
             } 
     
-            // x Second Time Out x after show modal
-    
-            const xSecondTimeOut = setTimeout(() => {
-                openModalAction()
-            }, Number(${settings['afterXSeconds']}) * 1000)
+      
     
     
             //exit indent targeting show modal
@@ -113,10 +109,24 @@ export default function generateCode(): string {
                         openModalAction()
                 `}
                 
+
+                
+       
                 ${activeSettingsValues.afterPercentageScroll ? 'window.addEventListener("scroll", scrollEventOnDocument);' : ''}
                 //exitIntentTargetting just use desktop
                 ${activeSettingsValues.exitIntentTargetting ? 'if(typeof screen.orientation === "undefined") document.addEventListener("mouseout" , exitIntentTargetting);' : ''}
-                ${activeSettingsValues.afterXSeconds ? 'xSecondTimeOut' : ''}
+            
+                ${activeSettingsValues.afterXSeconds ? `
+
+                const xSecondTimeOut = setTimeout(() => {
+                    openModalAction()
+                }, Number(${settings['afterXSeconds']}) * 1000)
+                
+                ` : ''}
+
+                // x Second Time Out x after show modal
+    
+
             }
             
             function removeEvent(eventName){
@@ -130,7 +140,7 @@ export default function generateCode(): string {
                     default:
                         window.removeEventListener("scroll", scrollEventOnDocument);
                         document.removeEventListener("mouseout" , exitIntentTargetting)
-                        window.clearTimeout(xSecondTimeOut)
+                        ${activeSettingsValues.afterXSeconds ? ` window.clearTimeout(xSecondTimeOut) `: ''}
                         break;
                 }
              
