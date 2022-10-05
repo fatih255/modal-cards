@@ -25,6 +25,8 @@ export default function generateCode(): string {
     if (activeSettingsValues.visitorDevice) {
         modalElement_cloned.classList.add(activeSettingsValues.visitorDevice)
         modalElement_cloned.classList.add('for-generated')
+        modalElement_cloned.classList.contains('close') && modalElement_cloned.classList.remove('close')
+        modalElement_cloned.classList.contains('open') && modalElement_cloned.classList.remove('open')
     }
 
     //3.Stage: Add the hostname to the beginning of the image's source url string
@@ -43,7 +45,7 @@ export default function generateCode(): string {
         link.id = cssId;
         link.rel = "stylesheet";
         link.type = "text/css";
-        link.href ="https://leafy-mermaid-eb53cb.netlify.app/_next/static/css/1c7e9cfb1ac0f201.css";
+        link.href ="https://leafy-mermaid-eb53cb.netlify.app/_next/static/css/da515a3ce7c32514.css";
         link.media = "all";
         head.appendChild(link);
 
@@ -52,50 +54,77 @@ export default function generateCode(): string {
         modalCloseButton.addEventListener("click",closeModalAction)
 
         function openModalAction(){
-            modalElement.classList.remove('close');
+
+            //modalElement.classList.remove('close'); this section use when you want to show more than once
+
             modalElement.classList.add('open');
+            sessionStorage.setItem("modalopened", "true");
+            removeEvent()
         }
         function closeModalAction(){
                 modalElement.classList.remove('open');
                 modalElement.classList.add('close');
         }
 
+
+        //if modal is not opened this session dont show again
+        let isModalOpened = sessionStorage.getItem("modalopened");
+
         // event functions
         // scroll percentage 
-        function scrollEventOnDocument(value){
-           
+        function scrollEventOnDocument(){
+
+                const value =${settings['afterPercentageScroll']}
+
                 let scrollTop = window.scrollY;
                 let docHeight = document.documentElement.offsetHeight;
                 let winHeight = window.innerHeight;
                 let scrollPercent = scrollTop / (docHeight - winHeight);
                 let scrollPercentRounded = Math.round(scrollPercent * 100);
     
-                if(scrollPercentRounded < Number(value))  closeModalAction()
-                if (scrollPercentRounded === Number(value) && modalElement.classList.contains('close')) {
-                    openModalAction()
-                } 
+                // if(scrollPercentRounded < Number(value))  
+
+                if (scrollPercentRounded === Number(value))  openModalAction()
         } 
 
         // x Second Time Out x after show modal
-        function xSecondTimeOut(value){
-            if(Number(value) > 0){
-                timer = Number(value) > 0 && setTimeout(() => {
-                    openModalAction()
-                }, Number(value) * 1000);
-            }
-        }
+
+        const xSecondTimeOut = setTimeout(() => {
+            openModalAction()
+        }, Number(${settings['afterXSeconds']}) * 1000)
+
 
         //exit indent targeting show modal
         function exitIntentTargetting(e){
-            if (!e.relatedTarget && modalElement.classList.contains('close')) {
-                openModalAction()
-            }
+            if (!e.relatedTarget) openModalAction()
         };
 
-        ${activeSettingsValues.afterPercentageScroll ? `window.addEventListener("scroll", ()=> scrollEventOnDocument(${settings['afterPercentageScroll']}));` : ''}
-        ${activeSettingsValues.exitIntentTargetting ? `document.addEventListener("mouseout" , exitIntentTargetting);` : ''}
-        ${activeSettingsValues.afterXSeconds ? `xSecondTimeOut(${settings['afterXSeconds']});` : ''}
         
+        if(!isModalOpened){
+            ${activeSettingsValues.afterPercentageScroll ? 'window.addEventListener("scroll", scrollEventOnDocument);' : ''}
+          
+            //exitIntentTargetting just use desktop
+            ${activeSettingsValues.exitIntentTargetting ? 'if(typeof screen.orientation === "undefined") document.addEventListener("mouseout" , exitIntentTargetting);' : ''}
+            ${activeSettingsValues.afterXSeconds ? 'xSecondTimeOut' : ''}
+        }
+        
+        function removeEvent(eventName){
+            switch (eventName) {
+                case 'afterPercentageScroll':
+                    window.removeEventListener("scroll", scrollEventOnDocument);
+                    break;
+                case 'exitIntentTargetting':
+                    document.removeEventListener("mouseout" , exitIntentTargetting)
+                    break;
+                default:
+                    window.removeEventListener("scroll", scrollEventOnDocument);
+                    document.removeEventListener("mouseout" , exitIntentTargetting)
+                    window.clearTimeout(xSecondTimeOut)
+                    break;
+            }
+         
+        }
+       
        
 
     

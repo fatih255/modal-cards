@@ -113,7 +113,7 @@ export default function makeStickyContainer(
 
 
                 if (nestedSticky) {
-                    container.children[0].setAttribute("style", ` position: fixed; top:${fineAdjustment.crossTop}px; left:${rect.left}px; width:${container.children[0].getBoundingClientRect().width}px; height:${nestedStickyHeight}px;   z-index:9999`)
+                    container.children[0].setAttribute("style", ` position: fixed; top:${fineAdjustment.crossTop}px; left:${rect.left}px;  height:${nestedStickyHeight}px;   z-index:9999`)
                     if (addednestedStickyContainers) {
                         if (!container.parentElement?.offsetLeft) return
 
