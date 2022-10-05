@@ -61,7 +61,7 @@ export const ModalInitialState: ModalType = {
         image: false
     },
     settings: {
-        browserLanguages: ['english', 'french'],
+        browserLanguages: ['tr','en', 'fr'],
         visitorDevice: "desktop",
         afterXSeconds: '12',
         afterPercentageScroll: '50',
@@ -105,7 +105,7 @@ export const ModalSlice = createSlice({
             const isSettingsActive = state.activedSettings.some(setting => setting === action.payload);
             if (isSettingsActive) state.activedSettings = [...state.activedSettings.filter(setting => setting !== action.payload)]
             if (!isSettingsActive) {
-                state.activedSettings = state.activedSettings = [...state.activedSettings, action.payload]
+               state.activedSettings = [...state.activedSettings, action.payload]
             }
 
             if (action.payload === "exitIntentTargetting")
@@ -114,6 +114,10 @@ export const ModalSlice = createSlice({
         },
         updateSettings: (state, action: PayloadAction<{ name: keyof ModalType['settings'], value: string | string[] | boolean | null }>) => {
             state.settings = { ...state.settings, [action.payload.name]: action.payload.value }
+
+            if (action.payload.name === "webHookUrl")
+            state.activedSettings = [...state.activedSettings, action.payload.name]
+            
         },
         updateLayout: (state, action: PayloadAction<{ name: string, value: string | object }>) => {
             state.layout = { ...state.layout, [action.payload.name]: action.payload.value }

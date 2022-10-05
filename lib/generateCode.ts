@@ -33,11 +33,15 @@ export default function generateCode(): string {
     modalElement_cloned.querySelectorAll("img").forEach(img => img.src = img.src)
 
 
-    //4.Stage: write event listeners
+
+
+
+    //4.Stage: write event listeners and webhook process
     // Final Stage: create code between script tags
     const generatedCode = `<script>
-    
-        document.body.innerHTML = '${modalElement_cloned.outerHTML}';
+
+   
+      
         var cssId = "modalCardCSS"; 
         var head = document.getElementsByTagName("head")[0];
         var link = document.createElement("link");
@@ -48,8 +52,17 @@ export default function generateCode(): string {
         link.media = "all";
         head.appendChild(link);
 
+      
+        ${activeSettingsValues.webHookUrl ? `let webHookData=new FormData();` : ``}
+        ${settings.sendClickData ? `const clickedButtons=[]` : ``}
+        
         link.onload=()=>{
 
+            //if actived sendClickData settings count click to button. If have any click , add webHookData Object
+       
+            
+           
+            document.body.innerHTML = '${modalElement_cloned.outerHTML}';
             const modalElement = document.getElementById('layout')
             const modalCloseButton=document.getElementById('close-modal-btn')
             modalCloseButton.addEventListener("click",closeModalAction)
@@ -61,14 +74,44 @@ export default function generateCode(): string {
                 modalElement.classList.add('open');
                 sessionStorage.setItem("modalopened", "true");
                 removeEvent()
+
+                //if actived sendClickData settings: when modal is opened, count modal button clicks
+                ${settings.sendClickData ? `
+               
+                function countClick(e) {
+
+                clickedButtons.push(e.target.innerText)
+             
+                    e.removeEventListener("click", countClick)
+                }
+                const modalButtons = modalElement.querySelectorAll("button");
+                modalButtons.forEach((button) => {
+                        button.addEventListener("click", countClick);
+                    })
+
+                `: ''}
+                            
             }
+
+          
+
             function closeModalAction(){
                     modalElement.classList.remove('open');
                     modalElement.classList.add('close');
+
+                // if actived sendClickData settings:  when modal is closed, if have webhook url do request webHookData Object with fetch
+                
+                ${settings.sendClickData ? `webHookData.append('clicked_buttons[]', clickedButtons)` : ``}
+                ${activeSettingsValues.webHookUrl ?
+            `fetch('${activeSettingsValues.webHookUrl}', { method: 'POST', body: webHookData })
+                    .then((response) => response.json())
+                    .then((data) => console.log(data))
+                    
+            ` : ''}
             }
     
     
-            //if modal is not opened this session dont show again
+            // if modal is not opened this session dont show again
             let isModalOpened = sessionStorage.getItem("modalopened");
     
             // event functions
@@ -96,25 +139,36 @@ export default function generateCode(): string {
                 if (!e.relatedTarget) openModalAction()
             };
     
-            
-            let haveTrafficSource="${activeSettingsValues.trafficSource}"
-            if(!isModalOpened && !haveTrafficSource || !isModalOpened && document.referrer === haveTrafficSource){
+            //if browser language is not includes languages that entered input not show modal
+            const currentBrowserLanguage = navigator.language || navigator.userLanguage; 
+            const haveBrowserLanguages=[${activeSettingsValues.browserLanguages.map(lang => `'${lang}'`)}]
+
+           
+            // if not have modalopened session dont show modal
+            // if have traffic source setting check is have refferrer is same traffic source that entered input if not dont show modal
+            let haveTrafficSource="${activeSettingsValues.trafficSource ?? ''}"
+            if(
+                !isModalOpened && (
+                    (!haveTrafficSource ||  document.referrer === haveTrafficSource) &&
+                    (!haveBrowserLanguages ||  haveBrowserLanguages.includes(currentBrowserLanguage))
+                )
+                
+                ){
     
     
                 //if not have any listener, show modal directly
-                ${
-                    !activeSettingsValues.afterPercentageScroll && 
-                    !activeSettingsValues.exitIntentTargetting && 
-                    !activeSettingsValues.afterXSeconds && `
+                ${!activeSettingsValues.afterPercentageScroll &&
+            !activeSettingsValues.exitIntentTargetting &&
+            !activeSettingsValues.afterXSeconds ? `
                         openModalAction()
-                `}
+                `: ''}
                 
 
                 
        
                 ${activeSettingsValues.afterPercentageScroll ? 'window.addEventListener("scroll", scrollEventOnDocument);' : ''}
                 //exitIntentTargetting just use desktop
-                ${activeSettingsValues.exitIntentTargetting ? 'if(typeof screen.orientation === "undefined") document.addEventListener("mouseout" , exitIntentTargetting);' : ''}
+                ${activeSettingsValues.exitIntentTargetting ? 'if(typeof screen.orientation !== "undefined") document.addEventListener("mouseout" , exitIntentTargetting);' : ''}
             
                 ${activeSettingsValues.afterXSeconds ? `
 
@@ -140,7 +194,7 @@ export default function generateCode(): string {
                     default:
                         window.removeEventListener("scroll", scrollEventOnDocument);
                         document.removeEventListener("mouseout" , exitIntentTargetting)
-                        ${activeSettingsValues.afterXSeconds ? ` window.clearTimeout(xSecondTimeOut) `: ''}
+                        ${activeSettingsValues.afterXSeconds ? ` window.clearTimeout(xSecondTimeOut) ` : ''}
                         break;
                 }
              

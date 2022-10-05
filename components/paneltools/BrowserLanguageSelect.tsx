@@ -34,20 +34,13 @@ export default function BrowserLanguageSelect({ }: Props) {
                     selectAllText="All Languages"
                     items={
                         [
-                            { checked: browserLanguages.includes('english'), text: "English", value: "english" },
-                            { checked: browserLanguages.includes('french'), text: "French", value: "french" },
-                            { checked: browserLanguages.includes('german'), text: "German", value: "german" },
-                            { checked: browserLanguages.includes('polish'), text: "Polish", value: "polish" },
-                            { checked: browserLanguages.includes('dutch'), text: "Dutch", value: "dutch" },
-                            { checked: browserLanguages.includes('finnish'), text: "Finnish", value: "finnish" },
-
-                            //extra languages
-                            { checked: browserLanguages.includes('korea'), text: "Korea", value: "korea" },
-                            { checked: browserLanguages.includes('tamil'), text: "Tamil", value: "tamil" },
-                            { checked: browserLanguages.includes('india'), text: "India", value: "india" },
-                            { checked: browserLanguages.includes('italy'), text: "Italy", value: "italy" },
-                            { checked: browserLanguages.includes('italian'), text: "Italian", value: "italian" },
-                            { checked: browserLanguages.includes('urdu'), text: "Urdu", value: "urdu" },
+                            { checked: browserLanguages.includes('tr'), text: "Turkish", value: "tr" },
+                            { checked: browserLanguages.includes('en'), text: "English", value: "en" },
+                            { checked: browserLanguages.includes('fr'), text: "French", value: "fr" },
+                            { checked: browserLanguages.includes('de'), text: "German", value: "de" },
+                            { checked: browserLanguages.includes('pl'), text: "Polish", value: "pl" },
+                            { checked: browserLanguages.includes('nl'), text: "Dutch", value: "nl" },
+                            { checked: browserLanguages.includes('fi'), text: "Finnish", value: "fi" },
                         ]
                     } />
             </Switch>
