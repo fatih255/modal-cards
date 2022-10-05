@@ -24,14 +24,6 @@ import { ChooseYourTemplateStep } from 'components/steps'
 import Accordion from 'components/Accordion'
 import { FrequentlyAskedQuestions } from 'lib/contants'
 
-
-
-
-
-
-
-
-
 const Home: NextPage = () => {
 
   const selectedModalName = useAppSelector(state => state.modal.selectedModalName, shallowEqual)
