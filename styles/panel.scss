@@ -151,6 +151,15 @@
         &.bold-scroll::-webkit-scrollbar {
             @apply bg-white w-[20px]
         }
+        &.scroll-bg-black::-webkit-scrollbar{
+            @apply bg-[#333333]
+        }
+        &.scroll-bg-black::-webkit-scrollbar-thumb {
+            
+            &:hover {
+                @apply bg-gray-600 first-letter:bg-opacity-30 trans-600
+            }
+        }
 
         &.bold-scroll::-webkit-scrollbar-thumb {
             @apply overflow-hidden bg-design-gray-500 rounded-3xl p-[6px] border-[6px] border-transparent border-solid bg-clip-padding;
@@ -163,13 +172,17 @@
 
     code {
         white-space: pre-wrap !important;
+        display: block !important;
     }
 
     pre {
+        @extend .scrollbar-style-1 , .scroll-bg-black;;
         padding: 0 !important;
-        width: fit-content !important;
+        width:inherit !important;
         background-color: #333333 !important;
-        overflow: hidden !important;
+        overflow-x: hidden !important;
+        overflow-y: scroll !important;
+        user-select: auto;
         @apply font-medium text-xs;
 
         @font-face {

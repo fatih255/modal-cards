@@ -37,7 +37,7 @@ export default function GenerateCode({ }: Props) {
             <div className="mt-[50px] mb-[30px]">
                 <Button onClick={getCodeHandler} size="large" shadow={true} text="Get your Code" />
             </div>
-            <div className={cn({ "hidden": !(codeString.length > 0) }, " w-[inherit] bg-[#333333] rounded-lg border-[10px] border-b-[14px] border-[#333333]")}>
+            <div className={cn({ "hidden": !(codeString.length > 0) }, " bg-[#333333] w-full rounded-lg border-[10px] border-b-[14px] border-[#333333]")}>
                 <SyntaxHighlighter language="javascript" style={dark} customStyle={{ borderRadius: 8, height: 260, width: 'inherit' }}>
                     {codeString}
                 </SyntaxHighlighter>

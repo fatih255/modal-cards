@@ -33,7 +33,7 @@ function Panel({ }: Props) {
 
         if (!EffectRan.current) {
             makeStickyContainer('.dosticky', "white", 80, { crossSticky: 0, crossTop: -18 }, { selector: '.close-sticky', offsetCross: 90 })
-            layoutHeightTransformer({ selectors: { from: '.panel', to: '.preview-inner' }, centeredBySelector: '.preview-outer', divideHeight: 2 })
+            layoutHeightTransformer({ selectors: { from: '.panel', to: '.preview-inner' }, divideHeight: 2 })
 
         }
 

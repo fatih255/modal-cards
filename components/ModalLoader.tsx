@@ -8,8 +8,6 @@ type Props = {
 
 function ModalLoader({ name }: Props) {
 
-
-
     const SelectedModal = dynamic(() => import(`components/modals/${name}`), { suspense: false, ssr: true });
     return name ? <Suspense><SelectedModal /></Suspense> : <></>
 }
