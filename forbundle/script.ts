@@ -37,7 +37,7 @@ export default function modalCard({ html, settings }: Props) {
         let isModalOpened = sessionStorage.getItem("modalopened");
         let webHookData = new FormData();
         const clickedButtons: any = []
-        // 1.Condition:  if modal is not opened this session dont show again
+        // 1.Condition:  if modal is opened this session dont show again
         // 2.Condition:  if have traffic source setting check is have refferrer is same traffic source that entered input if not dont show modal
         // 3.Condition:  if browser language is not includes languages that entered input not show modal
 
@@ -64,7 +64,7 @@ export default function modalCard({ html, settings }: Props) {
                         }, Number(settings.afterXSeconds) * 1000)
                         break;
                     case 'exitIntentTargetting':
-                        if (typeof screen.orientation !== "undefined")
+                        if (typeof screen.orientation === "undefined")
                             document.addEventListener("mouseout", exitIntentTargetting);
                         break;
                     case 'sendClickData':
