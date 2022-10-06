@@ -1,34 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Popupsmart Final Case
 
-## Getting Started
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Latest state of the case
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- [x] Next.js with Typescript
+- [x] UI with scss & tailwind
+- [x] State management with Context API / redux. No prop drilling
+- [x] Eslint
+- [ ] Prettier
+- [x] Should be deployed to vercel/netlify and URL should be providedin readme
+- [ ] Unit Testing with jest   
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [X] Users enter the platform easily with a URL, no login, or nosign-up is required.
+- [X] In the first step users need to select a particular template amongdifferent template styles from the grid in order to skip to the nextstep,
+- [X] In the second step, users must select the popup size, select acolor, and upload the logo of the product.
+- [X] You can use any service to upload a logo or create yourown with next.js routes
+- [X] The uploaded image cannot be changed as it is embeddedinto the code given in the final step, it can be edited onlywith code
+- [X] In the third step, users must edit the popup contents of theirchoice, fields should be changed according to existing fields onthe selected popup,
+- [X] All changes must be seen in the preview section which islocated beside the third step, it must sync with everychange in the popups.
+- [X] In the fourth step, users must select a device type for the popupsto appear.   
+- [X] Users can set their popups according to a specific source that visitors are coming from and to specific browser languages. Usercan add multiple languages.
+- [X] All audience settings must be switched on/off with atoggle.
+- [X] Users must create a visitor behavior to decide when exactly thepopup is to be seen,
+- [X] They must decide how many seconds later the popupsappear, set after scroll percentage that triggers a popupcampaign once the user scrolls a certain percentage of awebpage, and determine on the exit intent that displaysthe popups when a visitor moves the cursor the exitbutton. The exit intent is only available on               the desktop campaigns.
+- [X] All behavior settings must be switched on/off with atoggle. 
+- [X] Behavior settings should be working independently, i.e. ifthe user selects after 5 secs and after %50 scroll, thepopup should be triggered in either case.                           
+- [X] The frequency for the popups to appear must be preset. Allpopups appear once in every session and stop displaying afterusers click on the close button or submit any data to the popups.
+- [ ] (just i made SendClickData) In the final step users must be able to send the collected datafrom popups through Webhook. Form input variables, date andtime, browser language and name, operating system, device type(mobile or desktop) are required in the system variables takenfrom Webhook.
+- [X] You can create a Webhook endpoint with make.com to testit
+- [ ] Submission fields and click data names in the popups must be the same and they must be the default selected value if they are used in the popups.
+- [X] Users should get the necessary assets to show modal in the UI
+- [X] HTML code to embed on the website. Modal div code withall components styled with a tailwind.
+- [X] The hosted script that will trigger modal on givenconditions○Selected trigger configurations should be given asparameters in that script.  
