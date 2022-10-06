@@ -37,7 +37,7 @@ export default function generateCode(): string {
 
     //4.Stage: write event listeners and webhook process
     // Final Stage: create code between script tags
-    const generatedCode = `<script src="http://localhost:3000/script.js"></script>
+    const generatedCode = `<script src="https://leafy-mermaid-eb53cb.netlify.app/script.js"></script>
     <script>
     modalCard({
         html:'${modalElement_cloned.outerHTML}',
