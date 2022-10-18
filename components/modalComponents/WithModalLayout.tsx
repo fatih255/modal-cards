@@ -12,7 +12,7 @@ type Props = {
 //detect content have
 export default function WithModalLayout({ children, layout = defaultValues.layout, ...props }: Props & layoutTypes) {
 
-    const Layout = dynamic(() => import(`./modals/layouts/${layout}`), {
+    const Layout = dynamic(() => import(`../modals/layouts/${layout}`), {
         suspense: false,
         ssr: false
     }) as React.FC<layoutTypes>

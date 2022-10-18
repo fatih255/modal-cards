@@ -1,4 +1,4 @@
-import { DropzoneProps, default as Component } from "components/modalComponents/Dropzone";
+import { DropzoneProps, default as Component } from "components/panelComponents/Dropzone";
 
 export default {
     title: "Panel Components",

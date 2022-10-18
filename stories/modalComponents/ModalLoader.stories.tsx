@@ -4,7 +4,7 @@ import { ModalAlias } from "components/modals";
 
 
 export default {
-    title: "Components",
+    title: "Modal Components",
     component: Component,
     argTypes: {
         selectedModalName: {

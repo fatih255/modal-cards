@@ -1,4 +1,4 @@
-import { applyMiddleware, compose, configureStore } from '@reduxjs/toolkit'
+import { applyMiddleware,  configureStore } from '@reduxjs/toolkit'
 import ModalReducer from './slices/modal'
 import invariant from 'redux-immutable-state-invariant'
 import logger from 'redux-logger'

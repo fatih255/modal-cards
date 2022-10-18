@@ -1,10 +1,8 @@
-
-import { SecurityCodeModal } from "components/modals";
 import { PARAM_REDUX_MERGE_STATE } from 'addon-redux'
 import { ModalInitialState } from "redux/slices/modal";
 import { getModalContants } from "lib/modalConstants";
-import { ModalAlias } from '../components/modals'
-import ModalLoader, { ModalLoaderProps } from "components/panelComponents/ModalLoader";
+import { ModalAlias } from 'components/modals'
+import ModalLoader, { ModalLoaderProps } from "components/modalComponents/ModalLoader";
 
 
 const selectedModalConstants = getModalContants(ModalAlias.SecurityCodeModal)
@@ -36,5 +34,5 @@ export const Modals = (args: ModalLoaderProps) => <ModalLoader {...args} />
 
 Modals.args = {
     selectedModalName: 'SecurityCodeModal',
-    
+
 };
