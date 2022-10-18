@@ -1,5 +1,4 @@
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-const nextConfig = require('../next.config');
 
 module.exports = {
     "stories": [

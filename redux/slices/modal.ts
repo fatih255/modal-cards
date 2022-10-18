@@ -49,8 +49,8 @@ export const ModalInitialState: ModalType = {
         logo: undefined
     },
     layout: {
-        className: "",  //this attr getting from modal contants becuase each modal able to take different classname and size
-        size: "",  //this attr getting from modal contants becuase each modal able to take different classname and size
+        className: "justify-center items-center",  //this attr getting from modal contants becuase each modal able to take different classname and size
+        size: "medium",  //this attr getting from modal contants becuase each modal able to take different classname and size
         position: "pos-mc",
         colors: {
             bg: "modal-bg-color-1",

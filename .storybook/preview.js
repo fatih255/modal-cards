@@ -5,7 +5,6 @@ import store from '../redux/store'
 
 export const parameters = {
     layout: '',
-    actions: { argTypesRegex: '^ON.*' },
 };
 
 export const decorators = [
