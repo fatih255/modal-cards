@@ -5,9 +5,10 @@ import { useAppSelector } from 'redux/hooks'
 //panel components
 import { Dropzone } from 'components/panelComponents'
 
-type Props = {}
 
-export default function UploadLogo({ }: Props) {
+
+
+export default function UploadLogo() {
 
     const logo = useAppSelector(state => state.modal.contents.logo, shallowEqual)
 

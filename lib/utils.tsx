@@ -1,3 +1,4 @@
+import React from 'react';
 import colors from 'tailwindcss/colors'
 
 
@@ -5,7 +6,7 @@ const twColors = colors
 
 function scrollStep(step: string) {
 
-  var el = document.querySelector(`[data-step="${step}"]`) as HTMLElement
+  const el = document.querySelector(`[data-step="${step}"]`) as HTMLElement
   el.scrollIntoView({ behavior: "smooth" });
 }
 
@@ -16,15 +17,35 @@ function conditionalRender(condition: string | null | undefined, jsx: JSX.Elemen
 
 
 
+function linkParser(texts: string[]): ({ text: string, linkURL?: string, postURL?: string } | string)[] {
+
+  const parsedTexts = texts.map(text => {
+    let contentText = text
 
 
+    if (text.includes("@Link")) {
+      const splitting = text.split("@Link")
+      contentText = splitting[0].trim()
+      const link = splitting[1].replace(":", "")
+      return { text: contentText, linkURL: link }
+    }
 
-/*
- function squareBracketValue(twbrackedclass: string) {
-  const value = /\[(.*)px\]/g.exec(twbrackedclass)?.[1]
-  return Number(value) ?? 0
+    if (text.includes("@Post")) {
+
+      const splitting = text.split("@Post")
+      contentText = splitting[0].trim()
+      const postURL = splitting[1].replace(":", "")
+      return { text: contentText, postURL: postURL }
+    }
+
+    return text
+  })
+
+  return parsedTexts
 }
 
-*/
 
-export { twColors, scrollStep, conditionalRender }
+
+
+
+export { linkParser, twColors, scrollStep, conditionalRender }

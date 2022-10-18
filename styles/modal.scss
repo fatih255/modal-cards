@@ -161,21 +161,21 @@ $colors: "1"#7D4AEA,
 $hex in $colors {
     .modal-bg-color-#{$id} {
         &:not(img, .radio) {
-            @apply bg-[#{$hex}];
+            @apply bg-[#{''+$hex+''}];
         }
 
         @if $hex !=#FFFFFF {
             &.radio {
                 &.selected {
-                    @apply bg-[#{$hex}] border-[#{$hex}]
+                    @apply bg-[#{''+$hex+''}] border-[#{''+$hex+''}]
                 }
 
                 &:hover {
-                    @apply border-[#{$hex}]
+                    @apply border-[#{''+$hex+''}]
                 }
 
                 .group &:hover {
-                    @apply ring-[#{$hex}] ring-opacity-[0.18]
+                    @apply ring-[#{''+$hex+''}] ring-opacity-[0.18]
                 }
             }
         }
@@ -218,7 +218,7 @@ $hex in $colors {
     }
 
     .modal-text-color-#{$id} {
-        @apply text-[#{$hex}]
+        @apply text-[#{''+$hex+''}]
     }
 }
 

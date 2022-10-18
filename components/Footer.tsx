@@ -2,9 +2,9 @@ import React from 'react'
 import FooterLogo from 'icons/footerlogo.svg'
 
 
-type Props = {}
 
-export default function Footer({ }: Props) {
+
+export default function Footer() {
   return (
     <div className="my-[80px] flex flex-col justify-center items-center">
       <FooterLogo />

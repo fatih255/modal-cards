@@ -25,15 +25,15 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true
+    
   },
   "include": [
     "next-env.d.ts",
     ".storybook",
     "**/*.ts",
-    "**/*.tsx",
-    "./forbundle/*.ts"
+    "**/*.tsx"
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
 }

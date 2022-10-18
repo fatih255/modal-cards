@@ -15,7 +15,7 @@ type Props = {
 }
 
 
-function InputSelect({ closeText = "close", clearAllText = "Clear All", selectAllText = "Select All", items, placeholder = 'Select', onChange, checked = false }: Props) {
+function InputSelect({ closeText = "close", clearAllText = "Clear All", selectAllText = "Select All", items, placeholder = 'Select', onChange }: Props) {
 
 
 

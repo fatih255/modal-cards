@@ -1,4 +1,6 @@
 
+export const hostURL = (process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_PRODUCT_URL : process.env.NEXT_PUBLIC_DEVELOPMENT_URL) as URL | RequestInfo
+
 
 export const modals = [
     { name: "SecurityCodeModal", thumbnail: 'images/modals/01.png' },

@@ -12,10 +12,10 @@ import { CheckBoxButton, Switch } from 'components/panelComponents'
 import { shallowEqual } from 'react-redux'
 
 
-type Props = {}
 
 
-export default function VisitorDeviceSelect({ }: Props) {
+
+export default function VisitorDeviceSelect() {
 
     const { visitorDevice, isActiveVisitorDevice } = useAppSelector(state => Object(
         {

@@ -3,9 +3,9 @@ import React from 'react'
 import { useAppDispatch } from 'redux/hooks'
 import { updateSettings } from 'redux/slices/modal'
 
-type Props = {}
 
-export default function EditWebhookURL({ }: Props) {
+
+export default function EditWebhookURL() {
 
     const dispatch = useAppDispatch()
 

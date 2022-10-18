@@ -7,7 +7,7 @@ Mouse Events
     exitIntentTargetting
 */
 
-import { useEffect, useRef } from "react"
+import { useEffect } from "react"
 
 function useModalEvents(eventType: string, status?: boolean | null, value?: string) {
 
@@ -49,11 +49,11 @@ function useModalEvents(eventType: string, status?: boolean | null, value?: stri
             }
         };
         const calculateScrollPercentageAndShow = (scrolltop: number, docheigh: number, winheight: number) => {
-            let scrollTop = scrolltop;
-            let docHeight = docheigh;
-            let winHeight = winheight;
-            let scrollPercent = scrollTop / (docHeight - winHeight);
-            let scrollPercentRounded = Math.round(scrollPercent * 100);
+            const scrollTop = scrolltop;
+            const docHeight = docheigh;
+            const winHeight = winheight;
+            const scrollPercent = scrollTop / (docHeight - winHeight);
+            const scrollPercentRounded = Math.round(scrollPercent * 100);
 
             //scrollPercentRounded < Number(value) && closeModal()
             scrollPercentRounded === 0 && closeModal()
@@ -83,7 +83,7 @@ function useModalEvents(eventType: string, status?: boolean | null, value?: stri
             }, Number(value) * 1000);
         }
 
-        let returnForStatusFalse: any = false;
+        let returnForStatusFalse: boolean | {} = false;
         if (status === false) {
             switch (eventType) {
                 case "afterXSeconds":

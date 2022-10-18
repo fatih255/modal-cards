@@ -7,9 +7,9 @@ import { updateLayout } from 'redux/slices/modal'
 import { RadioButton } from 'components/panelComponents'
 import { shallowEqual } from 'react-redux'
 
-type Props = {}
 
-export default function ChangeModalSize({ }: Props) {
+
+export default function ChangeModalSize() {
 
     const modalSize = useAppSelector(state => (state.modal.layout.size), shallowEqual)
     const dispatch = useAppDispatch()

@@ -4,9 +4,9 @@ import { useModalEvents } from 'lib/useModalEvents'
 import { shallowEqual } from 'react-redux'
 
 
-type Props = {}
 
-function ModalEventListeners({ }: Props) {
+
+function ModalEventListeners() {
 
     const {
         isActiveExitIntentTargetting,

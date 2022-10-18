@@ -1,10 +1,7 @@
-import { Provider } from "react-redux"
-import { store } from '../redux/store'
+// .storybook/preview.js
+import '../styles/index.scss'
+import store from '../redux/store'
 
-export const decorators = [
-  (Story) => (
-    <Provider store={store}>
-      <Story />
-    </Provider>
-  ),
-]
+export default {
+    decorators: []
+};

@@ -1,16 +1,19 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
-import { updateModalContentText } from 'redux/slices/modal'
+import { updateModalContentText, updateModalLinkURL, updateModalPostURL } from 'redux/slices/modal'
 import { shallowEqual } from 'react-redux'
-
+import { AiOutlineLink } from 'react-icons/ai'
+import { BsSignpost } from 'react-icons/bs'
 
 //panel components
 import { InputText } from 'components/panelComponents'
+import { linkParser } from 'lib/utils'
+import InputLink from 'components/panelComponents/InputLink'
 
 
-type Props = {}
 
-export default function EditTextFields({ }: Props) {
+
+export default function EditTextFields() {
 
     const dispatch = useAppDispatch()
     const texts = useAppSelector(state => state.modal.contents.texts, shallowEqual)
@@ -19,13 +22,35 @@ export default function EditTextFields({ }: Props) {
         dispatch(updateModalContentText({ ContentIndex, ContentText }))
     }
 
+    const onLinkChangeHandler = (ContentIndex: string | number, LinkURL: string) => {
+        dispatch(updateModalLinkURL({ ContentIndex, LinkURL }))
+    }
 
+    const onPostURLChangeHandler = (ContentIndex: string | number, PostURL: string) => {
+        dispatch(updateModalPostURL({ ContentIndex, PostURL }))
+    }
     return (
         <>
             {
-                texts && texts.map((text: string, index: string | number) =>
-                    <InputText onChange={async (value) => onContentTextChangeHandler(index, value)}
-                        key={`text-content-${index}`} text={text} />)
+                texts && linkParser(texts).map((text, index: string | number) =>
+                (
+                    <React.Fragment key={`text-content-${index}`}>
+                        <InputText onChange={async (value) => onContentTextChangeHandler(index, value)}
+                            text={typeof text !== "string" ? text.text : text as string} />
+                        {
+                            typeof text === "object" &&
+                            <>
+                                {
+                                    typeof text.linkURL === "string" && <InputLink icon={<AiOutlineLink />} onChange={(value) => onLinkChangeHandler(index, value)} />
+                                }
+                                {
+                                    typeof text.postURL === "string" && <InputLink icon={<BsSignpost />} onChange={(value) => onPostURLChangeHandler(index, value)} />
+                                }
+                            </>
+                        }
+
+                    </React.Fragment>
+                ))
             }
         </>
     )

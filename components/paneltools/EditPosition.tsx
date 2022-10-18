@@ -7,9 +7,9 @@ import { updateLayout } from 'redux/slices/modal'
 import { SelectPosition } from 'components/panelComponents'
 
 
-type Props = {}
 
-export default function EditPosition({ }: Props) {
+
+export default function EditPosition() {
 
     const dispatch = useAppDispatch()
     return (

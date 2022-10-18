@@ -4,9 +4,10 @@ import { shallowEqual } from 'react-redux'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { updateSettings } from 'redux/slices/modal'
 
-type Props = {}
 
-export default function FormSubmissionAndSendClickData({ }: Props) {
+
+
+export default function FormSubmissionAndSendClickData() {
 
     const dispatch = useAppDispatch()
     const { sendFormSubmission, sendClickData } = useAppSelector(state => Object(

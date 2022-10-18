@@ -4,9 +4,9 @@ import DropdownIcon from 'icons/dropdown.svg'
 import Button from './Button'
 import Flexing from './Flexing'
 import { scrollStep } from 'lib/utils'
-type Props = {}
 
-export default function Header({ }: Props) {
+
+export default function Header() {
 
     const signInHandler = () => {
         scrollStep('1')

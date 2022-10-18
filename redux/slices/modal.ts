@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ModalAlias } from 'components/modals';
 import { getModalContants } from 'lib/modalConstants';
 
 
 export type ModalType = {
 
-    selectedModalName: string | undefined
+    selectedModalName: ModalAlias | undefined
     contents: {
-        texts: string[] | []
+        texts: string[] | [] | any
         radios: { title: string, description: string, value: string, selected?: boolean }[] | [],
         image?: string | null
         logo?: string | null
@@ -61,7 +62,7 @@ export const ModalInitialState: ModalType = {
         image: false
     },
     settings: {
-        browserLanguages: ['tr','en', 'fr'],
+        browserLanguages: ['tr', 'en', 'fr'],
         visitorDevice: "desktop",
         afterXSeconds: '12',
         afterPercentageScroll: '50',
@@ -82,7 +83,7 @@ export const ModalSlice = createSlice({
 
         //select methods
 
-        selectModal: (state, action: PayloadAction<string>) => {
+        selectModal: (state, action: PayloadAction<ModalAlias>) => {
             const selectedModalConstants = getModalContants(action.payload)
             state.selectedModalName = action.payload
             state.contents = selectedModalConstants.contents
@@ -105,7 +106,7 @@ export const ModalSlice = createSlice({
             const isSettingsActive = state.activedSettings.some(setting => setting === action.payload);
             if (isSettingsActive) state.activedSettings = [...state.activedSettings.filter(setting => setting !== action.payload)]
             if (!isSettingsActive) {
-               state.activedSettings = [...state.activedSettings, action.payload]
+                state.activedSettings = [...state.activedSettings, action.payload]
             }
 
             if (action.payload === "exitIntentTargetting")
@@ -116,8 +117,8 @@ export const ModalSlice = createSlice({
             state.settings = { ...state.settings, [action.payload.name]: action.payload.value }
 
             if (action.payload.name === "webHookUrl")
-            state.activedSettings = [...state.activedSettings, action.payload.name]
-            
+                state.activedSettings = [...state.activedSettings, action.payload.name]
+
         },
         updateLayout: (state, action: PayloadAction<{ name: string, value: string | object }>) => {
             state.layout = { ...state.layout, [action.payload.name]: action.payload.value }
@@ -128,7 +129,19 @@ export const ModalSlice = createSlice({
         },
         updateModalContentText: (state, action: PayloadAction<{ ContentIndex: string | number, ContentText: string }>) => {
             if (!state.contents.texts) return
-            state.contents.texts[Number(action.payload.ContentIndex)] = action.payload.ContentText
+            const currentValue = state.contents.texts[Number(action.payload.ContentIndex)]
+            const haveLink = currentValue.includes("@Link")
+            state.contents.texts[Number(action.payload.ContentIndex)] = ` ${action.payload.ContentText} ${haveLink ? '@Link:' + currentValue.split("@Link")[1] : ''}`
+        },
+        updateModalLinkURL: (state, action: PayloadAction<{ ContentIndex: string | number, LinkURL: string }>) => {
+            const currentValue = state.contents.texts[Number(action.payload.ContentIndex)]
+            const text = currentValue.split("@Link")[0]
+            state.contents.texts[Number(action.payload.ContentIndex)] = `${text} @Link:${action.payload.LinkURL}`
+        },
+        updateModalPostURL: (state, action: PayloadAction<{ ContentIndex: string | number, PostURL: string }>) => {
+            const currentValue = state.contents.texts[Number(action.payload.ContentIndex)]
+            const text = currentValue.split("@Post")[0]
+            state.contents.texts[Number(action.payload.ContentIndex)] = `${text} @Post:${action.payload.PostURL}`
         },
         updateRadioButton: (state, action: PayloadAction<{ radioIndex: number, title: string; description: string, value: string }>) => {
             const { radioIndex, title, description, value } = action.payload
@@ -143,7 +156,8 @@ export const ModalSlice = createSlice({
 })
 
 export const {
-
+    updateModalPostURL,
+    updateModalLinkURL,
     selectModal,
     updateLayout,
     updateContents,

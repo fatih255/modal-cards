@@ -1,26 +1,17 @@
 import React from 'react'
-import { useAppSelector } from 'redux/hooks'
 import Button from 'components/Button'
 import InputTextModal from 'components/InputTextModal'
 import WithModalLayout from 'components/WithModalLayout'
 import ModalLogo from 'components/ModalLogo'
-import { shallowEqual } from 'react-redux'
+import { ModalProps } from 'components/ModalLoader'
 
-type Props = {}
 
-export default function SecurityCodeModal({ }: Props) {
 
-    const { texts, colors } = useAppSelector(state => Object(
-        {
-            texts: state.modal.contents.texts,
-            image: state.modal.contents.image,
-            colors: state.modal.layout.colors,
-        }), shallowEqual)
+export default function SecurityCodeModal({ contents: { texts }, layout: { colors } }: ModalProps) {
+
 
     return <WithModalLayout>
-
         <ModalLogo />
-
         <h1 className="title">{texts[0]}</h1>
         <p className="description ">{texts[1]}</p>
         <InputTextModal placeholder={texts[2]} />

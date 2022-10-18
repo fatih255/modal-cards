@@ -1,25 +1,19 @@
+import React from 'react';
 import Button from 'components/Button'
 import ModalLogo from 'components/ModalLogo'
 import ModalRadios from 'components/ModalRadios'
 import WithModalLayout from 'components/WithModalLayout'
-import React from 'react'
-import { shallowEqual } from 'react-redux'
-import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import { useAppDispatch } from 'redux/hooks'
 import { selectRadioButton } from 'redux/slices/modal'
+import { ModalProps } from 'components/ModalLoader';
 
 
 
-type Props = {}
 
-export default function ChooseBestForYouModal({ }: Props) {
+
+export default function ChooseBestForYouModal({ contents: { texts, radios }, layout: { colors } }: ModalProps) {
 
     const dispatch = useAppDispatch()
-    const { texts, colors, radios } = useAppSelector(state => Object(
-        {
-            radios: state.modal.contents.radios,
-            texts: state.modal.contents.texts,
-            colors: state.modal.layout.colors,
-        }), shallowEqual)
 
     return (
         <WithModalLayout>
@@ -32,7 +26,12 @@ export default function ChooseBestForYouModal({ }: Props) {
             <ModalRadios colors={colors} returnedValue={(radioIndex) => dispatch(selectRadioButton(radioIndex))} items={radios} />
             <div className="flex gap-3 w-full items-stretch flex-wrap pb-2">
                 <Button className="flex-1" theme='light-bordered' size="modal-default" text={texts[3]} />
-                <Button className={`${colors.bg} flex-1`} size="modal-default" text={texts[4]} />
+                <Button
+                    data-value={radios.filter((r: any) => r.selected)[0]?.value}
+                    data-post-url={texts[4].postURL}
+                    className={`${colors.bg} flex-1`}
+                    size="modal-default"
+                    text={texts[4].text} />
             </div>
         </WithModalLayout>
     )

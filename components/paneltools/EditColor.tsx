@@ -7,9 +7,9 @@ import { useAppDispatch } from 'redux/hooks'
 import { ColorPalette } from 'components/panelComponents'
 
 
-type Props = {}
 
-export default function SelectColor({ }: Props) {
+
+export default function SelectColor() {
 
     
     const dispatch = useAppDispatch()

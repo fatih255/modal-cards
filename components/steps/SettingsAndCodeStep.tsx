@@ -6,9 +6,9 @@ import NumberItem from 'components/NumberItem'
 // Tools used by Content Step
 import { GenerateCode, EditWebhookURL, FormSubmissionAndSendClickData } from 'components/paneltools';
 
-type Props = {}
 
-export default function SettingsAndCodeStep({ }: Props) {
+
+export default function SettingsAndCodeStep() {
 
 
     return (

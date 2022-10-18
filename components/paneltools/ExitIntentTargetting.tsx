@@ -9,9 +9,8 @@ import { shallowEqual } from 'react-redux'
 
 
 
-type Props = {}
 
-export default function ExitIntentTargetting({ }: Props) {
+export default function ExitIntentTargetting() {
 
     const isActiveExitIntentTargetting = useAppSelector(state => (state.modal.activedSettings.includes("exitIntentTargetting")), shallowEqual)
     const dispatch = useAppDispatch()

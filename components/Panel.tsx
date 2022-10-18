@@ -15,12 +15,9 @@ import centerScroll from 'lib/centerScroll'
 
 
 
-type Props = {
-
-}
 export default React.memo(Panel)
 
-function Panel({ }: Props) {
+function Panel() {
 
 
     const selectedModalName = useAppSelector(state => state.modal.selectedModalName)

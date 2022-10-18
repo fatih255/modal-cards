@@ -3,22 +3,18 @@ import Button from 'components/Button'
 import { useAppSelector } from 'redux/hooks'
 import WithModalLayout from 'components/WithModalLayout'
 import { shallowEqual } from 'react-redux'
+import { ModalProps } from 'components/ModalLoader'
 
 
-type Props = {}
 
-export default function InstallLocalNowModal({ }: Props) {
 
-    const { texts, image, colors } = useAppSelector(state => Object(
-        {
-            texts: state.modal.contents.texts,
-            image: state.modal.contents.image,
-            colors: state.modal.layout.colors,
-        }), shallowEqual)
+export default function InstallLocalNowModal({ contents: { texts, image }, layout: { colors } }: ModalProps) {
+
+
 
     return (
         <WithModalLayout>
-            <img src={image} className="w-full object-cover " />
+            <img src={image ?? ''} className="w-full object-cover " />
             <div className="inner">
                 <h1 className="title">{texts[0]}</h1>
                 <p className="description">{texts[1]}</p>

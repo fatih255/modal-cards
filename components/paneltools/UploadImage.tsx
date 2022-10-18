@@ -6,9 +6,9 @@ import { useAppSelector } from 'redux/hooks'
 import { Dropzone } from 'components/panelComponents'
 
 
-type Props = {}
 
-export default function UploadImage({ }: Props) {
+
+export default function UploadImage() {
 
     const image = useAppSelector(state => state.modal.contents.image, shallowEqual)
 

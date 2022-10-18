@@ -8,9 +8,8 @@ import { InputText, Switch } from 'components/panelComponents'
 import { shallowEqual } from 'react-redux'
 
 
-type Props = {}
 
-export default function AfterPercentageScroll({ }: Props) {
+export default function AfterPercentageScroll() {
 
 
     const { afterPercentageScroll, isAfterPercentageScroll } = useAppSelector(state => Object(

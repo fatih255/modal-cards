@@ -1,15 +1,10 @@
 import React from 'react'
 import cn from 'classnames'
-import dynamic from 'next/dynamic';
 import { useAppSelector } from 'redux/hooks';
 import { shallowEqual } from 'react-redux';
 
 
-type Props = {
-
-}
-
-export default function ModalLogo({ }: Props) {
+export default function ModalLogo() {
 
 
     const { logo, colors, uploaded } = useAppSelector(state => Object({

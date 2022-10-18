@@ -1,6 +1,12 @@
+import { ModalAlias } from "components/modals"
 import { ModalType } from "redux/slices/modal"
 
 type Props = {
+    modalName: ModalAlias
+    content: {
+        texts: string[]
+    }
+    classes: string[]
     html: string
     settings: Partial<ModalType['settings']>
 
@@ -8,7 +14,7 @@ type Props = {
 
 
 export default function modalCard({ html, settings }: Props) {
-    
+
     var cssId = "modalCardCSS";
     var head = document.getElementsByTagName("head")[0];
     var link = document.createElement("link");
@@ -19,17 +25,46 @@ export default function modalCard({ html, settings }: Props) {
     link.media = "all";
     head.appendChild(link);
 
-    link.onload = () => {
+    link.onload = async () => {
 
-        document.body.innerHTML = html
+        document.body.insertAdjacentHTML('beforeend', html)
 
         // for close button trigger close event
-        const modalCloseButton = document.getElementById('close-modal-btn')
-        modalCloseButton && modalCloseButton.addEventListener("click", closeModalAction)
+        const modalCloseButton = document.querySelectorAll('.close-modal-action')
+        modalCloseButton.forEach(closebutton => {
+            closebutton.addEventListener("click", closeModalAction)
+        })
+
+        //for trigger button actions
+        const buttons = document.querySelectorAll("button")
+        if (buttons.length > 0) {
+            buttons.forEach(button => {
+                button.addEventListener("click", () => {
+                    //if have data post url 
+                    const havePostURL = button.getAttribute("data-post-url")
+                    const haveLinkURL = button.getAttribute("data-link")
+
+                    if (havePostURL) {
+                        const data = button.getAttribute("data-value") as string;
+                        fetch(havePostURL, { method: 'POST', body: data })
+                            .then((response) => response.json())
+                            .then((data) => console.log(data))
+                            closeModalAction()
+                    }
+                    if (haveLinkURL) {
+                        //if button action is redirect page 
+                        window.location.href = button.getAttribute("data-link") ?? ''
+                    }
+                })
+            })
+        }
 
         const modalElement = document.getElementById("layout") as HTMLElement
         if (!modalElement) return
 
+
+        //fixed modal position and opacity 0 
+        modalElement.classList.add("for-generated")
 
         const ModalCloseEffects: any[] = [] // this array use when settings have effects during the closing 
         let timer: number | NodeJS.Timeout | undefined;
@@ -76,6 +111,9 @@ export default function modalCard({ html, settings }: Props) {
                         break;
                     case 'webHookUrl':
                         ModalCloseEffects.push(sendDataToWebHook())
+                        break;
+                    case 'visitorDevice':
+                        modalElement.classList.add(settings.visitorDevice as string)
                         break;
                 }
             })

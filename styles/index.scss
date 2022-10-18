@@ -1,6 +1,6 @@
-@import "~tailwindcss/base";
-@import "~tailwindcss/components";
-@import "~tailwindcss/utilities";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import 'fonts';
 @import 'modal';
 @import 'panel';
@@ -56,7 +56,7 @@ input[type=number] {
 }
 
 @mixin createVariants($apply, $dynamicapply, $className, $start, $per, $end) {
-    @for $i from 0 to $end/$per {
+    @for $i from 0 to calc($end / $per) {
         .#{$className}-#{$start+$per*$i} {
             @if $dynamicapply=='duration' {
                 @apply #{$apply} #{'duration-[#{$start+$per*$i}ms]'}

@@ -5,9 +5,9 @@ import { modals } from 'lib/contants'
 
 
 
-type Props = {}
 
-function ChooseYourTemplateStep({ }: Props) {
+
+function ChooseYourTemplateStep() {
   return (
     <div data-step="1" className="pt-[2vh] h-[100vh]">
       <NumberItem value="1 Choose your template" />

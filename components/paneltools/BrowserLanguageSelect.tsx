@@ -7,9 +7,9 @@ import { settingStatus, updateSettings } from 'redux/slices/modal'
 import { InputSelect, Switch } from 'components/panelComponents'
 import { shallowEqual } from 'react-redux'
 
-type Props = {}
 
-export default function BrowserLanguageSelect({ }: Props) {
+
+export default function BrowserLanguageSelect() {
 
 
     const { browserLanguages, isActivedBrowserLanguage } = useAppSelector(state => Object(

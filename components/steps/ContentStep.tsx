@@ -4,11 +4,11 @@ import NumberItem from 'components/NumberItem'
 // Tools used by Content Step
 import { EditRadioButtons, EditTextFields, UploadImage } from 'components/paneltools'
 
-type Props = {}
 
 
 
-export default function ContentStep({ }: Props) {
+
+export default function ContentStep() {
 
 
     return (

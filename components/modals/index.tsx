@@ -4,7 +4,12 @@ import InstallLocalNowModal from "./InstallLocalNowModal"
 import SecurityCodeModal from "./SecurityCodeModal"
 
 
-export type ModalAlias = 'ChooseBestForYouModal' | 'DeleteYourProfileModal' | 'InstallLocalNowModal' | 'SecurityCodeModal'
+export enum ModalAlias {
+    'ChooseBestForYouModal' = 'ChooseBestForYouModal',
+    'DeleteYourProfileModal' = 'DeleteYourProfileModal',
+    'InstallLocalNowModal' = 'InstallLocalNowModal',
+    'SecurityCodeModal' = 'SecurityCodeModal',
+}
 
 
 export { ChooseBestForYouModal, DeleteYourProfileModal, InstallLocalNowModal, SecurityCodeModal }  

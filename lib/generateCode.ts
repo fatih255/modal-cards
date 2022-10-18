@@ -1,5 +1,6 @@
 import { ModalType } from "redux/slices/modal";
 import { store } from "redux/store";
+import { hostURL } from "./contants";
 
 //generate code method
 export default function generateCode(): string {
@@ -19,7 +20,7 @@ export default function generateCode(): string {
     if (!modalElement) return ''
     let modalElement_cloned = modalElement.cloneNode(true) as HTMLElement;
 
-    console.log(activeSettingsValues)
+  
     //  2.Stage: check check whether there is a targeting  visitor device,
     //  if there is a targeted visitor device add a responsive class
     if (activeSettingsValues.visitorDevice) {
@@ -37,7 +38,7 @@ export default function generateCode(): string {
 
     //4.Stage: write event listeners and webhook process
     // Final Stage: create code between script tags
-    const generatedCode = `<script src="https://leafy-mermaid-eb53cb.netlify.app/script.js"></script>
+    const generatedCode = `<script src="${hostURL}/script.js"></script>
     <script>
     modalCard({
         html:'${modalElement_cloned.outerHTML}',

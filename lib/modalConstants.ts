@@ -1,3 +1,4 @@
+import { ModalAlias } from "components/modals";
 import { ModalType } from "redux/slices/modal";
 
 
@@ -52,7 +53,7 @@ export const modalConstants = new Map([
                     'Choose best for you',
                     'Only pay for the capacity that you use.',
                     'Cancel',
-                    'Continue',
+                    'Continue @Post',
                 ],
                 radios: [
                     { title: 'Starter', description: '1 free (then $15 per meember / month)', value: 'starter' },
@@ -91,7 +92,7 @@ export const modalConstants = new Map([
 
 
 
-export const getModalContants = (modalName: string) => {
-
+export const getModalContants = (modalName: ModalAlias) => {
+    
     return modalConstants.get(modalName) as ModalType
 }

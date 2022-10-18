@@ -8,9 +8,7 @@ import ModalEventListeners from 'components/ModalEventListeners'
 
 
 
-type Props = {}
-
-export default function TargetingRulesStep({ }: Props) {
+export default function TargetingRulesStep() {
 
     return (
         <div data-step="4" className="flex flex-col w-full mt-6 ">

@@ -29,7 +29,7 @@ export default function SelectPosition({ returnedValue }: Props) {
 
     return (
         <div className="grid grid-rows-3 grid-cols-3 gap-[5px] max-w-[82px]">
-            {positions.map((pos, i) => <PositionBox key={pos} value={pos} />)}
+            {positions.map((pos) => <PositionBox key={pos} value={pos} />)}
         </div>
     )
 }

@@ -7,9 +7,8 @@ import { settingStatus, updateSettings } from 'redux/slices/modal'
 import { InputText, Switch } from 'components/panelComponents'
 import { shallowEqual } from 'react-redux'
 
-type Props = {}
 
-export default function AfterXSeconds({ }: Props) {
+export default function AfterXSeconds() {
 
 
     const { afterXSeconds, isActiveAfterXSeconds } = useAppSelector(state => Object(

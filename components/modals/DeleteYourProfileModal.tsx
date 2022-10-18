@@ -1,19 +1,12 @@
 import React from 'react'
-import { useAppSelector } from 'redux/hooks'
 import Button from 'components/Button'
 import WithModalLayout from 'components/WithModalLayout'
 import ModalLogo from 'components/ModalLogo'
-import { shallowEqual } from 'react-redux'
+import { ModalProps } from 'components/ModalLoader'
 
-type Props = {}
 
-export default function DeleteYourProfileModal({ }: Props) {
 
-    const { texts, colors } = useAppSelector(state => Object(
-        {
-            texts: state.modal.contents.texts,
-            colors: state.modal.layout.colors,
-        }), shallowEqual)
+export default function DeleteYourProfileModal({ contents: { texts }, layout: { colors } }: ModalProps) {
 
     const informationTextGenerate = (str: string) => {
         const txt = str.split(/(\*(.*)\*)/g).filter((x) => !x.includes("*"))

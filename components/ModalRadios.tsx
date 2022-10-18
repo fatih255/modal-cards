@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React from 'react'
 import { ModalType } from 'redux/slices/modal'
 import cn from 'classnames'
 

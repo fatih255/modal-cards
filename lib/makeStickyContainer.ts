@@ -20,8 +20,8 @@
 */
 export default function makeStickyContainer(
     selector: string,
-    nestedStickyBgColor: string = "white",
-    nestedStickyHeight: number = 100,
+    nestedStickyBgColor = "white",
+    nestedStickyHeight = 100,
     fineAdjustment: { crossTop: number, crossSticky: number } = { crossTop: 0, crossSticky: 0 },
     closeStickySeletor?: { selector: string, offsetCross: number }
 ) {
@@ -38,8 +38,8 @@ export default function makeStickyContainer(
     }
 
     //fixed content
-    let heightDiv = document.createElement("div") as HTMLDivElement;
-    let nestedStickyBgDiv = document.createElement("div") as HTMLDivElement;
+    const heightDiv = document.createElement("div") as HTMLDivElement;
+    const nestedStickyBgDiv = document.createElement("div") as HTMLDivElement;
     //nested Sticky background div
     nestedStickyBgDiv.classList.add("sticky-nested-background")
     nestedStickyBgDiv.style.backgroundColor = nestedStickyBgColor
@@ -58,7 +58,7 @@ export default function makeStickyContainer(
         const container = element as HTMLElement;
         const nestedSticky = container.parentElement?.classList.contains(selector.replace(".", "")) || container.parentElement?.parentElement?.classList.contains(selector.replace(".", ""))
 
-        let sticky = container.offsetTop
+        const sticky = container.offsetTop
 
 
 

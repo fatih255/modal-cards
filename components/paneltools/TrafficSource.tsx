@@ -7,9 +7,10 @@ import { settingStatus, updateSettings } from 'redux/slices/modal'
 import { InputText, Switch } from 'components/panelComponents'
 import { shallowEqual } from 'react-redux'
 
-type Props = {}
 
-export default function TrafficSource({ }: Props) {
+
+
+export default function TrafficSource() {
 
     const { trafficSource, isActiveTrafficSource } = useAppSelector(state => Object(
         {

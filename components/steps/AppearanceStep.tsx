@@ -7,10 +7,10 @@ import { EditPosition, UploadLogo, ChangeModalSize, EditColor } from 'components
 
 
 
-type Props = {}
 
 
-function AppearanceStep({ }: Props) {
+
+function AppearanceStep() {
 
     return (
         <>

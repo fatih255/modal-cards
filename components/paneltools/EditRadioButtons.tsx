@@ -8,10 +8,10 @@ import { updateRadioButton } from 'redux/slices/modal'
 //panel components
 import { InputText } from 'components/panelComponents'
 
-type Props = {
-}
 
-function EditRadioButtons({ }: Props) {
+
+
+function EditRadioButtons() {
 
     const dispatch = useAppDispatch()
 
