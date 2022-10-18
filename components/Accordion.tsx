@@ -5,11 +5,11 @@ import PlusIcon from 'icons/plus.svg'
 import MinusIcon from 'icons/minus.svg'
 
 
-type Props = {
+export type AccordionProps = {
     items: { title: string, description: string }[]
 }
 
-export default function Accordion({ items }: Props) {
+export default function Accordion({ items }: AccordionProps) {
 
     const [activeItemIndex, setActiveItemIndex] = useState<null | number>(null)
 

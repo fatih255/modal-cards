@@ -1,20 +1,17 @@
 import React from 'react'
 
 
-type Props = {
+export type NumberItemProps = {
     value: string;
     bracketsClassName?: string
     className?: string
 }
 
-function NumberItem({ value, className = '', bracketsClassName = "font-normal" }: Props) {
+function NumberItem({ value, className = '', bracketsClassName = "font-normal" }: NumberItemProps) {
 
     const [number, ...textarr] = value.split(" ")
     const paranthesesText = textarr.join(' ').match(/\((.*)\)/)?.[0]
     const text = textarr.join(' ').replace(/\((.*)\)/, '')
-
-
-
 
     return (
         <>

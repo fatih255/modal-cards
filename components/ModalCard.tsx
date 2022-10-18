@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { selectModal } from 'redux/slices/modal'
 
 import Button from './Button'
+import { ModalAlias } from './modals'
 
 export type ModalCardProps = {
   name: string
@@ -17,7 +18,7 @@ export default function ModalCard({ name, thumbnail }: ModalCardProps) {
 
   const onClickHandler = (name: string) => {
     // choose template
-    dispatch(selectModal(name))
+    dispatch(selectModal(name as ModalAlias))
     selectedModalName && scrollStep("2")
   }
 

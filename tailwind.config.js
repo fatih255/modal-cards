@@ -1,7 +1,10 @@
 /** @type {import('tailwindcss').Config} */
+
+
 module.exports = {
   content: [
     './components/**/*.tsx',
+    './stories/**/*.tsx',
     './pages/**/*.tsx',
   ],
   theme: {
@@ -47,5 +50,7 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+
+  ],
 }

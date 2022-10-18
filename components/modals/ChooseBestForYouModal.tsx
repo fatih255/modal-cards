@@ -23,7 +23,7 @@ export default function ChooseBestForYouModal({ contents: { texts, radios }, lay
                 <h1 className="title">{texts[1]}</h1>
                 <p className="description">{texts[2]}</p>
             </div>
-            <ModalRadios colors={colors} returnedValue={(radioIndex) => dispatch(selectRadioButton(radioIndex))} items={radios} />
+            <ModalRadios colors={colors} returnedIndex={(index) => dispatch(selectRadioButton(index))} items={radios} />
             <div className="flex gap-3 w-full items-stretch flex-wrap pb-2">
                 <Button className="flex-1" theme='light-bordered' size="modal-default" text={texts[3]} />
                 <Button

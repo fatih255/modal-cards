@@ -1,13 +1,14 @@
 import React from 'react'
 
-type Props = {
+export type FeaturesCounterProps = {
     features: { name: string, value: string }[]
     description?: string
+    className?: string
 }
 
-export default function FeaturesCounter({ features, description }: Props) {
+export default function FeaturesCounter({ features, description, className = '' }: FeaturesCounterProps) {
     return (
-        <div className="text-white pb-8 -translate-y-[66%]">
+        <div className={`text-white ${className}`}>
             <div className="flex justify-between">
                 {
                     features.map(({ name, value }, index) => (

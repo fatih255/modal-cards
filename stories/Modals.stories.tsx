@@ -18,14 +18,14 @@ const initialState = {
 }
 
 export default {
-    title: "SecurityCodeModal",
-    component: SecurityCodeModal,
+    title: "Modals",
+    component: ModalLoader,
     parameters: {
         [PARAM_REDUX_MERGE_STATE]: JSON.stringify(initialState)
     },
     argTypes: {
         selectedModalName: {
-            options: [...Object.values(ModalAlias).filter(value => typeof value === 'string')],
+            options: [...Object.values(ModalAlias)],
             control: { type: 'select' }, // Automatically inferred when 'options' is defined
 
         }

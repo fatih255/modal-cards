@@ -1,28 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ModalType } from 'redux/slices/modal'
 import cn from 'classnames'
 
-type Props = {
+export type ModalRadiosProps = {
     items?: ModalType['contents']['radios']
     colors: ModalType['layout']['colors']
-    returnedValue: (data: number) => {}
+    returnedIndex?: (index: number) => {}
 }
 
-export default function ModalRadios({ items, colors, returnedValue }: Props) {
+export default function ModalRadios({ items, colors, returnedIndex }: ModalRadiosProps) {
 
-    const selectHandler = (value: number) => {
-        returnedValue(value)
+    const [selectedIndex, setselectedIndexIndex] = useState<null | number>(null)
+
+    const selectHandler = (index: number) => {
+        returnedIndex && returnedIndex(index)
+        setselectedIndexIndex(index)
 
     }
 
     return (
         <div className="flex gap-8 flex-col justify-center items-start modal-radio-container">
             {
-                items && items.map(({ title, description, selected }, index) =>
-                    <div key={`radio-${index}`} onClick={() => selectHandler(index)} className={cn({ 'opacity-[.63]': !selected }, 'trans-300 radio-item cursor-pointer hover:opacity-100 group  flex gap-[10.5px] justify-center items-center')}>
-                        <div className={cn({ 'selected': selected }, ` ${colors.bg} radio `)}>
+                items && items.map(({ title, description }, index) =>
+                    <div key={`radio-${index}`} onClick={() => selectHandler(index)} className={cn({ 'opacity-[.63]': selectedIndex !== index }, 'trans-300 radio-item cursor-pointer hover:opacity-100 group  flex gap-[10.5px] justify-center items-center')}>
+                        <div className={cn({ 'selected': selectedIndex === index }, ` ${colors.bg} radio `)}>
                             <div className={`inset-0 w-full h-full `}>
-                                <div className={cn({ 'scale-[.4] ': selected }, ' w-full h-full trans-400 inset-0 m-auto absolute bg-white rounded-full')}></div>
+                                <div className={cn({ 'scale-[.4] ': selectedIndex === index }, ' w-full h-full trans-400 inset-0 m-auto absolute bg-white rounded-full')}></div>
                             </div>
                         </div>
                         <div className="flex flex-col items-start gap-[10px] -translate-y-1">

@@ -47,8 +47,9 @@ const Home: NextPage = () => {
       {/* Popupsmart meets all your business needs section */}
       <section className="bg-[#666666]">
         <Flexing>
-          <PreviewModal />
+          <PreviewModal extraClass="-translate-y-[50%]" />
           <FeaturesCounter
+            className='-translate-y-[66%] pb-8'
             description='Popupsmart meets all your business needs.'
             features={[
               {

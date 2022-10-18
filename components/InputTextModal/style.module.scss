@@ -1,0 +1,7 @@
+.input {
+    @apply w-full rounded-md border border-design-gray-300 px-4 h-[47px];
+
+    &:focus {
+        @apply outline-none border border-gray-400
+    }
+}

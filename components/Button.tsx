@@ -1,16 +1,15 @@
 import React from 'react';
 
-type Props = {
+export type ButtonProps = {
     text: string | JSX.Element
     theme?: 'light' | 'primary' | 'primary-light' | 'light-bordered'
     size?: 'small' | 'large' | 'medium' | 'modal-default'
     shadow?: boolean
-    className?: string,
-    props?: HTMLButtonElement
-}
+    className?: string
+} & React.DOMAttributes<HTMLButtonElement>
 
 
-export default function Button({ text, theme = 'primary', size = "small", shadow = false, className, ...props }: Props) {
+export default function Button({ text, theme = 'primary', size = "small", shadow = false, className, ...props }: ButtonProps) {
 
 
     return (
@@ -22,7 +21,7 @@ export default function Button({ text, theme = 'primary', size = "small", shadow
     )
 }
 
-const getClass = (theme: Props['theme'], size: Props['size'], shadow: boolean) => {
+const getClass = (theme: ButtonProps['theme'], size: ButtonProps['size'], shadow: boolean) => {
     let themeClass: string = '';
     switch (theme) {
         case 'primary':

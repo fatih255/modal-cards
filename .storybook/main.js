@@ -6,14 +6,14 @@ module.exports = {
         "../stories/**/*.stories.@(js|jsx|ts|tsx)",
     ],
     addons: [
+        "@storybook/addon-essentials",
+        "addon-redux",
         {
             name: "storybook-addon-sass-postcss",
             options: {
                 loadSassAfterPostCSS: true,
             },
         },
-        "@storybook/addon-essentials",
-        "addon-redux",
 
     ],
     staticDirs: ["../public"],

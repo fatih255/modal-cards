@@ -6,6 +6,10 @@ import Flexing from './Flexing'
 import { scrollStep } from 'lib/utils'
 
 
+export type HeaderProps = {
+
+}
+
 export default function Header() {
 
     const signInHandler = () => {

@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import cn from 'classnames'
 
-type Props = {
+export type CheckBoxButtonProps = {
     items: { text: string, value: string, icon?: JSX.Element, checked?: boolean }[]
     returnedValue?: (data: string) => void
 }
 
-export default function CheckBoxButton({ items, returnedValue }: Props) {
+export default function CheckBoxButton({ items, returnedValue }: CheckBoxButtonProps) {
 
     const [checkedItem, setcheckedItem] = useState<string>(items.find(item => item.checked === true)?.value ?? '')
 
@@ -14,8 +14,6 @@ export default function CheckBoxButton({ items, returnedValue }: Props) {
         if (e.target.checked) setcheckedItem(value)
         returnedValue && returnedValue(value)
     }
-
-
 
     return (
         <div className="flex gap-5">

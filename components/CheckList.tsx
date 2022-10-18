@@ -1,11 +1,13 @@
 import React from 'react'
 import CheckIcon from 'icons/check.svg'
-type Props = {
+
+
+export type CheckListProps = {
     texts: string[],
     className?: string
 }
 
- function CheckList({ texts, className }: Props) {
+ function CheckList({ texts, className }: CheckListProps) {
     return (
         <div className={`flex gap-4 ${className ?? ''}`}>
             {

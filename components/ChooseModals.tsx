@@ -3,14 +3,14 @@ import ModalCard from './ModalCard'
 import PaginationContent from './PaginationContent'
 
 
-type Props = {
+export type ChooseModalsProps = {
   modals: {
     name: string
     thumbnail: string
   }[]
 }
 
-export default function ChooseModals({ modals }: Props) {
+export default function ChooseModals({ modals }: ChooseModalsProps) {
 
 
   return (

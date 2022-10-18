@@ -53,7 +53,6 @@
     "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-storybook": "^0.6.4",
     "netlify-cli": "^12.0.7",
-    "postcss": "^8.4.17",
     "process": "^0.11.10",
     "redux-immutable-state-invariant": "^2.1.0",
     "redux-logger": "^3.0.6",

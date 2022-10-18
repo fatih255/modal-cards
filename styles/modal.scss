@@ -47,13 +47,6 @@
         }
     }
 
-    .input {
-        @apply w-full rounded-md border border-design-gray-300 px-4 h-[47px];
-
-        &:focus {
-            @apply outline-none border border-gray-400
-        }
-    }
 
     .close-btn {
         @apply absolute right-0 top-0 m-[3.5%]

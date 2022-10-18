@@ -1,16 +1,17 @@
 import React from 'react'
+import './style.module.scss'
 
-type Props = {
-    type?: React.HTMLInputTypeAttribute
+
+export type InputTextModalProps = {
     placeholder?: string
     className?: string
 }
 
-export default function InputTextModal({ type = 'text', placeholder = '', className = '' }: Props) {
+export default function InputTextModal({ placeholder = '', className = '' }: InputTextModalProps) {
     return (
         <input
             className={`input ${className}`}
             placeholder={placeholder}
-            type={type} />
+            type="text" />
     )
 }

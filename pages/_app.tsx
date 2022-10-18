@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Provider store={store}>
         <Header />
         <Component {...pageProps} />
-        <Footer />
+        <Footer  text="FooterProps" />
       </Provider>
     </React.StrictMode>
   )

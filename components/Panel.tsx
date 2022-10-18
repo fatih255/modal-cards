@@ -54,7 +54,7 @@ function Panel() {
                 {/* Modal Preview Zone */}
                 <div className={`dosticky preview-outer scrollbar-style-1 bold-scroll flex-[70%] flex self-start min-h-[96vh] justify-center relative rounded-lg overflow-y-scroll bg-gray-50`}>
                     <div className="preview-inner" style={{ position: 'absolute', top: 0, width: '100%' }}>
-                        <ModalLoader name={selectedModalName} />
+                        {selectedModalName && <ModalLoader selectedModalName={selectedModalName} />}
                     </div>
                 </div>
             </div>

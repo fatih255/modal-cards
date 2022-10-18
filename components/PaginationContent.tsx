@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import cn from 'classnames'
 
-type Props = {
+export type PaginationContentProps = {
     name: string
     per: number,
     jsx: ({ data }: { data: any }) => JSX.Element;
@@ -9,7 +9,7 @@ type Props = {
     containerClass?: string;
 }
 
-export default function PaginationContent({ name, per, jsx, data, containerClass = 'flex gap-8 w-full flex-wrap' }: Props) {
+export default function PaginationContent({ name, per, jsx, data, containerClass = 'flex gap-8 w-full flex-wrap' }: PaginationContentProps) {
 
     const [activePage, setactivePage] = useState<number>(1);
     const total = data.length;
@@ -26,8 +26,8 @@ export default function PaginationContent({ name, per, jsx, data, containerClass
     }, [])
 
     const rendered = data.slice(per * activePage - per, per * activePage)
-        .map((props, index) => {
-            return jsx({ data: { ...props, key: index } })
+        .map((PaginationContentProps, index) => {
+            return jsx({ data: { ...PaginationContentProps, key: index } })
         })
 
     return (
