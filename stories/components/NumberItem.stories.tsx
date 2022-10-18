@@ -3,7 +3,7 @@ import { NumberItemProps, default as Component } from "components/NumberItem";
 
 
 export default {
-    title: "Modal Components",
+    title: "Components",
     component: Component
 };
 

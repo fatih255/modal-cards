@@ -1,11 +1,10 @@
 import React from 'react';
 import Button from 'components/Button'
-import ModalLogo from 'components/ModalLogo'
-import ModalRadios from 'components/ModalRadios'
-import WithModalLayout from 'components/WithModalLayout'
 import { useAppDispatch } from 'redux/hooks'
 import { selectRadioButton } from 'redux/slices/modal'
-import { ModalProps } from 'components/ModalLoader';
+import { ModalLogo, ModalRadios, WithModalLayout } from 'components/modalComponents'
+import { ModalProps } from 'components/modalComponents/ModalLoader';
+
 
 
 

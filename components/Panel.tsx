@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from 'react'
-import { layoutHeightTransformer } from 'lib/layoutHeightTransformer'
-import { scrollStep } from 'lib/utils'
 import { useAppSelector } from 'redux/hooks'
-import ModalLoader from './ModalLoader'
+
+import { ModalLoader } from 'components/modalComponents'
+
+import { layoutHeightTransformer } from 'lib/layoutHeightTransformer'
 import makeStickyContainer from 'lib/makeStickyContainer'
+import { scrollStep } from 'lib/utils'
 
 
 //steps

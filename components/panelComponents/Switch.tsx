@@ -1,8 +1,8 @@
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 import cn from 'classnames'
 import { ModalType } from 'redux/slices/modal'
 
-type Props = {
+export type SwitchProps = {
     text: string
     className?: string
     children?: JSX.Element | JSX.Element[] | undefined
@@ -14,7 +14,7 @@ type Props = {
 
 
 
-export default function Switch({ text, className = '', children, fieldName, returnedValue, activeDefault = null }: Props) {
+export default function Switch({ text, className = '', children, fieldName, returnedValue, activeDefault = null }: SwitchProps) {
 
 
     const [active, setActive] = useState<boolean | null>(activeDefault)

@@ -1,5 +1,5 @@
 
-import { ModalLoaderProps, default as Component } from "components/ModalLoader";
+import { ModalLoaderProps, default as Component } from "components/modalComponents/ModalLoader";
 import { ModalAlias } from "components/modals";
 
 

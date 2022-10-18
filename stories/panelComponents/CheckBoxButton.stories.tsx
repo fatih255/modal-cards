@@ -1,4 +1,3 @@
-
 import { CheckBoxButtonProps, default as Component } from "components/panelComponents/CheckBoxButton";
 
 //icons

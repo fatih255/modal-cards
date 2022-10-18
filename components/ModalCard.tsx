@@ -3,8 +3,8 @@ import { scrollStep } from 'lib/utils'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { selectModal } from 'redux/slices/modal'
 
-import Button from './Button'
-import { ModalAlias } from './modals'
+import Button from 'components/Button'
+import { ModalAlias } from 'components/modals'
 
 export type ModalCardProps = {
   name: string

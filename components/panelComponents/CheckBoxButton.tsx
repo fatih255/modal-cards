@@ -21,7 +21,7 @@ export default function CheckBoxButton({ items, returnedValue }: CheckBoxButtonP
                 items.map(({ text, value, icon }) => (
                     <div key={`checkbox-btn-${value}`} className="pl-[15px] cursor-pointer trans-300 flex items-center w-full font-poppins text-sm bg-design-gray-100 rounded-xl">
                         <input checked={checkedItem.includes(value)}
-                            onChange={(e) => onChangeHandler(e, value)} id={value} className="checkbox-color-primary check-box-btn w-[18px] h-[18px] my-[6px] before:!top-[-2px]"
+                            onChange={(e) => onChangeHandler(e, value)} id={value} className=" checkbox-color-primary check-box-btn w-[18px] h-[18px] my-[6px] before:!top-[-2px]"
                             type="checkbox" />
                         <div className={cn(" child-all-trans-400 pointer",
                             {

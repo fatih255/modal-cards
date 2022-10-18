@@ -3,7 +3,7 @@ import NumberItem from 'components/NumberItem'
 
 // Tools used by Targeting Rules Step
 import { AfterPercentageScroll, AfterXSeconds, BrowserLanguageSelect, ExitIntentTargetting, TrafficSource, VisitorDeviceSelect } from 'components/paneltools'
-import ModalEventListeners from 'components/ModalEventListeners'
+import ModalEventListeners from 'components/modalComponents/ModalEventListeners'
 
 
 

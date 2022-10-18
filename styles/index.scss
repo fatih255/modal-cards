@@ -25,23 +25,56 @@ html * {
     }
 }
 
+//default checkbox style
+input[type="checkbox"] {
+    @apply p-[9px] relative cursor-pointer aspect-square appearance-none my-[6px] border border-design-gray-500 rounded-[4px] overflow-hidden bg-white trans-400;
+
+    &::before {
+        @apply block content-[url(/icons/select-check.svg)] opacity-0 absolute w-[19px] h-full text-center inset-0 ease-in-out trans-400 delay-[200ms] z-10
+    }
+
+    &::after {
+        @apply content-[""] absolute w-full h-full inset-0 bg-[#1C86FA] border-[#1C86FA] scale-0 trans-200 delay-[200ms]
+    }
+
+    &.checkbox-color-primary::after {
+        @apply bg-primary border-primary
+    }
+
+    &:checked {
+        @apply border-transparent;
+
+        &::after {
+            @apply scale-100
+        }
+
+        &::before {
+            @apply opacity-100 w-[19px] h-[18px] z-10
+        }
+
+        &+label {
+            @apply font-medium
+        }
+    }
+}
+
 //hide number input  arrows
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Firefox */
 input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
-
 
 .child-font-inter * {
     @apply font-inter;
 }
+
 .child-font-poppins * {
     @apply font-inter;
 }
@@ -69,7 +102,7 @@ input[type=number] {
         }
 
         //children all trans use
-        .child-all-#{$className}-#{$start+$per*$i} *{
+        .child-all-#{$className}-#{$start+$per*$i} * {
             @if $dynamicapply=='duration' {
                 @apply #{$apply} #{'duration-[#{$start+$per*$i}ms]'}
 

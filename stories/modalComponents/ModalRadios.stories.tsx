@@ -1,6 +1,6 @@
 
-import { ModalRadiosProps, default as Component } from "components/ModalRadios";
-import WithModalLayout from "components/WithModalLayout";
+import { ModalRadiosProps, default as Component } from "components/modalComponents/ModalRadios";
+import WithModalLayout from "components/modalComponents/WithModalLayout";
 import { ModalInitialState } from "redux/slices/modal";
 
 export default {
@@ -14,7 +14,9 @@ export default {
     }
 }
 
-export const ModalRadios = (args: ModalRadiosProps) => <Component {...args} />
+export const ModalRadios = (args: ModalRadiosProps) => <WithModalLayout>
+    <Component {...args} />
+</WithModalLayout>
 
 
 

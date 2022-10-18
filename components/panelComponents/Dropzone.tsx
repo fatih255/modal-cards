@@ -9,11 +9,11 @@ import { upload } from 'redux/slices/modal'
 import { shallowEqual } from 'react-redux'
 
 
-type Props = {
+export type DropzoneProps = {
     uploadFor: 'image' | 'logo'
 }
 
-export default function Dropzone({ uploadFor }: Props) {
+export default function Dropzone({ uploadFor }: DropzoneProps) {
 
     const dispatch = useAppDispatch()
     const { uploaded, assetURL } = useAppSelector(state => Object(

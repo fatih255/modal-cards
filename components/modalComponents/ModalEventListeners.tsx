@@ -3,9 +3,6 @@ import { useAppSelector } from 'redux/hooks'
 import { useModalEvents } from 'lib/useModalEvents'
 import { shallowEqual } from 'react-redux'
 
-
-
-
 function ModalEventListeners() {
 
     const {

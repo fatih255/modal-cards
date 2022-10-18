@@ -4,33 +4,30 @@ import DropdownIcon from 'icons/input-dropdown.svg'
 import SelectRemoveIcon from 'icons/select-remove.svg'
 
 
-type Props = {
+export type InputSelectProps = {
     selectAllText?: string
     clearAllText?: string
     closeText?: string
-    items: { text: string, value: string, checked: boolean }[],
+    items: { text: string, value: string, checked?: boolean }[],
     placeholder?: string,
-    onChange?: (data: string[] | null) => {}
-    checked?: boolean
+    onChange?: (data: string | boolean | string[] | null) => {}
 }
 
 
-function InputSelect({ closeText = "close", clearAllText = "Clear All", selectAllText = "Select All", items, placeholder = 'Select', onChange }: Props) {
+function InputSelect({ closeText = "close", clearAllText = "Clear All", selectAllText = "Select All", items, placeholder = 'Select', onChange }: InputSelectProps) {
 
 
 
-    const [checkedItems, setCheckedItems] = useState<{ text: string | null, value: string | null }[]>(items.filter(item => item.checked === true))
+    const [checkedItems, setCheckedItems] = useState<{ text: string | null, value: string | null }[]>(items.filter(item => item.checked))
     const [activeSelectPanel, setActiveSelectPanel] = useState(false)
 
     const isFirstRender = useRef(true)
     useEffect(() => {
         if (!isFirstRender.current) {
-            const values = checkedItems.map(x => x.value) as string[]
-            values.length > 0 && onChange && onChange(values)
-
+            onChange && onChange(checkedItems.reduce((acc: any, data: any) => [...acc, data.value], []))
         }
         isFirstRender.current = false
-     
+
     }, [checkedItems])
 
     //Handlers
@@ -111,9 +108,9 @@ function InputSelect({ closeText = "close", clearAllText = "Clear All", selectAl
                     <hr className="bg-design-gray-200 my-3 h-[1px] w-[95%] " />
                     {
                         items
-                            .map(({ text, value, checked }) => (
+                            .map(({ text, value }) => (
                                 <li className="flex items-stretch w-full hover:bg-design-gray-100 cursor-pointer px-5 trans-600 bg-white" key={`select-${value}`}>
-                                    <input checked={checked} onChange={(e) => checkHandler(e, { text, value })} id={`select-${value}`} data-value={value} data-text={text} className="check-box" type="checkbox" />
+                                    <input checked={checkedItems.some((item) => item.value === value)} onChange={(e) => checkHandler(e, { text, value })} id={`select-${value}`} data-value={value} data-text={text} className="check-box" type="checkbox" />
                                     <label htmlFor={`select-${value}`} className="!my-0 !text-xs !leading-[32px] w-full h-full pl-[10px]  self-center  cursor-pointer">{text}</label>
                                 </li>
                             ))

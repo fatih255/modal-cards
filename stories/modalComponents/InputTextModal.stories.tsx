@@ -1,13 +1,15 @@
 
-import { InputTextModalProps, default as Component } from "components/InputTextModal";
-import WithModalLayout from "components/WithModalLayout";
+import { InputTextModalProps, default as Component } from "components/modalComponents/InputTextModal";
+import { WithModalLayout } from "components/modalComponents";
 
 export default {
     title: "Modal Components",
     component: Component
 };
 
-export const InputTextModal = (args: InputTextModalProps) => <Component {...args} />
+export const InputTextModal = (args: InputTextModalProps) => <WithModalLayout>
+    <Component {...args} />
+</WithModalLayout>
 
 InputTextModal.args = {
     placeholder: "Placeholder...",

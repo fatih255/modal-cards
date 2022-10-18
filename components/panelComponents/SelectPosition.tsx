@@ -1,21 +1,21 @@
 import React, { useState } from 'react'
 import cn from 'classnames'
 
-type Props = {
-    returnedValue: (data: {
+export type SelectPositionProps = {
+    returnedValue?: (data: {
         name: string,
         value: string | object
     }) => {}
 }
 
-export default function SelectPosition({ returnedValue }: Props) {
+export default function SelectPosition({ returnedValue }: SelectPositionProps) {
 
     const [selectedPosition, setSelectedPosition] = useState('pos-mc')
     const positions = ['pos-tl', 'pos-tc', 'pos-tr', 'pos-ml', 'pos-mc', 'pos-mr', 'pos-bl', 'pos-bc', 'pos-br'] // as well as position classes
     //positions:top-left, top-center, top-right, middle-left, middle-center, middle-right, bottom-left, bottom-center, bottom-right
 
     const selectPositionHandler = (value: string) => {
-        returnedValue({ name: 'position', value: value })
+        returnedValue && returnedValue({ name: 'position', value: value })
         setSelectedPosition(value)
     }
 

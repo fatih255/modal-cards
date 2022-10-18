@@ -1,9 +1,9 @@
-import { linkParser } from "lib/utils";
-import dynamic from "next/dynamic";
 import React, { Suspense, useEffect } from "react";
+import dynamic from "next/dynamic";
+import { linkParser } from "lib/utils";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { ModalType, selectModal } from "redux/slices/modal";
-import { ModalAlias } from "./modals";
+import { ModalAlias } from "../modals";
 
 export type ModalLoaderProps = {
     selectedModalName: ModalAlias
@@ -26,7 +26,7 @@ function ModalLoader({ selectedModalName }: ModalLoaderProps) {
             layout: state.modal.layout
         }
     ))
-    
+
 
     useEffect(() => {
         dispatch(selectModal(selectedModalName))

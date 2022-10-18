@@ -1,16 +1,16 @@
 import React from 'react'
 
-type Props = {
+export type InputTextProps = {
     text?: string,
     placeholder?: string,
     onChange?: (value: string) => {}
     type?: string
     max?: number
-    className?:string
+    className?: string
 }
 
 
-function InputText({ text = '', placeholder = '', onChange, type = "text", max ,className=''}: Props) {
+function InputText({ text = '', placeholder = '', onChange, type = "text", max, className = '' }: InputTextProps) {
 
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,9 +1,7 @@
 import React from 'react'
 import Button from 'components/Button'
-import { useAppSelector } from 'redux/hooks'
-import WithModalLayout from 'components/WithModalLayout'
-import { shallowEqual } from 'react-redux'
-import { ModalProps } from 'components/ModalLoader'
+import { WithModalLayout } from 'components/modalComponents'
+import { ModalProps } from 'components/modalComponents/ModalLoader'
 
 
 

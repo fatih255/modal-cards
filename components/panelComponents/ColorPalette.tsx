@@ -6,7 +6,7 @@ import React from 'react'
     colors take from  colorpalettegenerator on modal.scss file
 */
 
-type Props = {
+export type ColorPaletteProps = {
 
     colorPaletteSize: number,
     returnedValue?: (data: {
@@ -15,8 +15,7 @@ type Props = {
 }
 
 
-export default function ColorPalette({ colorPaletteSize, returnedValue }: Props) {
-
+export default function ColorPalette({ colorPaletteSize, returnedValue }: ColorPaletteProps) {
 
     const selectColorHandler = (index: number) => {
         returnedValue && returnedValue({

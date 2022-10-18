@@ -1,9 +1,7 @@
 import React from 'react'
 import Button from 'components/Button'
-import WithModalLayout from 'components/WithModalLayout'
-import ModalLogo from 'components/ModalLogo'
-import { ModalProps } from 'components/ModalLoader'
-
+import { WithModalLayout, ModalLogo } from 'components/modalComponents'
+import { ModalProps } from 'components/modalComponents/ModalLoader'
 
 
 export default function DeleteYourProfileModal({ contents: { texts }, layout: { colors } }: ModalProps) {

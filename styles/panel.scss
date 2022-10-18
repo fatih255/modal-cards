@@ -1,194 +1,162 @@
 .panel {
     @apply flex h-full gap-8;
+}
 
-    label {
-        @apply text-sm mt-7 mb-4 font-inter;
+label {
+    @apply text-sm mt-7 mb-4 font-inter;
 
-        .bold {
-            @apply font-poppins font-semibold
+    .bold {
+        @apply font-poppins font-semibold
+    }
+}
+
+.default-input-padding {
+    @apply px-[12px] py-[9px];
+}
+
+input {
+    @extend .default-input-padding
+}
+
+.hover-ring {
+    @apply ring-4 ring-white trans-400;
+
+    &:hover {
+        @apply ring-primary ring-opacity-[0.1]
+    }
+}
+
+input.default-input {
+    &::placeholder {
+        @apply font-poppins leading-[18px] text-design-gray-900 text-sm;
+    }
+
+    &:focus {
+        @apply ring-primary border-primary ring-opacity-[0.15] border-opacity-80
+    }
+
+    &:focus-within {
+        @apply outline-none border-opacity-80
+    }
+}
+
+.default-input {
+    @extend .hover-ring;
+    @apply my-2;
+
+    &:hover {
+        @apply border-primary border-opacity-40
+    }
+
+    @apply outline-none trans-400 w-full font-inter text-sm leading-[18px] rounded-lg min-h-[36px] border box-border border-design-gray-500
+}
+
+.hover-ring-high {
+    @apply ring-[3px] ring-white trans-400;
+}
+
+.actived-switch {
+    right: calc(100% - 12px);
+}
+
+//radio button tabpanel
+.selected-radio-tab-btn {
+    @apply bg-primary bg-opacity-80 text-white delay-200
+}
+
+.radio-tab-hide,
+.radio-tab-show {
+    @apply overflow-hidden trans-300 origin-bottom
+}
+
+.radio-tab-hide {
+    @apply opacity-0 h-0
+}
+
+.radio-tab-show {
+    @apply opacity-100
+}
+
+//select input css
+.shadow-select {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.fill-all-primary {
+
+    &,
+    & * {
+        @apply fill-primary
+    }
+}
+
+.fill-all-gray {
+
+    &,
+    & * {
+        @apply fill-[#999999]
+    }
+}
+
+//Scrollbar Style 1
+.scrollbar-style-1 {
+    @apply select-none;
+
+    &::-webkit-scrollbar {
+        @apply bg-white w-[18px]
+    }
+
+    &::-webkit-scrollbar-thumb {
+        @apply overflow-hidden bg-design-gray-500 rounded-3xl p-[7px] border-[7px] border-transparent border-solid bg-clip-padding;
+
+        &:hover {
+            @apply bg-primary bg-opacity-30 trans-600
         }
     }
 
-    .default-input-padding {
-        @apply px-[12px] py-[9px];
+    &.bold-scroll::-webkit-scrollbar {
+        @apply bg-white w-[20px]
     }
 
-    input {
-        @extend .default-input-padding
+    &.scroll-bg-black::-webkit-scrollbar {
+        @apply bg-[#333333]
     }
 
+    &.scroll-bg-black::-webkit-scrollbar-thumb {
+        &:hover {
+            @apply bg-gray-600 bg-opacity-30 trans-600
+        }
+    }
+
+    &.bold-scroll::-webkit-scrollbar-thumb {
+        @apply overflow-hidden bg-design-gray-500 rounded-3xl p-[6px] border-[6px] border-transparent border-solid bg-clip-padding;
+
+        &:hover {
+            @apply bg-primary bg-opacity-30 trans-600
+        }
+    }
+}
+
+code {
+    white-space: pre-wrap !important;
+    display: block !important;
+}
+
+pre {
+    @extend .scrollbar-style-1,
+    .scroll-bg-black;
     ;
+    padding: 0 !important;
+    width: inherit !important;
+    background-color: #333333 !important;
+    overflow-x: hidden !important;
+    overflow-y: scroll !important;
+    user-select: auto;
+    @apply font-medium text-xs;
 
-    //checkbox design
-    input[type="checkbox"] {
-        @apply p-[9px] relative cursor-pointer aspect-square appearance-none my-[6px] border border-design-gray-500 rounded-[4px] overflow-hidden bg-white trans-400;
-
-        &::before {
-            @apply block content-[url(/icons/select-check.svg)] opacity-0 absolute w-[19px] h-full text-center inset-0 ease-in-out trans-400 delay-[200ms] z-10
-        }
-
-        &::after {
-            @apply content-[""] absolute w-full h-full inset-0 bg-[#1C86FA] border-[#1C86FA] scale-0 trans-200 delay-[200ms]
-        }
-
-        &.checkbox-color-primary::after {
-            @apply bg-primary border-primary
-        }
-
-        &:checked {
-            @apply border-transparent;
-
-            &::after {
-                @apply scale-100
-            }
-
-            &::before {
-                @apply opacity-100 w-[19px] h-[18px] z-10
-            }
-
-            &+label {
-                @apply font-medium
-            }
-        }
-    }
-
-    .hover-ring {
-        @apply ring-4 ring-white trans-400;
-
-        &:hover {
-            @apply ring-primary ring-opacity-[0.1]
-        }
-    }
-
-    input.default-input {
-        &::placeholder {
-            @apply font-poppins leading-[18px] text-design-gray-900 text-sm;
-        }
-
-        &:focus {
-            @apply ring-primary border-primary ring-opacity-[0.15] border-opacity-80
-        }
-
-        &:focus-within {
-            @apply outline-none border-opacity-80
-        }
-    }
-
-    .default-input {
-        @extend .hover-ring;
-        @apply my-2;
-
-        &:hover {
-            @apply border-primary border-opacity-40
-        }
-
-        @apply outline-none trans-400 w-full font-inter text-sm leading-[18px] rounded-lg min-h-[36px] border box-border border-design-gray-500
-    }
-
-    .hover-ring-high {
-        @apply ring-[3px] ring-white trans-400;
-    }
-
-    .actived-switch {
-        right: calc(100% - 12px);
-    }
-
-    //radio button tabpanel
-    .selected-radio-tab-btn {
-        @apply bg-primary bg-opacity-80 text-white delay-200
-    }
-
-    .radio-tab-hide,
-    .radio-tab-show {
-        @apply overflow-hidden trans-300 origin-bottom
-    }
-
-    .radio-tab-hide {
-        @apply opacity-0 h-0
-    }
-
-    .radio-tab-show {
-        @apply opacity-100
-    }
-
-    //select input css
-    .shadow-select {
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-    }
-
-    .fill-all-primary {
-
-        &,
-        & * {
-            @apply fill-primary
-        }
-    }
-
-    .fill-all-gray {
-
-        &,
-        & * {
-            @apply fill-[#999999]
-        }
-    }
-
-    //Scrollbar Style 1
-    .scrollbar-style-1 {
-        @apply select-none;
-
-        &::-webkit-scrollbar {
-            @apply bg-white w-[18px]
-        }
-
-        &::-webkit-scrollbar-thumb {
-            @apply overflow-hidden bg-design-gray-500 rounded-3xl p-[7px] border-[7px] border-transparent border-solid bg-clip-padding;
-
-            &:hover {
-                @apply bg-primary bg-opacity-30 trans-600
-            }
-        }
-
-        &.bold-scroll::-webkit-scrollbar {
-            @apply bg-white w-[20px]
-        }
-        &.scroll-bg-black::-webkit-scrollbar{
-            @apply bg-[#333333]
-        }
-        &.scroll-bg-black::-webkit-scrollbar-thumb {
-            
-            &:hover {
-                @apply bg-gray-600 first-letter:bg-opacity-30 trans-600
-            }
-        }
-
-        &.bold-scroll::-webkit-scrollbar-thumb {
-            @apply overflow-hidden bg-design-gray-500 rounded-3xl p-[6px] border-[6px] border-transparent border-solid bg-clip-padding;
-
-            &:hover {
-                @apply bg-primary bg-opacity-30 trans-600
-            }
-        }
-    }
-
-    code {
-        white-space: pre-wrap !important;
-        display: block !important;
-    }
-
-    pre {
-        @extend .scrollbar-style-1 , .scroll-bg-black;;
-        padding: 0 !important;
-        width:inherit !important;
-        background-color: #333333 !important;
-        overflow-x: hidden !important;
-        overflow-y: scroll !important;
-        user-select: auto;
-        @apply font-medium text-xs;
-
-        @font-face {
-            font-family: Roboto Mono;
-            src: url('https://fonts.googleapis.com/css?family=Roboto+Mono');
-        }
+    @font-face {
+        font-family: Roboto Mono;
+        src: url('https://fonts.googleapis.com/css?family=Roboto+Mono');
     }
 }
 
