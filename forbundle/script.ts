@@ -22,11 +22,16 @@ export default function modalCard({ html, settings }: Props) {
   link.rel = 'stylesheet'
   link.type = 'text/css'
   link.href =
-    'https://leafy-mermaid-eb53cb.netlify.app/_next/static/css/75ffff9b7c8dc410.css'
+    'https://leafy-mermaid-eb53cb.netlify.app/_next/static/css/cbb4e65e125193d4.css'
   link.media = 'all'
   head.appendChild(link)
 
-  let formData = {}
+  type formDataType = {
+    selectedRadioButtonValue?: string | null,
+    textFields?: { name: string, value: string }[]
+  }
+
+  let formData: formDataType = {}
 
   link.onload = async () => {
     document.body.insertAdjacentHTML('beforeend', html)
@@ -117,18 +122,15 @@ export default function modalCard({ html, settings }: Props) {
       })
     }
     //for form submissions
-    const textInputs = document.querySelectorAll('[data-text]')
-    if (textInputs.length > 0) {
-      textInputs.forEach(textInput => {
-        textInput.addEventListener("onchange", (e) => {
-          const target = e.target as HTMLInputElement
-          formData = {
-            ...formData, textFields: {
-              [target.placeholder]: target.value
-            }
-          }
+    function getTextFields() {
+      const textInputs = document.querySelectorAll('[data-text]')
+      if (textInputs.length > 0) {
+        textInputs.forEach(textInput => {
+          const target = textInput as HTMLInputElement
+          formData['textFields'] = [...formData.textFields ?? [], { name: target.placeholder, value: target.value }]
+
         })
-      })
+      }
     }
 
 
@@ -137,8 +139,8 @@ export default function modalCard({ html, settings }: Props) {
 
     //fixed modal position and opacity 0
     modalElement.classList.add('for-generated')
-
-    const ModalCloseEffects: Function[] = [] // this array use when settings have effects during the closing
+    let ModalCloseSendDataEffects: Function[] = []
+    let ModalCloseEffects: Function[] = [] // this array use when settings have effects during the closing
     let timer: number | NodeJS.Timeout | undefined
     let modalOpenedContidions = []
     let isModalOpened = sessionStorage.getItem('modalopened')
@@ -213,9 +215,10 @@ export default function modalCard({ html, settings }: Props) {
             ModalCloseEffects.push(() => webHookData.formData = formData)
             break
           case 'webHookUrl':
+            ModalCloseSendDataEffects.push(() => sendDataToWebHook())
             ModalCloseEffects.push(
-              () => sendDataToWebHook(),
-              () => webHookData.dateTime = new Date(Date.now()).toString()
+              () => getTextFields(),
+              () => webHookData.dateTime = new Date(Date.now()).toString(),
             )
             break
           case 'visitorDevice':
@@ -275,8 +278,11 @@ export default function modalCard({ html, settings }: Props) {
       modalElement.classList.remove('open')
       modalElement.classList.add('close')
 
-      if (useSideEffects)
-        ModalCloseEffects.reverse().forEach((code) => code())
+      if (useSideEffects) {
+
+        ModalCloseEffects.forEach((code) => code())
+        ModalCloseSendDataEffects.forEach((code) => code())
+      }
     }
 
     //remove all event listeners
