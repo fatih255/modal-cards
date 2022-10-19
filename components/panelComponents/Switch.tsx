@@ -21,11 +21,11 @@ export default function Switch({ text, className = '', children, fieldName, retu
 
     const onClickHandler = () => {
 
-        if (!active === true) {
+        if (!active) {
             fieldName && returnedValue && returnedValue({ fieldName: fieldName, value: true })
 
         }
-        if (!active === false) {
+        if (active) {
             fieldName && returnedValue && returnedValue({ fieldName: fieldName, value: false })
         }
         setActive(!active)

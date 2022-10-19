@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ModalAlias } from 'components/modals';
 import { getModalContants } from 'lib/modalConstants';
-
+import settingsActions from 'redux/actions/settings'
 
 export type ModalType = {
 
@@ -75,14 +75,17 @@ export const ModalInitialState: ModalType = {
     activedSettings: ['visitorDevice', 'browserLanguages']
 }
 
+
 export const ModalSlice = createSlice({
     name: 'modal',
     initialState: ModalInitialState,
     reducers: {
 
 
-        //select methods
 
+        ...settingsActions,
+        
+        //select methods
         selectModal: (state, action: PayloadAction<ModalAlias>) => {
             const selectedModalConstants = getModalContants(action.payload)
             state.selectedModalName = action.payload
@@ -101,25 +104,7 @@ export const ModalSlice = createSlice({
 
         //update methods
 
-        settingStatus: (state, action: PayloadAction<keyof ModalType['settings']>) => { //payload is settings name
 
-            const isSettingsActive = state.activedSettings.some(setting => setting === action.payload);
-            if (isSettingsActive) state.activedSettings = [...state.activedSettings.filter(setting => setting !== action.payload)]
-            if (!isSettingsActive) {
-                state.activedSettings = [...state.activedSettings, action.payload]
-            }
-
-            if (action.payload === "exitIntentTargetting")
-                state.settings.exitIntentTargetting = !state.settings.exitIntentTargetting;
-
-        },
-        updateSettings: (state, action: PayloadAction<{ name: keyof ModalType['settings'], value: string | string[] | boolean | null }>) => {
-            state.settings = { ...state.settings, [action.payload.name]: action.payload.value }
-
-            if (action.payload.name === "webHookUrl")
-                state.activedSettings = [...state.activedSettings, action.payload.name]
-
-        },
         updateLayout: (state, action: PayloadAction<{ name: string, value: string | object }>) => {
             state.layout = { ...state.layout, [action.payload.name]: action.payload.value }
         },

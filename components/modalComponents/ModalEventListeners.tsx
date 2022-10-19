@@ -23,6 +23,7 @@ function ModalEventListeners() {
         }
     ), shallowEqual)
 
+
     useModalEvents("exitIntentTargetting", isActiveExitIntentTargetting)
     useModalEvents("afterPercentageScroll", AfterPercentageScroll.isActive, AfterPercentageScroll.value)
     useModalEvents("afterXSeconds", afterXSeconds.isActive, afterXSeconds.value)

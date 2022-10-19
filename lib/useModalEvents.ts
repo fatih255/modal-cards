@@ -12,7 +12,6 @@ import { useEffect } from "react"
 function useModalEvents(eventType: string, status?: boolean | null, value?: string) {
 
 
-
     useEffect(() => {
 
         const modalElement = document.getElementById('layout')
@@ -101,16 +100,16 @@ function useModalEvents(eventType: string, status?: boolean | null, value?: stri
                     break;
             }
         }
-
+      
         if (typeof returnForStatusFalse === 'function') return returnForStatusFalse()
 
         switch (eventType) {
             case "afterXSeconds":
-                console.log("acc")
                 closeModal()
                 xSecondTimeOut()
                 break;
             case "afterPercentageScroll":
+           
                 scrollToTop()
                 window.addEventListener("scroll", scrollEventOnDocument)
                 previewContainer.addEventListener("scroll", scrollEventOnPreviewContainer)
@@ -119,7 +118,7 @@ function useModalEvents(eventType: string, status?: boolean | null, value?: stri
                 document.addEventListener('mouseout', mouseOutEvent);
                 break;
         }
-
+  
 
         return () => {
             document.removeEventListener('mouseout', mouseOutEvent);

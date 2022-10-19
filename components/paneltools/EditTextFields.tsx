@@ -41,10 +41,10 @@ export default function EditTextFields() {
                             typeof text === "object" &&
                             <>
                                 {
-                                    typeof text.linkURL === "string" && <InputLink icon={<AiOutlineLink />} onChange={(value) => onLinkChangeHandler(index, value)} />
+                                    typeof text.linkURL === "string" && <InputLink iconName="AiOutlineLink" onChange={(value) => onLinkChangeHandler(index, value)} />
                                 }
                                 {
-                                    typeof text.postURL === "string" && <InputLink icon={<BsSignpost />} onChange={(value) => onPostURLChangeHandler(index, value)} />
+                                    typeof text.postURL === "string" && <InputLink iconName="BsSignpost" onChange={(value) => onPostURLChangeHandler(index, value)} />
                                 }
                             </>
                         }

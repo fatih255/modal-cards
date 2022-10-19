@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Provider store={store}>
         <Header />
         <Component {...pageProps} />
-        <Footer  text="FooterProps" />
+        <Footer  text="Powered by Popupsmart" />
       </Provider>
     </React.StrictMode>
   )

@@ -14,7 +14,7 @@ export default function WithModalLayout({ children, layout = defaultValues.layou
 
     const Layout = dynamic(() => import(`../modals/layouts/${layout}`), {
         suspense: false,
-        ssr: true,
+        ssr: false,
     }) as React.FC<layoutTypes>
 
     return (

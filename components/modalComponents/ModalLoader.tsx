@@ -4,6 +4,7 @@ import { linkParser } from "lib/utils";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { ModalType, selectModal } from "redux/slices/modal";
 import { ModalAlias } from "../modals";
+import { shallowEqual } from "react-redux";
 
 export type ModalLoaderProps = {
     selectedModalName: ModalAlias
@@ -15,8 +16,6 @@ export type ModalProps = {
 
 function ModalLoader({ selectedModalName }: ModalLoaderProps) {
 
-
-    const dispatch = useAppDispatch()
     const modalProps = useAppSelector(state => Object(
         {
             contents: {
@@ -25,12 +24,7 @@ function ModalLoader({ selectedModalName }: ModalLoaderProps) {
             },
             layout: state.modal.layout
         }
-    ))
-
-
-    useEffect(() => {
-        dispatch(selectModal(selectedModalName))
-    }, [selectedModalName])
+    ), shallowEqual)
 
     const SelectedModal = dynamic(() => import(`components/modals/${selectedModalName}`), { suspense: false, ssr: false });
     return selectedModalName ? <Suspense><SelectedModal {...modalProps} /></Suspense> : <></>
