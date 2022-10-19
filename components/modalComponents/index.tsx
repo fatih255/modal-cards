@@ -5,12 +5,11 @@ import ModalRadios from './ModalRadios'
 import WithModalLayout from './WithModalLayout'
 import InputTextModal from './InputTextModal'
 
-
 export {
-    ModalEventListeners,
-    ModalLoader,
-    ModalLogo,
-    ModalRadios,
-    WithModalLayout,
-    InputTextModal
+  ModalEventListeners,
+  ModalLoader,
+  ModalLogo,
+  ModalRadios,
+  WithModalLayout,
+  InputTextModal,
 }

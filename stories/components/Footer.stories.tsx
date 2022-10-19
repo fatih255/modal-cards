@@ -1,12 +1,12 @@
-import { FooterProps, default as Component } from "components/Footer";
+import { FooterProps, default as Component } from 'components/Footer'
 
 export default {
-    title: "Components",
-    component: Component,
-};
+  title: 'Components',
+  component: Component,
+}
 
 export const Footer = (args: FooterProps) => <Component {...args} />
 
 Footer.args = {
-    text: "Powered by Popupsmart",
-};
+  text: 'Powered by Popupsmart',
+}

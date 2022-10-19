@@ -1,17 +1,14 @@
-
-import { NumberItemProps, default as Component } from "components/NumberItem";
-
+import { NumberItemProps, default as Component } from 'components/NumberItem'
 
 export default {
-    title: "Components",
-    component: Component
-};
+  title: 'Components',
+  component: Component,
+}
 
 export const NumberItem = (args: NumberItemProps) => <Component {...args} />
 
 NumberItem.args = {
-    value: "2 Appearance (Size, colors, logo)",
-    bracketsClassName: "font-normal",
-    className: ''
-
-};
+  value: '2 Appearance (Size, colors, logo)',
+  bracketsClassName: 'font-normal',
+  className: '',
+}

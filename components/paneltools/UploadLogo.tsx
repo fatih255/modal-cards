@@ -5,23 +5,23 @@ import { useAppSelector } from 'redux/hooks'
 //panel components
 import { Dropzone } from 'components/panelComponents'
 
-
-
-
 export default function UploadLogo() {
+  const logo = useAppSelector(
+    (state) => state.modal.contents.logo,
+    shallowEqual,
+  )
 
-    const logo = useAppSelector(state => state.modal.contents.logo, shallowEqual)
-
-    return (
-        <>
-            {
-                // if modalConstants have value named logo user can upload own logo to modal popup
-                typeof (logo) === "string" && <>
-                    <label>Upload logo</label>
-                    <Dropzone uploadFor="logo" />
-                </>
-            }
-        </>
-    )
+  return (
+    <>
+      {
+        // if modalConstants have value named logo user can upload own logo to modal popup
+        typeof logo === 'string' && (
+          <>
+            <label>Upload logo</label>
+            <Dropzone uploadFor='logo' />
+          </>
+        )
+      }
+    </>
+  )
 }
-

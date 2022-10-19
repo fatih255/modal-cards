@@ -15,22 +15,21 @@ import GenerateCode from './GenerateCode'
 import EditWebhookURL from './EditWebhookURL'
 import FormSubmissionAndSendClickData from './FormSubmissionAndSendClickData'
 
-
 export {
-    FormSubmissionAndSendClickData,
-    EditWebhookURL,
-    GenerateCode,
-    VisitorDeviceSelect,
-    AfterPercentageScroll,
-    AfterXSeconds,
-    BrowserLanguageSelect,
-    ExitIntentTargetting,
-    TrafficSource,
-    EditRadioButtons,
-    UploadImage,
-    EditTextFields,
-    EditColor,
-    UploadLogo,
-    EditPosition,
-    ChangeModalSize
+  FormSubmissionAndSendClickData,
+  EditWebhookURL,
+  GenerateCode,
+  VisitorDeviceSelect,
+  AfterPercentageScroll,
+  AfterXSeconds,
+  BrowserLanguageSelect,
+  ExitIntentTargetting,
+  TrafficSource,
+  EditRadioButtons,
+  UploadImage,
+  EditTextFields,
+  EditColor,
+  UploadLogo,
+  EditPosition,
+  ChangeModalSize,
 }

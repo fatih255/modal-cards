@@ -6,128 +6,121 @@
 @import 'panel';
 
 html * {
-    font-family: Poppins, sans-serif;
+  font-family: Poppins, sans-serif;
 }
 
 .nav {
-    @apply flex gap-5 ml-20 justify-start flex-1;
+  @apply flex gap-5 ml-20 justify-start flex-1;
 
-    li {
-        @apply flex;
+  li {
+    @apply flex;
 
-        a {
-            @apply flex items-center gap-2 duration-300 transition-all px-2 py-1 rounded-md;
+    a {
+      @apply flex items-center gap-2 duration-300 transition-all px-2 py-1 rounded-md;
 
-            &:hover {
-                @apply scale-105 bg-primary bg-opacity-5
-            }
-        }
+      &:hover {
+        @apply scale-105 bg-primary bg-opacity-5;
+      }
     }
+  }
 }
 
 //default checkbox style
-input[type="checkbox"] {
-    @apply p-[9px] relative cursor-pointer aspect-square appearance-none my-[6px] border border-design-gray-500 rounded-[4px] overflow-hidden bg-white trans-400;
+input[type='checkbox'] {
+  @apply p-[9px] relative cursor-pointer aspect-square appearance-none my-[6px] border border-design-gray-500 rounded-[4px] overflow-hidden bg-white trans-400;
 
-    &::before {
-        @apply block content-[url(/icons/select-check.svg)] opacity-0 absolute w-[19px] h-full text-center inset-0 ease-in-out trans-400 delay-[200ms] z-10
-    }
+  &::before {
+    @apply block content-[url(/icons/select-check.svg)] opacity-0 absolute w-[19px] h-full text-center inset-0 ease-in-out trans-400 delay-[200ms] z-10;
+  }
+
+  &::after {
+    @apply content-[""] absolute w-full h-full inset-0 bg-[#1C86FA] border-[#1C86FA] scale-0 trans-200 delay-[200ms];
+  }
+
+  &.checkbox-color-primary::after {
+    @apply bg-primary border-primary;
+  }
+
+  &:checked {
+    @apply border-transparent;
 
     &::after {
-        @apply content-[""] absolute w-full h-full inset-0 bg-[#1C86FA] border-[#1C86FA] scale-0 trans-200 delay-[200ms]
+      @apply scale-100;
     }
 
-    &.checkbox-color-primary::after {
-        @apply bg-primary border-primary
+    &::before {
+      @apply opacity-100 w-[19px] h-[18px] z-10;
     }
 
-    &:checked {
-        @apply border-transparent;
-
-        &::after {
-            @apply scale-100
-        }
-
-        &::before {
-            @apply opacity-100 w-[19px] h-[18px] z-10
-        }
-
-        &+label {
-            @apply font-medium
-        }
+    & + label {
+      @apply font-medium;
     }
+  }
 }
 
 //hide number input  arrows
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* Firefox */
-input[type=number] {
-    -moz-appearance: textfield;
+input[type='number'] {
+  -moz-appearance: textfield;
 }
 
 .child-font-inter * {
-    @apply font-inter;
+  @apply font-inter;
 }
 
 .child-font-poppins * {
-    @apply font-inter;
+  @apply font-inter;
 }
 
 .child-m-auto * {
-    @apply m-auto;
+  @apply m-auto;
 }
 
 .flex-center {
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 @mixin createVariants($apply, $dynamicapply, $className, $start, $per, $end) {
-    @for $i from 0 to calc($end / $per) {
-        .#{$className}-#{$start+$per*$i} {
-            @if $dynamicapply=='duration' {
-                @apply #{$apply} #{'duration-[#{$start+$per*$i}ms]'}
-
-            }
-
-            @else {
-                @apply #{$apply}
-            }
-        }
-
-        //children all trans use
-        .child-all-#{$className}-#{$start+$per*$i} * {
-            @if $dynamicapply=='duration' {
-                @apply #{$apply} #{'duration-[#{$start+$per*$i}ms]'}
-
-            }
-
-            @else {
-                @apply #{$apply}
-            }
-        }
+  @for $i from 0 to calc($end / $per) {
+    .#{$className}-#{$start + $per*$i} {
+      @if $dynamicapply== 'duration' {
+        @apply #{$apply} #{'duration-[#{$start+$per*$i}ms]'};
+      } @else {
+        @apply #{$apply};
+      }
     }
+
+    //children all trans use
+    .child-all-#{$className}-#{$start + $per*$i} * {
+      @if $dynamicapply== 'duration' {
+        @apply #{$apply} #{'duration-[#{$start+$per*$i}ms]'};
+      } @else {
+        @apply #{$apply};
+      }
+    }
+  }
 }
 
 @mixin useColorPalette($className, $color, $attribute) {
-    @for $i from 1 to 9 {
-        .#{$className}-#{$color}-#{$i*100} {
-            * {
-                @apply #{'#{$attribute}-#{$color}-#{$i*100}'};
+  @for $i from 1 to 9 {
+    .#{$className}-#{$color}-#{$i*100} {
+      * {
+        @apply #{'#{$attribute}-#{$color}-#{$i*100}'};
+      }
 
-            }
-
-            &:hover * {
-                @apply opacity-30;
-            }
-        }
+      &:hover * {
+        @apply opacity-30;
+      }
     }
+  }
 }
 
 @include createVariants('transition-all', 'duration', 'trans', 100, 100, 900);

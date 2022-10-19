@@ -1,194 +1,190 @@
 .panel {
-    @apply flex h-full gap-8;
+  @apply flex h-full gap-8;
 }
 
 label {
-    @apply text-sm mt-7 mb-4 font-inter;
+  @apply text-sm mt-7 mb-4 font-inter;
 
-    .bold {
-        @apply font-poppins font-semibold
-    }
+  .bold {
+    @apply font-poppins font-semibold;
+  }
 }
 
 .default-input-padding {
-    @apply px-[12px] py-[9px];
+  @apply px-[12px] py-[9px];
 }
 
 input {
-    @extend .default-input-padding
+  @extend .default-input-padding;
 }
 
 .hover-ring {
-    @apply ring-4 ring-white trans-400;
+  @apply ring-4 ring-white trans-400;
 
-    &:hover {
-        @apply ring-primary ring-opacity-[0.1]
-    }
+  &:hover {
+    @apply ring-primary ring-opacity-[0.1];
+  }
 }
 
 input.default-input {
-    &::placeholder {
-        @apply font-poppins leading-[18px] text-design-gray-900 text-sm;
-    }
+  &::placeholder {
+    @apply font-poppins leading-[18px] text-design-gray-900 text-sm;
+  }
 
-    &:focus {
-        @apply ring-primary border-primary ring-opacity-[0.15] border-opacity-80
-    }
+  &:focus {
+    @apply ring-primary border-primary ring-opacity-[0.15] border-opacity-80;
+  }
 
-    &:focus-within {
-        @apply outline-none border-opacity-80
-    }
+  &:focus-within {
+    @apply outline-none border-opacity-80;
+  }
 }
 
 .default-input {
-    @extend .hover-ring;
-    @apply my-2;
+  @extend .hover-ring;
+  @apply my-2;
 
-    &:hover {
-        @apply border-primary border-opacity-40
-    }
+  &:hover {
+    @apply border-primary border-opacity-40;
+  }
 
-    @apply outline-none trans-400 w-full font-inter text-sm leading-[18px] rounded-lg min-h-[36px] border box-border border-design-gray-500
+  @apply outline-none trans-400 w-full font-inter text-sm leading-[18px] rounded-lg min-h-[36px] border box-border border-design-gray-500;
 }
 
 .hover-ring-high {
-    @apply ring-[3px] ring-white trans-400;
+  @apply ring-[3px] ring-white trans-400;
 }
 
 .actived-switch {
-    right: calc(100% - 12px);
+  right: calc(100% - 12px);
 }
 
 //radio button tabpanel
 .selected-radio-tab-btn {
-    @apply bg-primary bg-opacity-80 text-white delay-200
+  @apply bg-primary bg-opacity-80 text-white delay-200;
 }
 
 .radio-tab-hide,
 .radio-tab-show {
-    @apply overflow-hidden trans-300 origin-bottom
+  @apply overflow-hidden trans-300 origin-bottom;
 }
 
 .radio-tab-hide {
-    @apply opacity-0 h-0
+  @apply opacity-0 h-0;
 }
 
 .radio-tab-show {
-    @apply opacity-100
+  @apply opacity-100;
 }
 
 //select input css
 .shadow-select {
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 }
 
 .fill-all-primary {
-
-    &,
-    & * {
-        @apply fill-primary
-    }
+  &,
+  & * {
+    @apply fill-primary;
+  }
 }
 
 .fill-all-gray {
-
-    &,
-    & * {
-        @apply fill-[#999999]
-    }
+  &,
+  & * {
+    @apply fill-[#999999];
+  }
 }
 
 //Scrollbar Style 1
 .scrollbar-style-1 {
-    @apply select-none;
+  @apply select-none;
 
-    &::-webkit-scrollbar {
-        @apply bg-white w-[18px]
+  &::-webkit-scrollbar {
+    @apply bg-white w-[18px];
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply overflow-hidden bg-design-gray-500 rounded-3xl p-[7px] border-[7px] border-transparent border-solid bg-clip-padding;
+
+    &:hover {
+      @apply bg-primary bg-opacity-30 trans-600;
     }
+  }
 
-    &::-webkit-scrollbar-thumb {
-        @apply overflow-hidden bg-design-gray-500 rounded-3xl p-[7px] border-[7px] border-transparent border-solid bg-clip-padding;
+  &.bold-scroll::-webkit-scrollbar {
+    @apply bg-white w-[20px];
+  }
 
-        &:hover {
-            @apply bg-primary bg-opacity-30 trans-600
-        }
+  &.scroll-bg-black::-webkit-scrollbar {
+    @apply bg-[#333333];
+  }
+
+  &.scroll-bg-black::-webkit-scrollbar-thumb {
+    &:hover {
+      @apply bg-gray-600 bg-opacity-30 trans-600;
     }
+  }
 
-    &.bold-scroll::-webkit-scrollbar {
-        @apply bg-white w-[20px]
+  &.bold-scroll::-webkit-scrollbar-thumb {
+    @apply overflow-hidden bg-design-gray-500 rounded-3xl p-[6px] border-[6px] border-transparent border-solid bg-clip-padding;
+
+    &:hover {
+      @apply bg-primary bg-opacity-30 trans-600;
     }
-
-    &.scroll-bg-black::-webkit-scrollbar {
-        @apply bg-[#333333]
-    }
-
-    &.scroll-bg-black::-webkit-scrollbar-thumb {
-        &:hover {
-            @apply bg-gray-600 bg-opacity-30 trans-600
-        }
-    }
-
-    &.bold-scroll::-webkit-scrollbar-thumb {
-        @apply overflow-hidden bg-design-gray-500 rounded-3xl p-[6px] border-[6px] border-transparent border-solid bg-clip-padding;
-
-        &:hover {
-            @apply bg-primary bg-opacity-30 trans-600
-        }
-    }
+  }
 }
 
 code {
-    white-space: pre-wrap !important;
-    display: block !important;
+  white-space: pre-wrap !important;
+  display: block !important;
 }
 
 pre {
-    @extend .scrollbar-style-1,
-    .scroll-bg-black;
-    ;
-    padding: 0 !important;
-    width: inherit !important;
-    background-color: #333333 !important;
-    overflow-x: hidden !important;
-    overflow-y: scroll !important;
-    user-select: auto;
-    @apply font-medium text-xs;
+  @extend .scrollbar-style-1, .scroll-bg-black;
+  padding: 0 !important;
+  width: inherit !important;
+  background-color: #333333 !important;
+  overflow-x: hidden !important;
+  overflow-y: scroll !important;
+  user-select: auto;
+  @apply font-medium text-xs;
 
-    @font-face {
-        font-family: Roboto Mono;
-        src: url('https://fonts.googleapis.com/css?family=Roboto+Mono');
-    }
+  @font-face {
+    font-family: Roboto Mono;
+    src: url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+  }
 }
 
 .dropzone {
-    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='rgba(221, 221, 221, 1)' stroke-width='2' stroke-dasharray='4%2c 10' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
-    border-radius: 12px;
-    @apply trans-300 select-none;
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='rgba(221, 221, 221, 1)' stroke-width='2' stroke-dasharray='4%2c 10' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+  border-radius: 12px;
+  @apply trans-300 select-none;
 
-    &:hover {
-        background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='rgba(125, 74, 234, 1)' stroke-opacity='.70' stroke-width='2' stroke-dasharray='4%2c 10' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
-    }
+  &:hover {
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='rgba(125, 74, 234, 1)' stroke-opacity='.70' stroke-width='2' stroke-dasharray='4%2c 10' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+  }
 }
 
 .dropzone-activedrag {
-    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='rgba(125, 74, 234, 1)' stroke-opacity='.70' stroke-width='2' stroke-dasharray='4%2c 10' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='rgba(125, 74, 234, 1)' stroke-opacity='.70' stroke-width='2' stroke-dasharray='4%2c 10' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
 }
 
 .hover-grow-all * {
-    @apply trans-300;
+  @apply trans-300;
 
-    &:hover {
-        @apply scale-[1.08]
-    }
+  &:hover {
+    @apply scale-[1.08];
+  }
 }
 
 @mixin createBind($attribute, $size, $binds) {
-    @each $val in $binds {
-        .#{$val} {
-            @apply #{#{$attribute}-#{$val}-#{$size}
-        }
+  @each $val in $binds {
+    .#{$val} {
+      @apply #{#{$attribute}-#{$val}-#{$size}
+        };
     }
-}
+  }
 }
 
 /*
@@ -196,7 +192,4 @@ pre {
 .bl ===> rounded-bl-lg
 .br ===> rounded-br-lg
 */
-@include createBind('rounded', 'lg', 'tl'
-    'tr'
-    'bl'
-    'br')
+@include createBind('rounded', 'lg', 'tl' 'tr' 'bl' 'br');

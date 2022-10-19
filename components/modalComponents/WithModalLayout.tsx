@@ -1,28 +1,22 @@
-import dynamic from 'next/dynamic';
+import dynamic from 'next/dynamic'
 import React from 'react'
-import { layoutTypes } from 'types/layout';
-import { defaultValues } from 'types/modal';
-
-
+import { layoutTypes } from 'types/layout'
+import { defaultValues } from 'types/modal'
 
 type Props = {
-    layout?: string
+  layout?: string
 }
 
 //detect content have
-export default function WithModalLayout({ children, layout = defaultValues.layout, ...props }: Props & layoutTypes) {
+export default function WithModalLayout({
+  children,
+  layout = defaultValues.layout,
+  ...props
+}: Props & layoutTypes) {
+  const Layout = dynamic(() => import(`../modals/layouts/${layout}`), {
+    suspense: false,
+    ssr: false,
+  }) as React.FC<layoutTypes>
 
-    const Layout = dynamic(() => import(`../modals/layouts/${layout}`), {
-        suspense: false,
-        ssr: false,
-    }) as React.FC<layoutTypes>
-
-    return (
-        <Layout {...props}>
-            {children}
-        </Layout>
-    )
-
+  return <Layout {...props}>{children}</Layout>
 }
-
-

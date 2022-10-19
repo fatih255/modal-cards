@@ -8,5 +8,14 @@ import SelectPosition from './SelectPosition'
 import CheckBoxButton from './CheckBoxButton'
 import CheckBoxList from './CheckBoxList'
 
-
-export { Dropzone, InputSelect, InputText, RadioButton, Switch, ColorPalette, SelectPosition, CheckBoxButton, CheckBoxList }
+export {
+  Dropzone,
+  InputSelect,
+  InputText,
+  RadioButton,
+  Switch,
+  ColorPalette,
+  SelectPosition,
+  CheckBoxButton,
+  CheckBoxList,
+}

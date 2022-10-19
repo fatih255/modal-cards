@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-
   reactStrictMode: true,
   swcMinify: true,
   webpack(config) {
@@ -11,8 +10,7 @@ const nextConfig = {
       use: ['@svgr/webpack'],
     })
     return config
-  }
-
+  },
 }
 
 module.exports = nextConfig

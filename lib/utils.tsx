@@ -1,39 +1,41 @@
-import React from 'react';
+import React from 'react'
 import colors from 'tailwindcss/colors'
-
 
 const twColors = colors
 
 function scrollStep(step: string) {
-
   const el = document.querySelector(`[data-step="${step}"]`) as HTMLElement
-  el.scrollIntoView({ behavior: "smooth" });
+  el.scrollIntoView({ behavior: 'smooth' })
 }
 
-function conditionalRender(condition: string | null | undefined, jsx: JSX.Element) {
+function conditionalRender(
+  condition: string | null | undefined,
+  jsx: JSX.Element,
+) {
   return condition ? jsx : <></>
 }
 
-
-export type LinkParserType = ({ text: string, linkURL?: string, postURL?: string } | string)[]
-function linkParser(texts: string[]): ({ text: string, linkURL?: string, postURL?: string } | string)[] {
-
+export type LinkParserType = (
+  | { text: string; linkURL?: string; postURL?: string }
+  | string
+)[]
+function linkParser(
+  texts: string[],
+): ({ text: string; linkURL?: string; postURL?: string } | string)[] {
   const parsedTexts = texts.map((text) => {
     let contentText = text
 
-
-    if (text.includes("@Link")) {
-      const splitting = text.split("@Link")
+    if (text.includes('@Link')) {
+      const splitting = text.split('@Link')
       contentText = splitting[0].trim()
-      const link = splitting[1].replace(":", "")
+      const link = splitting[1].replace(':', '')
       return { text: contentText, linkURL: link }
     }
 
-    if (text.includes("@Post")) {
-
-      const splitting = text.split("@Post")
+    if (text.includes('@Post')) {
+      const splitting = text.split('@Post')
       contentText = splitting[0].trim()
-      const postURL = splitting[1].replace(":", "")
+      const postURL = splitting[1].replace(':', '')
       return { text: contentText, postURL: postURL }
     }
 
@@ -42,9 +44,5 @@ function linkParser(texts: string[]): ({ text: string, linkURL?: string, postURL
 
   return parsedTexts
 }
-
-
-
-
 
 export { linkParser, twColors, scrollStep, conditionalRender }
