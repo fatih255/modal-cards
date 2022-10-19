@@ -19,7 +19,7 @@ export default function modalCard({ html, settings }: Props) {
   link.rel = 'stylesheet'
   link.type = 'text/css'
   link.href =
-    'https://leafy-mermaid-eb53cb.netlify.app/_next/static/css/6ff1312da8df15b6.css'
+    'https://leafy-mermaid-eb53cb.netlify.app/_next/static/css/8e0d75d4c6a1da72.css'
   link.media = 'all'
   head.appendChild(link)
 
