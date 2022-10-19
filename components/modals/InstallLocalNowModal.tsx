@@ -18,11 +18,13 @@ export default function InstallLocalNowModal({
         <p className='description'>{texts[1]}</p>
         <div className='flex flex-col gap-3 w-full items-stretch '>
           <Button
+            data-webhook-post
             className={`${colors.bg} flex-1`}
             size='modal-default'
             text={texts[2]}
           />
           <Button
+            data-close-modal
             className='flex-1'
             theme='light-bordered'
             size='modal-default'

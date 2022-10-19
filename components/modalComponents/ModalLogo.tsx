@@ -3,7 +3,13 @@ import cn from 'classnames'
 import { useAppSelector } from 'redux/hooks'
 import { shallowEqual } from 'react-redux'
 
-export default function ModalLogo() {
+
+type modalLogoProps = {
+  transparentBg?: boolean
+}
+
+export default function ModalLogo({ transparentBg = false }: modalLogoProps) {
+
   const { logo, colors, uploaded } = useAppSelector(
     (state) =>
       Object({
@@ -35,11 +41,11 @@ export default function ModalLogo() {
                   'w-[27%] relative rounded-full flex justify-center items-center overflow-hidden ',
                 )}>
                 <img
-                  className={`logo z-20 p-[30%] aspect-square ${colors.bg}`}
+                  className={`logo z-20 ${!transparentBg ? 'p-[30%]' : ''} aspect-square ${colors.bg}`}
                   src={`${logo}`}
                 />
-                <div
-                  className={`balloon absolute inset-0 rounded-full z-10 ${colors.bg} `}></div>
+                {!transparentBg && <div
+                  className={`balloon absolute inset-0 rounded-full z-10 ${colors.bg} `}></div>}
               </div>
             )
           }

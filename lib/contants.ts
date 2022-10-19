@@ -10,7 +10,7 @@ export const modals = [
   { name: 'ChooseBestForYouModal', thumbnail: 'images/modals/03.png' },
   { name: 'DeleteYourProfileModal', thumbnail: 'images/modals/04.png' },
   { name: 'TheFileIsOnItsWayModal', thumbnail: 'images/modals/05.png' },
-  { name: '06', thumbnail: 'images/modals/06.png' },
+  { name: 'JoinOurMailListModal', thumbnail: 'images/modals/06.png' },
   { name: '07', thumbnail: 'images/modals/07.png' },
   { name: '08', thumbnail: 'images/modals/08.png' },
   { name: '09', thumbnail: 'images/modals/09.png' },

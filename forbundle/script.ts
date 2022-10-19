@@ -22,7 +22,7 @@ export default function modalCard({ html, settings }: Props) {
   link.rel = 'stylesheet'
   link.type = 'text/css'
   link.href =
-    'https://leafy-mermaid-eb53cb.netlify.app/_next/static/css/0b08dcb197e2775f.css'
+    'https://leafy-mermaid-eb53cb.netlify.app/_next/static/css/75ffff9b7c8dc410.css'
   link.media = 'all'
   head.appendChild(link)
 
@@ -88,7 +88,7 @@ export default function modalCard({ html, settings }: Props) {
         }
       })
 
-
+      //for form submissions
       radioButtons.forEach((radio) => {
         radio.addEventListener('click', () => {
 
@@ -114,6 +114,20 @@ export default function modalCard({ html, settings }: Props) {
           }
         }
         )
+      })
+    }
+    //for form submissions
+    const textInputs = document.querySelectorAll('[data-text]')
+    if (textInputs.length > 0) {
+      textInputs.forEach(textInput => {
+        textInput.addEventListener("onchange", (e) => {
+          const target = e.target as HTMLInputElement
+          formData = {
+            ...formData, textFields: {
+              [target.placeholder]: target.value
+            }
+          }
+        })
       })
     }
 

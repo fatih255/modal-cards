@@ -11,6 +11,7 @@ export default function InputTextModal({
 }: InputTextModalProps) {
   return (
     <input
+      data-text
       className={`input ${className}`}
       placeholder={placeholder}
       type='text'
