@@ -14,7 +14,6 @@ export default function generateCode(): string {
       Object({ [setting]: settings[setting as keyof ModalType['settings']] }),
     )
     .reduce((acc, c) => Object({ ...acc, ...Object.assign(acc, c) }), {})
-
   //GenerateCode Stages
   //  1.Stage: clone current modal layout
   let modalElement = document.getElementById('layout')
@@ -43,11 +42,10 @@ export default function generateCode(): string {
     <script>
     modalCard({
         html:'${modalElement_cloned.outerHTML}',
-        settings:${JSON.stringify(settings)}
+        settings:${JSON.stringify(activeSettingsValues)}
     })
     </script>
     `
 
-  console.log(generatedCode)
   return generatedCode
 }

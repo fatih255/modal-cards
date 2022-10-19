@@ -1,10 +1,12 @@
 import { PARAM_REDUX_MERGE_STATE } from 'addon-redux'
-import { ModalInitialState } from 'redux/slices/modal'
+import { ModalInitialState, selectModal } from 'redux/slices/modal'
 import { getModalContants } from 'lib/modalConstants'
 import { ModalAlias } from 'components/modals'
 import ModalLoader, {
   ModalLoaderProps,
 } from 'components/modalComponents/ModalLoader'
+import { useAppDispatch } from 'redux/hooks'
+import { useEffect } from '@storybook/addons'
 
 const selectedModalConstants = getModalContants(ModalAlias.SecurityCodeModal)
 const initialState = {
@@ -30,7 +32,11 @@ export default {
   },
 }
 
-export const Modals = (args: ModalLoaderProps) => <ModalLoader {...args} />
+export const Modals = (args: ModalLoaderProps) => {
+  const dispatch = useAppDispatch()
+  args.selectedModalName && dispatch(selectModal(args.selectedModalName))
+  return <ModalLoader {...args} />
+}
 
 Modals.args = {
   selectedModalName: 'SecurityCodeModal',

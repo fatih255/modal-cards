@@ -8,38 +8,43 @@ export type ModalRadiosProps = {
   returnedIndex?: (index: number) => {}
 }
 
-export default function ModalRadios({
+export default React.memo(ModalRadios)
+
+function ModalRadios({
   items,
   colors,
   returnedIndex,
 }: ModalRadiosProps) {
-  const [selectedIndex, setselectedIndexIndex] = useState<null | number>(null)
+
+
+  const [selectedIndex, setSelectedIndex] = useState<null | number>(null)
 
   const selectHandler = (index: number) => {
     returnedIndex && returnedIndex(index)
-    setselectedIndexIndex(index)
+    setSelectedIndex(index)
   }
 
   return (
     <div className='flex gap-8 flex-col justify-center items-start modal-radio-container'>
       {items &&
-        items.map(({ title, description }, index) => (
+        items.map(({ title, description, value, selected }, index) => (
           <div
             key={`radio-${index}`}
             onClick={() => selectHandler(index)}
+            data-radio-value={value}
             className={cn(
-              { 'opacity-[.63]': selectedIndex !== index },
-              'trans-300 radio-item cursor-pointer hover:opacity-100 group  flex gap-[10.5px] justify-center items-center',
+              'trans-300 cursor-pointer hover:opacity-100 group  flex gap-[10.5px] justify-center items-center',
+              { 'opacity-[.78]': selectedIndex !== index }
             )}>
             <div
               className={cn(
-                { selected: selectedIndex === index },
+                { 'selected-radio': selected },
                 ` ${colors.bg} radio `,
               )}>
               <div className={`inset-0 w-full h-full `}>
                 <div
                   className={cn(
-                    { 'scale-[.4] ': selectedIndex === index },
+                    { 'scale-[.4] ': selected },
                     ' w-full h-full trans-400 inset-0 m-auto absolute bg-white rounded-full',
                   )}></div>
               </div>

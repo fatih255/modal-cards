@@ -39,6 +39,15 @@ const settingsActions = {
 
     if (action.payload.name === 'webHookUrl')
       state.activedSettings = [...state.activedSettings, action.payload.name]
+
+    if (action.payload.name === 'sendFormSubmission' || action.payload.name === 'sendClickData') {
+      if (!state.activedSettings.includes(action.payload.name)) {
+        state.activedSettings = [...state.activedSettings, action.payload.name]
+      } else {
+        state.activedSettings = state.activedSettings.filter(setting => setting !== action.payload.name)
+      }
+    }
+
   },
 }
 

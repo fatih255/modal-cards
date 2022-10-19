@@ -11,7 +11,7 @@ const createMiddlewareEnhancer = () => {
   if (process.env.NODE_ENV !== 'production') {
     // include other middlewares as needed, like the invariant and logger middlewares
     middleware.push(invariant())
-    middleware.push(logger)
+   // middleware.push(logger)
   }
   return applyMiddleware(...middleware)
 }

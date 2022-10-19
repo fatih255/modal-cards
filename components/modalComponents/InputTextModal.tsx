@@ -1,5 +1,4 @@
 import React from 'react'
-import variables from './style.module.scss'
 
 export type InputTextModalProps = {
   placeholder?: string
@@ -12,7 +11,7 @@ export default function InputTextModal({
 }: InputTextModalProps) {
   return (
     <input
-      className={`${variables.input} ${className}`}
+      className={`input ${className}`}
       placeholder={placeholder}
       type='text'
     />

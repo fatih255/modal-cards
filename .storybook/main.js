@@ -14,9 +14,10 @@ module.exports = {
   ],
   staticDirs: ['../public'],
   core: {
-    builder: 'webpack5',
+    builder: "@storybook/builder-webpack5",
   },
   webpackFinal: async (config, { configType }) => {
+    
     config.resolve.plugins = [new TsconfigPathsPlugin()]
     const fileLoaderRule = config.module.rules.find(
       (rule) => rule.test && rule.test.test('.svg'),

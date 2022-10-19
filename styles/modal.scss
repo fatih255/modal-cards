@@ -153,7 +153,7 @@ $colors: '1' #7d4aea, '2' #000000, '3' #f37c34, '4' #777777, '5' #ffffff;
 
     @if $hex !=#FFFFFF {
       &.radio {
-        &.selected {
+        &.selected-radio {
           @apply bg-[#{''+$hex+''}] border-[#{''+$hex+''}];
         }
 
@@ -177,7 +177,7 @@ $colors: '1' #7d4aea, '2' #000000, '3' #f37c34, '4' #777777, '5' #ffffff;
       }
 
       &.radio {
-        &.selected {
+        &.selected-radio {
           @apply bg-black border-black;
         }
 
@@ -207,6 +207,15 @@ $colors: '1' #7d4aea, '2' #000000, '3' #f37c34, '4' #777777, '5' #ffffff;
   .modal-text-color-#{$id} {
     @apply text-[#{''+$hex+''}];
   }
+
+  .input {
+    @apply w-full rounded-md border border-design-gray-300 px-4 h-[47px];
+  
+    &:focus {
+      @apply outline-none border border-gray-400;
+    }
+  }
+  
 }
 
 .radio {

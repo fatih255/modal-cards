@@ -1,4 +1,7 @@
 import { ModalAlias } from 'components/modals'
+import getBrowserName from 'lib/getBrowserName'
+import getDeviceType from 'lib/getDeviceType'
+import getOperatingSystem from 'lib/getOperatingSystem'
 import { ModalType } from 'redux/slices/modal'
 
 type Props = {
@@ -56,18 +59,59 @@ export default function modalCard({ html, settings }: Props) {
       })
     }
 
+    //for radio buttons
+    const radioButtons = document.querySelectorAll('[data-radio-value]')
+    if (radioButtons.length > 0) {
+      radioButtons.forEach((radio) => {
+        radio.addEventListener('click', () => {
+
+          const selectedRadioButton = document.querySelector(".selected-radio")
+          if (selectedRadioButton) selectedRadioButton.classList.remove(".selected-radio")
+          
+          if (!radio.classList.contains("selected-radio")) {
+            radio.classList.add("selected-radio")
+            webHookData.formData = {
+              ...webHookData.formData,
+              selectedRadioButtonValue: radio.getAttribute("data-radio-value")
+            }
+          }
+        })
+      })
+    }
+
+
     const modalElement = document.getElementById('layout') as HTMLElement
     if (!modalElement) return
 
     //fixed modal position and opacity 0
     modalElement.classList.add('for-generated')
 
-    const ModalCloseEffects: any[] = [] // this array use when settings have effects during the closing
+    const ModalCloseEffects: Function[] = [] // this array use when settings have effects during the closing
     let timer: number | NodeJS.Timeout | undefined
     let modalOpenedContidions = []
     let isModalOpened = sessionStorage.getItem('modalopened')
-    let webHookData = new FormData()
-    const clickedButtons: any = []
+
+    type webHookDataType = {
+      clickedButtons: string[]  //get button innerText
+      browserLanguage: readonly string[]
+      browserName: string
+      operatingSystem: string
+      deviceType: string
+      dateTime: string
+      formData?: {}
+
+    }
+    let webHookData: webHookDataType = {
+      dateTime: '', //get date when send request - new Date(Date.now())
+      browserLanguage: navigator.languages.filter(lang => lang.length > 2),
+      browserName: getBrowserName(),
+      operatingSystem: getOperatingSystem(),
+      deviceType: getDeviceType(),
+      clickedButtons: [],
+
+
+
+    }
     // 1.Condition:  if modal is opened this session dont show again
     // 2.Condition:  if have traffic source setting check is have refferrer is same traffic source that entered input if not dont show modal
     // 3.Condition:  if browser language is not includes languages that entered input not show modal
@@ -78,7 +122,7 @@ export default function modalCard({ html, settings }: Props) {
     )
     modalOpenedContidions.push(
       !settings.browserLanguages ||
-        settings.browserLanguages.includes(navigator.language),
+      settings.browserLanguages.some(lang => navigator.languages.includes(lang))
     )
 
     if (modalOpenedContidions.every((v) => v)) {
@@ -107,15 +151,16 @@ export default function modalCard({ html, settings }: Props) {
             break
           case 'sendClickData':
             const modalButtons = modalElement.querySelectorAll('button')
+            if (!modalButtons) return
             modalButtons.forEach((button) => {
               button.addEventListener('click', countClick)
             })
-            ModalCloseEffects.push(
-              webHookData.append('clicked_buttons[]', clickedButtons),
-            )
             break
           case 'webHookUrl':
-            ModalCloseEffects.push(sendDataToWebHook())
+            ModalCloseEffects.push(
+              () => sendDataToWebHook(),
+              () => webHookData.dateTime = new Date(Date.now()).toString()
+            )
             break
           case 'visitorDevice':
             modalElement.classList.add(settings.visitorDevice as string)
@@ -146,16 +191,16 @@ export default function modalCard({ html, settings }: Props) {
     //generate data functions
 
     function countClick(e: MouseEvent) {
-      const target = e.target as HTMLElement
+      const target = e.target as HTMLButtonElement
       if (!target) return
-
-      clickedButtons.push(target.innerText)
+      ModalCloseEffects.push(() => webHookData.clickedButtons.push(target.innerText))
       target.removeEventListener('click', countClick)
     }
     //send data to webhook
     function sendDataToWebHook() {
       if (!settings.webHookUrl) return
-      fetch(settings.webHookUrl, { method: 'POST', body: webHookData })
+
+      fetch(settings.webHookUrl, { method: 'POST', body: JSON.stringify(webHookData) })
         .then((response) => response.json())
         .then((data) => console.log(data))
     }
@@ -173,7 +218,7 @@ export default function modalCard({ html, settings }: Props) {
     function closeModalAction() {
       modalElement.classList.remove('open')
       modalElement.classList.add('close')
-      ModalCloseEffects.forEach((code) => code)
+      ModalCloseEffects.reverse().forEach((code) => code())
     }
 
     //remove all event listeners

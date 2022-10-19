@@ -1,7 +1,7 @@
 import React from 'react'
 import type { AppProps } from 'next/app'
 //tailwind & sass
-import '../public/styles/index.scss'
+import '../styles/index.scss'
 //redux
 import { Provider } from 'react-redux'
 import { store } from 'redux/store'

@@ -16,10 +16,16 @@ function conditionalRender(
   return condition ? jsx(condition) : <></>
 }
 
+
+
+
+
+//link parser for specific button actions post request or redirect any link
 export type LinkParserType = (
   | { text: string; linkURL?: string; postURL?: string }
   | string
 )[]
+
 function linkParser(
   texts: string[],
 ): ({ text: string; linkURL?: string; postURL?: string } | string)[] {

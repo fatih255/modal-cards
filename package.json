@@ -10,7 +10,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "format": "prettier --check --ignore-path .gitignore .",
-    "format:fix": "prettier --write --ignore-path .gitignore ."
+    "format:fix": "prettier --write --ignore-path .gitignore .",
+    "sass": "sass --watch ./styles/index.scss ./.storybook/main.css"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
