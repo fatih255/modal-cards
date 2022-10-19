@@ -93,6 +93,43 @@ export const modalConstants = new Map([
       },
     },
   ],
+  [
+    'TheFileIsOnItsWayModal',
+    {
+      contents: {
+        texts: [
+          `The file is on it's way`,
+          'You’ll get an notified when the receiver has opened the email.',
+          'Go to dashboard',
+        ]
+      },
+      layout: {
+        className: 'items-center justify-start',
+        size: 'medium',
+      },
+    },
+  ],
+  [
+    'JoinOurMailListModal',
+    {
+      contents: {
+        texts: [
+          'Join our mail list',
+          'Save up to 30% of your next order',
+          'Enter your email',
+          'Later',
+          'Join now',
+        ],
+        logo: 'icons/modal/discount.svg',
+      },
+      layout: {
+        className: 'items-center justify-start',
+        size: 'medium',
+        position: 'pos-mc',
+      },
+    },
+  ],
+
 ])
 
 export const getModalContants = (modalName: ModalAlias) => {

@@ -1,6 +1,6 @@
 import React from 'react'
-import { scrollStep } from 'lib/utils'
-import { useAppDispatch, useAppSelector } from 'redux/hooks'
+
+import { useAppDispatch } from 'redux/hooks'
 import { selectModal } from 'redux/slices/modal'
 
 import Button from 'components/Button'
@@ -13,14 +13,11 @@ export type ModalCardProps = {
 
 export default function ModalCard({ name, thumbnail }: ModalCardProps) {
   const dispatch = useAppDispatch()
-  const selectedModalName = useAppSelector(
-    (state) => state.modal.selectedModalName,
-  )
+
 
   const onClickHandler = (name: string) => {
     // choose template
     dispatch(selectModal(name as ModalAlias))
-    selectedModalName && scrollStep('2')
   }
 
   return (

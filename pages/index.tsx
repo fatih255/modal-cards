@@ -100,7 +100,7 @@ const Home: NextPage = () => {
             Step-2  -Appearance (Size, colors, logo) and Step-3 -Content inside Panel Component 
             ---if selected modal render Panel
             */}
-          {conditionalRender(selectedModalName, <Panel />)}
+          {selectedModalName ? <Panel selectedModalName={selectedModalName} /> : <></>}
 
           {/* Conversion & UX ready popups & modals section */}
           <section className='close-sticky'>

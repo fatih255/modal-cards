@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react'
-import { useAppSelector } from 'redux/hooks'
 
 import { ModalLoader } from 'components/modalComponents'
 
 import { layoutHeightTransformer } from 'lib/layoutHeightTransformer'
 import makeStickyContainer from 'lib/makeStickyContainer'
 import { scrollStep } from 'lib/utils'
+import { ModalAlias } from './modals'
 
 //steps
 import { AppearanceStep } from './steps'
@@ -14,17 +14,20 @@ import SettingsAndCodeStep from './steps/SettingsAndCodeStep'
 import TargetingRulesStep from './steps/TargetingRulesStep'
 import centerScroll from 'lib/centerScroll'
 
+
 export default React.memo(Panel)
 
-function Panel() {
-  const selectedModalName = useAppSelector(
-    (state) => state.modal.selectedModalName,
-  )
+export type PanelProps = {
+  selectedModalName: ModalAlias
+}
+
+function Panel({ selectedModalName }: PanelProps) {
 
   //when selectedmodal first render props scrolling
-  const EffectRan = useRef<boolean>(false)
+  const EffectRanCounter = useRef<number>(0)
   useEffect(() => {
-    if (!EffectRan.current) {
+    if (EffectRanCounter.current > 0) {
+      console.log("rr")
       makeStickyContainer(
         '.dosticky',
         'white',
@@ -36,12 +39,15 @@ function Panel() {
         selectors: { from: '.panel', to: '.preview-inner' },
         divideHeight: 2,
       })
+      centerScroll({
+        selector: '.preview-outer',
+        behavior: "auto",
+        condition: 'ifnotcentered'
+      })
+      scrollStep('2')
     }
-
-    centerScroll({ selector: '.preview-outer' })
-    scrollStep('2')
     return () => {
-      EffectRan.current = true
+      EffectRanCounter.current++
     }
   }, [selectedModalName])
 
@@ -63,9 +69,7 @@ function Panel() {
           <div
             className='preview-inner'
             style={{ position: 'absolute', top: 0, width: '100%' }}>
-            {selectedModalName && (
-              <ModalLoader selectedModalName={selectedModalName} />
-            )}
+            <ModalLoader selectedModalName={selectedModalName} />
           </div>
         </div>
       </div>

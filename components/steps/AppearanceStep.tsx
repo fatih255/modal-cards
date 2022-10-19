@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import NumberItem from 'components/NumberItem'
 
 // Tools used by AppearanceStep
@@ -10,6 +10,7 @@ import {
 } from 'components/paneltools'
 
 function AppearanceStep() {
+
   return (
     <>
       <div className='dosticky'>

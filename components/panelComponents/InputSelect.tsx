@@ -25,9 +25,9 @@ function InputSelect({
   >(items.filter((item) => item.checked))
   const [activeSelectPanel, setActiveSelectPanel] = useState(false)
 
-  const isFirstRender = useRef(true)
+  const renderCounter = useRef(0)
   useEffect(() => {
-    if (!isFirstRender.current) {
+    if (renderCounter.current > 1) {
       onChange &&
         onChange(
           checkedItems.reduce(
@@ -36,7 +36,9 @@ function InputSelect({
           ),
         )
     }
-    isFirstRender.current = false
+    return () => {
+      renderCounter.current++
+    }
   }, [checkedItems])
 
   //Handlers
@@ -47,7 +49,7 @@ function InputSelect({
 
   const clearAllHandler = () => {
     document.querySelectorAll('.check-box:checked').forEach((item) => {
-      ;(item as HTMLInputElement).checked = false
+      ; (item as HTMLInputElement).checked = false
     })
     setCheckedItems([])
   }

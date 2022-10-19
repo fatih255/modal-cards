@@ -1,13 +1,12 @@
-import React, { Suspense, useEffect } from 'react'
+import React, { Suspense } from 'react'
 import dynamic from 'next/dynamic'
-import { linkParser } from 'lib/utils'
-import { useAppDispatch, useAppSelector } from 'redux/hooks'
-import { ModalType, selectModal } from 'redux/slices/modal'
+import { useAppSelector } from 'redux/hooks'
+import { ModalType } from 'redux/slices/modal'
 import { ModalAlias } from '../modals'
 import { shallowEqual } from 'react-redux'
 
 export type ModalLoaderProps = {
-  selectedModalName: ModalAlias
+  selectedModalName?: ModalAlias
 }
 export type ModalProps = {
   contents: ModalType['contents']
@@ -15,6 +14,7 @@ export type ModalProps = {
 }
 
 function ModalLoader({ selectedModalName }: ModalLoaderProps) {
+
   const modalProps = useAppSelector(
     (state) =>
       Object({
