@@ -2,12 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 @import 'fonts';
-@import 'modal';
-@import 'panel';
+
 
 .html * {
   font-family: Poppins, sans-serif;
 }
+
+@import 'modal';
+@import 'panel';
 
 .nav {
   @apply flex gap-5 ml-20 justify-start flex-1;
