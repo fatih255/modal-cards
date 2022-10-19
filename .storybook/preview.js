@@ -1,5 +1,5 @@
 // .storybook/preview.js
-import '../styles/index.scss'
+import '../public/styles/index.scss'
 import store from '../redux/store'
 
 export const parameters = {
