@@ -45,7 +45,7 @@ function ModalRadios({
                 <div
                   className={cn(
                     { 'scale-[.4] ': selected },
-                    ' w-full h-full trans-400 inset-0 m-auto absolute bg-white rounded-full',
+                    'radio-eye w-full h-full trans-400 inset-0 m-auto absolute bg-white rounded-full',
                   )}></div>
               </div>
             </div>

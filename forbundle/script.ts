@@ -22,17 +22,21 @@ export default function modalCard({ html, settings }: Props) {
   link.rel = 'stylesheet'
   link.type = 'text/css'
   link.href =
-    'https://leafy-mermaid-eb53cb.netlify.app/_next/static/css/8e0d75d4c6a1da72.css'
+    'https://leafy-mermaid-eb53cb.netlify.app/_next/static/css/f03506b87b5e3c05.css'
   link.media = 'all'
   head.appendChild(link)
+
+  let formData = {}
 
   link.onload = async () => {
     document.body.insertAdjacentHTML('beforeend', html)
 
-    // for close button trigger close event
+    // for close button trigger close event X icon
     const modalCloseButton = document.querySelectorAll('.close-modal-action')
     modalCloseButton.forEach((closebutton) => {
-      closebutton.addEventListener('click', closeModalAction)
+      closebutton.addEventListener('click', () => {
+        closeModalAction(false)
+      })
     })
 
     //for trigger button actions
@@ -43,6 +47,8 @@ export default function modalCard({ html, settings }: Props) {
           //if have data post url
           const havePostURL = button.getAttribute('data-post-url')
           const haveLinkURL = button.getAttribute('data-link')
+          const haveCloseModalAction = button.getAttribute('data-close-modal')
+          const haveWebHookPostAction = button.getAttribute('data-webhook-post')
 
           if (havePostURL) {
             const data = button.getAttribute('data-value') as string
@@ -55,27 +61,59 @@ export default function modalCard({ html, settings }: Props) {
             //if button action is redirect page
             window.location.href = button.getAttribute('data-link') ?? ''
           }
+          //trigger close modal
+          if (haveCloseModalAction) {
+            closeModalAction(false)
+          }
+          if (haveWebHookPostAction) {
+            closeModalAction()
+          }
+
         })
       })
     }
 
     //for radio buttons
     const radioButtons = document.querySelectorAll('[data-radio-value]')
+
     if (radioButtons.length > 0) {
+
+      radioButtons.forEach((radio) => {
+        const defaultSelected = radio.querySelector(".selected-radio")
+        if (defaultSelected) {
+          formData = {
+            ...formData,
+            selectedRadioButtonValue: radio.getAttribute("data-radio-value")
+          }
+        }
+      })
+
+
       radioButtons.forEach((radio) => {
         radio.addEventListener('click', () => {
 
-          const selectedRadioButton = document.querySelector(".selected-radio")
-          if (selectedRadioButton) selectedRadioButton.classList.remove(".selected-radio")
-          
-          if (!radio.classList.contains("selected-radio")) {
-            radio.classList.add("selected-radio")
-            webHookData.formData = {
-              ...webHookData.formData,
+          const radioEye = radio.querySelector(".radio-eye")
+          const previousSelected = document.querySelector(".selected-radio")
+          if (previousSelected) {
+            previousSelected.classList.remove("selected-radio")
+            radioEye?.classList.remove("scale-[.4]")
+          }
+
+          if (!radio.firstChild) return
+
+          const radioCircle = radio.firstChild as HTMLDivElement
+
+          if (!radioCircle.classList.contains("selected-radio")) {
+            (radio.firstChild as HTMLDivElement).classList.add("selected-radio");
+            radioEye?.classList.add("scale-[.4]")
+
+            formData = {
+              ...formData,
               selectedRadioButtonValue: radio.getAttribute("data-radio-value")
             }
           }
-        })
+        }
+        )
       })
     }
 
@@ -90,6 +128,7 @@ export default function modalCard({ html, settings }: Props) {
     let timer: number | NodeJS.Timeout | undefined
     let modalOpenedContidions = []
     let isModalOpened = sessionStorage.getItem('modalopened')
+
 
     type webHookDataType = {
       clickedButtons: string[]  //get button innerText
@@ -156,6 +195,9 @@ export default function modalCard({ html, settings }: Props) {
               button.addEventListener('click', countClick)
             })
             break
+          case 'sendFormSubmission':
+            ModalCloseEffects.push(() => webHookData.formData = formData)
+            break
           case 'webHookUrl':
             ModalCloseEffects.push(
               () => sendDataToWebHook(),
@@ -215,10 +257,12 @@ export default function modalCard({ html, settings }: Props) {
     }
 
     //trigger close modal animation
-    function closeModalAction() {
+    function closeModalAction(useSideEffects = true) {
       modalElement.classList.remove('open')
       modalElement.classList.add('close')
-      ModalCloseEffects.reverse().forEach((code) => code())
+
+      if (useSideEffects)
+        ModalCloseEffects.reverse().forEach((code) => code())
     }
 
     //remove all event listeners

@@ -32,14 +32,19 @@ export default function ChooseBestForYouModal({
       />
       <div className='flex gap-3 w-full items-stretch flex-wrap pb-2'>
         <Button
+          data-close-modal
           className='flex-1'
           theme='light-bordered'
           size='modal-default'
           text={texts[3]}
         />
-        <Button
+        {/*
+        specific args
           data-value={radios.filter((r: any) => r.selected)[0]?.value}
           data-post-url={texts[4].postURL}
+        */}
+        <Button
+          data-webhook-post
           className={`${colors.bg} flex-1`}
           size='modal-default'
           text={texts[4].text}

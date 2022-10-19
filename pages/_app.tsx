@@ -12,11 +12,13 @@ import Footer from 'components/Footer'
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <React.StrictMode>
-      <Provider store={store}>
-        <Header />
-        <Component {...pageProps} />
-        <Footer text='Powered by Popupsmart' />
-      </Provider>
+      <div className="html">
+        <Provider store={store}>
+          <Header />
+          <Component {...pageProps} />
+          <Footer text='Powered by Popupsmart' />
+        </Provider>
+      </div>
     </React.StrictMode>
   )
 }
