@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ModalAlias } from 'components/modals';
 import { getModalContants } from 'lib/modalConstants';
+import { linkParser } from 'lib/utils';
 import settingsActions from 'redux/actions/settings'
 
 export type ModalType = {
@@ -89,7 +90,7 @@ export const ModalSlice = createSlice({
         selectModal: (state, action: PayloadAction<ModalAlias>) => {
             const selectedModalConstants = getModalContants(action.payload)
             state.selectedModalName = action.payload
-            state.contents = selectedModalConstants.contents
+            state.contents = { ...selectedModalConstants.contents, texts: linkParser(selectedModalConstants.contents.texts) }
             state.layout = { ...state.layout, ...selectedModalConstants.layout }
             state.uploaded = { logo: false, image: false }
 

@@ -7,7 +7,7 @@ import { BsSignpost } from 'react-icons/bs'
 
 //panel components
 import { InputText } from 'components/panelComponents'
-import { linkParser } from 'lib/utils'
+import { linkParser, LinkParserType } from 'lib/utils'
 import InputLink from 'components/panelComponents/InputLink'
 
 
@@ -32,7 +32,7 @@ export default function EditTextFields() {
     return (
         <>
             {
-                texts && linkParser(texts).map((text, index: string | number) =>
+                (texts as LinkParserType).map((text, index: string | number) =>
                 (
                     <React.Fragment key={`text-content-${index}`}>
                         <InputText onChange={async (value) => onContentTextChangeHandler(index, value)}

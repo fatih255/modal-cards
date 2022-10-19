@@ -15,11 +15,10 @@ function conditionalRender(condition: string | null | undefined, jsx: JSX.Elemen
 }
 
 
-
-
+export type LinkParserType = ({ text: string, linkURL?: string, postURL?: string } | string)[]
 function linkParser(texts: string[]): ({ text: string, linkURL?: string, postURL?: string } | string)[] {
 
-  const parsedTexts = texts.map(text => {
+  const parsedTexts = texts.map((text) => {
     let contentText = text
 
 

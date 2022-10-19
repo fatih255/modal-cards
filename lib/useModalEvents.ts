@@ -8,6 +8,7 @@ Mouse Events
 */
 
 import { useEffect } from "react"
+import centerScroll from "./centerScroll";
 
 function useModalEvents(eventType: string, status?: boolean | null, value?: string) {
 
@@ -21,6 +22,13 @@ function useModalEvents(eventType: string, status?: boolean | null, value?: stri
 
         if (!modalElement) return
 
+        const ifClosedOpen = () => {
+            if (modalElement.classList.contains('close')) {
+                modalElement.classList.remove('close');
+                modalElement.classList.add('open');
+            }
+
+        }
         const openModalAction = () => {
             modalElement.classList.remove('close');
             modalElement.classList.add('open');
@@ -86,13 +94,19 @@ function useModalEvents(eventType: string, status?: boolean | null, value?: stri
         if (status === false) {
             switch (eventType) {
                 case "afterXSeconds":
-                    returnForStatusFalse = () => { timer && window.clearTimeout(timer) };
+                    returnForStatusFalse = () => {
+                        timer && window.clearTimeout(timer);
+                        ifClosedOpen()
+
+                    }
                     break;
                 case "afterPercentageScroll":
                     returnForStatusFalse = () => {
-
                         window.removeEventListener("scroll", scrollEventOnDocument)
                         previewContainer.removeEventListener("scroll", scrollEventOnPreviewContainer)
+                        centerScroll({ selector: ".preview-outer", condition: 'ifnotcentered' })
+                        ifClosedOpen()
+
                     }
                     break;
                 case "exitIntentTargetting":
@@ -100,7 +114,7 @@ function useModalEvents(eventType: string, status?: boolean | null, value?: stri
                     break;
             }
         }
-      
+
         if (typeof returnForStatusFalse === 'function') return returnForStatusFalse()
 
         switch (eventType) {
@@ -109,7 +123,7 @@ function useModalEvents(eventType: string, status?: boolean | null, value?: stri
                 xSecondTimeOut()
                 break;
             case "afterPercentageScroll":
-           
+
                 scrollToTop()
                 window.addEventListener("scroll", scrollEventOnDocument)
                 previewContainer.addEventListener("scroll", scrollEventOnPreviewContainer)
@@ -118,7 +132,7 @@ function useModalEvents(eventType: string, status?: boolean | null, value?: stri
                 document.addEventListener('mouseout', mouseOutEvent);
                 break;
         }
-  
+
 
         return () => {
             document.removeEventListener('mouseout', mouseOutEvent);

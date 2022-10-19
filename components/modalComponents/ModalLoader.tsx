@@ -18,10 +18,7 @@ function ModalLoader({ selectedModalName }: ModalLoaderProps) {
 
     const modalProps = useAppSelector(state => Object(
         {
-            contents: {
-                ...state.modal.contents,
-                texts: linkParser(state.modal.contents.texts),
-            },
+            contents: state.modal.contents,
             layout: state.modal.layout
         }
     ), shallowEqual)
