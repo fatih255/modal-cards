@@ -32,6 +32,7 @@ export default function modalCard({ html, settings }: Props) {
   }
 
   let formData: formDataType = {}
+  const clickedButtons: string[] = []
 
   link.onload = async () => {
     document.body.insertAdjacentHTML('beforeend', html)
@@ -48,7 +49,8 @@ export default function modalCard({ html, settings }: Props) {
     const buttons = document.querySelectorAll('button')
     if (buttons.length > 0) {
       buttons.forEach((button) => {
-        button.addEventListener('click', () => {
+        button.addEventListener('click', (e) => {
+          clickedButtons.push((e.target as HTMLElement).innerText)
           //if have data post url
           const havePostURL = button.getAttribute('data-post-url')
           const haveLinkURL = button.getAttribute('data-link')
@@ -73,8 +75,9 @@ export default function modalCard({ html, settings }: Props) {
           if (haveWebHookPostAction) {
             closeModalAction()
           }
-
+          
         })
+
       })
     }
 
@@ -205,21 +208,17 @@ export default function modalCard({ html, settings }: Props) {
               document.addEventListener('mouseout', exitIntentTargetting)
             break
           case 'sendClickData':
-            const modalButtons = modalElement.querySelectorAll('button')
-            if (!modalButtons) return
-            modalButtons.forEach((button) => {
-              button.addEventListener('click', countClick)
-            })
+            ModalCloseEffects.push(() => webHookData.clickedButtons = clickedButtons)
             break
           case 'sendFormSubmission':
             ModalCloseEffects.push(() => webHookData.formData = formData)
             break
           case 'webHookUrl':
-            ModalCloseSendDataEffects.push(() => sendDataToWebHook())
             ModalCloseEffects.push(
               () => getTextFields(),
               () => webHookData.dateTime = new Date(Date.now()).toString(),
             )
+            ModalCloseSendDataEffects.push(() => sendDataToWebHook())
             break
           case 'visitorDevice':
             modalElement.classList.add(settings.visitorDevice as string)
@@ -252,7 +251,8 @@ export default function modalCard({ html, settings }: Props) {
     function countClick(e: MouseEvent) {
       const target = e.target as HTMLButtonElement
       if (!target) return
-      ModalCloseEffects.push(() => webHookData.clickedButtons.push(target.innerText))
+
+      webHookData.clickedButtons.push(target.innerText)
       target.removeEventListener('click', countClick)
     }
     //send data to webhook
@@ -281,7 +281,10 @@ export default function modalCard({ html, settings }: Props) {
       if (useSideEffects) {
 
         ModalCloseEffects.forEach((code) => code())
+
+
         ModalCloseSendDataEffects.forEach((code) => code())
+        console.log(webHookData)
       }
     }
 
