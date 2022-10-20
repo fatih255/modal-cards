@@ -27,7 +27,7 @@ export default function modalCard({ html, settings }: Props) {
   head.appendChild(link)
 
   type formDataType = {
-    selectedRadioButtonValue?: string | null,
+    selectedRadioButtonValue?: { name: string, value: string | null },
     textFields?: { name: string, value: string }[]
   }
 
@@ -45,7 +45,7 @@ export default function modalCard({ html, settings }: Props) {
       })
     })
 
-    //for trigger button actions
+    // for trigger button actions
     const buttons = document.querySelectorAll('button')
     if (buttons.length > 0) {
       buttons.forEach((button) => {
@@ -65,23 +65,23 @@ export default function modalCard({ html, settings }: Props) {
             closeModalAction()
           }
           if (haveLinkURL) {
-            //if button action is redirect page
+            // if button action is redirect page
             window.location.href = button.getAttribute('data-link') ?? ''
           }
-          //trigger close modal
+          // iftrigger close modal
           if (haveCloseModalAction) {
             closeModalAction(false)
           }
           if (haveWebHookPostAction) {
             closeModalAction()
           }
-          
+
         })
 
       })
     }
 
-    //for radio buttons
+    // iffor radio buttons
     const radioButtons = document.querySelectorAll('[data-radio-value]')
 
     if (radioButtons.length > 0) {
@@ -91,7 +91,7 @@ export default function modalCard({ html, settings }: Props) {
         if (defaultSelected) {
           formData = {
             ...formData,
-            selectedRadioButtonValue: radio.getAttribute("data-radio-value")
+            selectedRadioButtonValue: { name: "selected-radio", value: radio.getAttribute("data-radio-value") }
           }
         }
       })
@@ -117,7 +117,7 @@ export default function modalCard({ html, settings }: Props) {
 
             formData = {
               ...formData,
-              selectedRadioButtonValue: radio.getAttribute("data-radio-value")
+              selectedRadioButtonValue: { name: "selected-radio", value: radio.getAttribute("data-radio-value") }
             }
           }
         }
@@ -140,7 +140,7 @@ export default function modalCard({ html, settings }: Props) {
     const modalElement = document.getElementById('layout') as HTMLElement
     if (!modalElement) return
 
-    //fixed modal position and opacity 0
+    // fixed modal position and opacity 0
     modalElement.classList.add('for-generated')
     let ModalCloseSendDataEffects: Function[] = []
     let ModalCloseEffects: Function[] = [] // this array use when settings have effects during the closing
@@ -160,7 +160,7 @@ export default function modalCard({ html, settings }: Props) {
 
     }
     let webHookData: webHookDataType = {
-      dateTime: '', //get date when send request - new Date(Date.now())
+      dateTime: '', // get date when send request - new Date(Date.now())
       browserLanguage: navigator.languages.filter(lang => lang.length > 2),
       browserName: getBrowserName(),
       operatingSystem: getOperatingSystem(),
@@ -184,7 +184,7 @@ export default function modalCard({ html, settings }: Props) {
     )
 
     if (modalOpenedContidions.every((v) => v)) {
-      //if not have any listener, show modal directly
+      // if not have any listener, show modal directly
       if (
         !settings.afterPercentageScroll &&
         !settings.exitIntentTargetting &&
@@ -273,7 +273,7 @@ export default function modalCard({ html, settings }: Props) {
       removeAllEvents()
     }
 
-    //trigger close modal animation
+    // trigger close modal animation
     function closeModalAction(useSideEffects = true) {
       modalElement.classList.remove('open')
       modalElement.classList.add('close')
@@ -284,11 +284,11 @@ export default function modalCard({ html, settings }: Props) {
 
 
         ModalCloseSendDataEffects.forEach((code) => code())
-        console.log(webHookData)
+        // console.log(webHookData)
       }
     }
 
-    //remove all event listeners
+    // remove all event listeners
     function removeAllEvents() {
       window.removeEventListener('scroll', scrollEventOnDocument)
       document.removeEventListener('mouseout', exitIntentTargetting)

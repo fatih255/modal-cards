@@ -1,6 +1,11 @@
 import { ModalAlias } from 'components/modals'
 import { ModalType } from 'redux/slices/modal'
 
+
+/*
+text fields extra actions  @Post @Link
+
+*/
 export const modalConstants = new Map([
   [
     'SecurityCodeModal',
@@ -50,7 +55,7 @@ export const modalConstants = new Map([
           'Choose best for you',
           'Only pay for the capacity that you use.',
           'Cancel',
-          'Continue @Post',
+          'Continue',
         ],
         radios: [
           {
