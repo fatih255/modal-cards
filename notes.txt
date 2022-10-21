@@ -1,0 +1,3 @@
+
+for non global preflight
+stylus scoped-preflight.stylus -o scoped-preflight.css
