@@ -14,7 +14,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.webpack.js', '.web.js', '.ts', '.js'],
-    plugins: [new TsconfigPathsPlugin({ configFile: 'tsconfig.json' })],
+    plugins: [
+      new TsconfigPathsPlugin({ configFile: 'tsconfig.json' })
+  ],
   },
   module: {
     rules: [

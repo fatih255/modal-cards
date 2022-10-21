@@ -1,17 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import 'fonts';
+
 @import 'modal';
 @import 'panel';
 
-.html * {
-  font-family: Poppins, sans-serif;
 
-  &.font-inter {
-    font-family: Inter, sans-serif;
+@layer components{
+  .html * {
+    font-family: Poppins, sans-serif;
+  
+    &.font-inter {
+      font-family: Inter, sans-serif;
+    }
   }
 }
+
 
 .nav {
   @apply flex gap-5 ml-20 justify-start flex-1;
