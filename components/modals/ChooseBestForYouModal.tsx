@@ -47,7 +47,7 @@ export default function ChooseBestForYouModal({
           data-webhook-post
           className={`${colors.bg} flex-1`}
           size='modal-default'
-          text={texts[4].text}
+          text={texts[4].text ?? texts[4]}
         />
       </div>
     </WithModalLayout>

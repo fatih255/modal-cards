@@ -1,4 +1,12 @@
+@import './fonts.scss';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 .default {
+
   @apply absolute w-full h-max bg-white flex flex-col gap-8 shadow-2xl rounded-lg overflow-hidden text-center;
 
   &.open {
@@ -143,26 +151,33 @@
 
 // select colors
 // call colors with modal-bg-color-{$colorid} and modal-text-color-{$colorid}
-$colors: '1' #7d4aea, '2' #000000, '3' #f37c34, '4' #777777, '5' #ffffff;
+$colors: '1'#7d4aea,
+'2'#000000,
+'3'#f37c34,
+'4'#777777,
+'5'#ffffff;
 
-@each $id, $hex in $colors {
+@each $id,
+$hex in $colors {
   .modal-bg-color-#{$id} {
     &:not(img, .radio) {
-      @apply bg-[#{''+$hex+''}];
+      background-color: $hex;
     }
 
     @if $hex !=#FFFFFF {
       &.radio {
         &.selected-radio {
-          @apply bg-[#{''+$hex+''}] border-[#{''+$hex+''}];
+          background-color: $hex;
+          border: 1px solid $hex;
         }
 
         &:hover {
-          @apply border-[#{''+$hex+''}];
+          border: 1px solid $hex;
         }
 
         .group &:hover {
-          @apply ring-[#{''+$hex+''}] ring-opacity-[0.18];
+          --tw-ring-color: $hex;
+          --tw-ring-opacity: 0.18;
         }
       }
     }
@@ -205,17 +220,20 @@ $colors: '1' #7d4aea, '2' #000000, '3' #f37c34, '4' #777777, '5' #ffffff;
   }
 
   .modal-text-color-#{$id} {
-    @apply text-[#{''+$hex+''}];
+    color: $hex;
   }
 
   .input {
     @apply w-full rounded-md border border-design-gray-300 px-4 h-[47px];
-  
+
     &:focus {
       @apply outline-none border border-gray-400;
     }
   }
-  
+}
+
+.trans-300 {
+  @apply transition-all duration-100
 }
 
 .radio {
