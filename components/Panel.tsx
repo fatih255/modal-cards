@@ -22,10 +22,9 @@ export type PanelProps = {
 
 function Panel({ selectedModalName }: PanelProps) {
   //when selectedmodal first render props scrolling
-  const EffectRanCounter = useRef<number>(0)
+  const EffectRan = useRef<boolean>(false);
   useEffect(() => {
-    if (EffectRanCounter.current > 0) {
-      console.log('rr')
+    if (!EffectRan.current) {
       makeStickyContainer(
         '.dosticky',
         'white',
@@ -45,7 +44,7 @@ function Panel({ selectedModalName }: PanelProps) {
       scrollStep('2')
     }
     return () => {
-      EffectRanCounter.current = EffectRanCounter.current + 1
+      EffectRan.current = true
     }
   }, [selectedModalName])
 
