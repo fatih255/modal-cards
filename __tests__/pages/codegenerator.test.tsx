@@ -1,11 +1,11 @@
 import '@testing-library/jest-dom'
 import { renderWithProviders } from 'jest-utils/renderWithProviders'
 import { ModalInitialState } from 'redux/slices/modal'
-import Home from 'pages'
+import Header from 'components/Header'
 
 describe('Home Page', () => {
   it('render correctly Home Page and have modal store state', async () => {
-    const component = renderWithProviders(<Home />, {
+    const component = renderWithProviders(<Header />, {
       preloadedState: {
         modal: ModalInitialState,
       },

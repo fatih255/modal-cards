@@ -1,3 +1,7 @@
-// eslint-disable-next-line import/no-anonymous-default-export
-export default 'SvgrURL'
-export const ReactComponent = 'div'
+/* eslint-disable react/display-name */
+import React from 'react';
+
+const SvgrMock = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
+
+export const ReactComponent = SvgrMock;
+export default SvgrMock;
