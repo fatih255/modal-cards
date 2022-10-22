@@ -10,6 +10,7 @@ export default function InstallLocalNowModal({
   return (
     <WithModalLayout>
       <img
+        alt='img'
         src={image ?? ''}
         className='w-full object-cover '
       />

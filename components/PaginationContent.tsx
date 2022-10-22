@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react'
 import cn from 'classnames'
 
@@ -30,7 +31,7 @@ export default function PaginationContent({
       const { height } = container.getBoundingClientRect()
       container.style.minHeight = `${height}px`
     }
-  }, [])
+  }, [name])
 
   const rendered = data
     .slice(per * activePage - per, per * activePage)

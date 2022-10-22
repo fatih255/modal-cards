@@ -45,7 +45,7 @@ function Panel({ selectedModalName }: PanelProps) {
       scrollStep('2')
     }
     return () => {
-      EffectRanCounter.current++
+      EffectRanCounter.current = EffectRanCounter.current + 1
     }
   }, [selectedModalName])
 

@@ -1,7 +1,6 @@
 import React from 'react'
 import Button from 'components/Button'
 import {
-  InputTextModal,
   WithModalLayout,
   ModalLogo,
 } from 'components/modalComponents'

@@ -26,6 +26,7 @@ export default function ModalLogo({ transparentBg = false }: modalLogoProps) {
             /* uploaded logo template */
             uploaded.logo && (
               <img
+                alt='logo'
                 className={`logo z-20 max-w-[60%] self-center  max-h-1/6 aspect-square ${colors.bg}`}
                 src={`${logo}`}
               />
@@ -39,9 +40,9 @@ export default function ModalLogo({ transparentBg = false }: modalLogoProps) {
                   'w-[27%] relative rounded-full flex justify-center items-center overflow-hidden ',
                 )}>
                 <img
-                  className={`logo z-20 ${
-                    !transparentBg ? 'p-[30%]' : ''
-                  } aspect-square ${colors.bg}`}
+                  alt='logo'
+                  className={`logo z-20 ${!transparentBg ? 'p-[30%]' : ''
+                    } aspect-square ${colors.bg}`}
                   src={`${logo}`}
                 />
                 {!transparentBg && (

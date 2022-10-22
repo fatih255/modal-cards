@@ -20,9 +20,9 @@ export default function generateCode(): string {
   preflightDiv.classList.add('popupsmart-preflight')
 
   //  1.Stage: clone current modal layout
-  let modalElement = document.getElementById('layout')
+  const modalElement = document.getElementById('layout')
   if (!modalElement) return ''
-  let modalElement_cloned = modalElement.cloneNode(true) as HTMLElement
+  const modalElement_cloned = modalElement.cloneNode(true) as HTMLElement
 
   //  2.Stage: check check whether there is a targeting  visitor device,
   //  if there is a targeted visitor device add a responsive class

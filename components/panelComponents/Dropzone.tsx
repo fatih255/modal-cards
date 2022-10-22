@@ -94,6 +94,7 @@ export default function Dropzone({ uploadFor }: DropzoneProps) {
           <div className='relative p-6 rounded-xl bg-primary bg-opacity-[0.1]'>
             {uploaded && assetURL && (
               <img
+                alt="upload"
                 src={assetURL}
                 className='rounded-xl bg-white top-0 left-0 absolute w-[76px] h-[76px]'
               />

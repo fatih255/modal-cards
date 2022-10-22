@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import NumberItem from 'components/NumberItem'
 
 // Tools used by AppearanceStep

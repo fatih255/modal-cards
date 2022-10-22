@@ -11,7 +11,7 @@ function scrollStep(step: string) {
 
 function conditionalRender(
   condition: string | null | undefined,
-  jsx: (conditiondata?: any) => JSX.Element,
+  jsx: (conditiondata?: unknown) => JSX.Element,
 ) {
   return condition ? jsx(condition) : <></>
 }

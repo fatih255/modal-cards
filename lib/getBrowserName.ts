@@ -1,16 +1,16 @@
 export default function getBrowserName() {
   // Get the user-agent string
-  let userAgentString = navigator.userAgent
+  const userAgentString = navigator.userAgent
 
   // Detect Chrome
   let chromeAgent = userAgentString.indexOf('Chrome') > -1
 
   // Detect Internet Explorer
-  let IExplorerAgent =
+  const IExplorerAgent =
     userAgentString.indexOf('MSIE') > -1 || userAgentString.indexOf('rv:') > -1
 
   // Detect Firefox
-  let firefoxAgent = userAgentString.indexOf('Firefox') > -1
+  const firefoxAgent = userAgentString.indexOf('Firefox') > -1
 
   // Detect Safari
   let safariAgent = userAgentString.indexOf('Safari') > -1
@@ -19,7 +19,7 @@ export default function getBrowserName() {
   if (chromeAgent && safariAgent) safariAgent = false
 
   // Detect Opera
-  let operaAgent = userAgentString.indexOf('OP') > -1
+  const operaAgent = userAgentString.indexOf('OP') > -1
 
   // Discard Chrome since it also matches Opera
   if (chromeAgent && operaAgent) chromeAgent = false

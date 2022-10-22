@@ -9,6 +9,7 @@ export type InputSelectProps = {
   closeText?: string
   items: { text: string; value: string; checked?: boolean }[]
   placeholder?: string
+  // eslint-disable-next-line @typescript-eslint/ban-types
   onChange?: (data: string | boolean | string[] | null) => {}
 }
 
@@ -31,14 +32,16 @@ function InputSelect({
       onChange &&
         onChange(
           checkedItems.reduce(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (acc: any, data: any) => [...acc, data.value],
             [],
           ),
         )
     }
     return () => {
-      renderCounter.current++
+      renderCounter.current = renderCounter.current + 1
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkedItems])
 
   //Handlers
@@ -49,7 +52,7 @@ function InputSelect({
 
   const clearAllHandler = () => {
     document.querySelectorAll('.check-box:checked').forEach((item) => {
-      ;(item as HTMLInputElement).checked = false
+      (item as HTMLInputElement).checked = false
     })
     setCheckedItems([])
   }

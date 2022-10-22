@@ -1,9 +1,9 @@
-import React from 'react'
-//icons
-import CamperIcon from 'icons/camper.svg'
-import CloseModalIcon from 'icons/closemodal.svg'
-import GrowEmailIcon from 'icons/growemail.svg'
-import IncreaseSalesIcon from 'icons/increasesales.svg'
+import React from 'react';
+// icons
+import CamperIcon from 'icons/camper.svg';
+import CloseModalIcon from 'icons/closemodal.svg';
+import GrowEmailIcon from 'icons/growemail.svg';
+import IncreaseSalesIcon from 'icons/increasesales.svg';
 
 export type PreviewModalProps = {
   containerClass?: string
@@ -61,6 +61,7 @@ function PreviewModal({
       </div>
       <div className='flex-1 relative select-none'>
         <img
+          alt="previewmodal"
           src='/images/camperimage.jpg'
           className='absolute w-full h-full  object-cover object-center bg-no-repeat rounded-r-[40px]'
         />

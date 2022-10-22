@@ -5,7 +5,7 @@ import Button from './Button'
 import Flexing from './Flexing'
 import { scrollStep } from 'lib/utils'
 
-export type HeaderProps = {}
+export type HeaderProps = object
 
 export default function Header() {
   const signInHandler = () => {

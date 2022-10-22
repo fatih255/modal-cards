@@ -3,7 +3,7 @@ import React from 'react'
 export type InputTextProps = {
   text?: string
   placeholder?: string
-  onChange?: (value: string) => {}
+  onChange?: (value: string) =>void
   type?: string
   max?: number
   className?: string

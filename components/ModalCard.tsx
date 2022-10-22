@@ -30,6 +30,7 @@ export default function ModalCard({ name, thumbnail }: ModalCardProps) {
         />
       </div>
       <img
+        alt='modal-img'
         className='py-4 self-center'
         src={thumbnail}
       />

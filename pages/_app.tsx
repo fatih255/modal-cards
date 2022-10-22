@@ -4,13 +4,12 @@ import type { AppProps } from 'next/app'
 import '../styles/index.scss'
 //redux
 import { Provider } from 'react-redux'
-import { setupStore } from 'redux/store'
+import { store } from 'redux/store'
 //components
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const store = setupStore()
 
   return (
     <React.StrictMode>

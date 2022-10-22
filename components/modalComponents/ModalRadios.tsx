@@ -5,7 +5,7 @@ import cn from 'classnames'
 export type ModalRadiosProps = {
   items?: ModalType['contents']['radios']
   colors: ModalType['layout']['colors']
-  returnedIndex?: (index: number) => {}
+  returnedIndex?: (index: number) => void
 }
 
 export default React.memo(ModalRadios)

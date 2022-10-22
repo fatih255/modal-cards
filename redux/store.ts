@@ -6,7 +6,7 @@ import {
 import type { PreloadedState } from '@reduxjs/toolkit'
 import ModalReducer from './slices/modal'
 import invariant from 'redux-immutable-state-invariant'
-import logger from 'redux-logger'
+// import logger from 'redux-logger'
 
 //for storybook redux
 import { enhancer as withReduxEnhancer } from 'addon-redux'
@@ -42,6 +42,8 @@ export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
     enhancers: createEnhancer(),
   })
 }
+
+export const store = setupStore()
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof rootReducer>

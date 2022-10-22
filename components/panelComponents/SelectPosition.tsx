@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import cn from 'classnames'
 
 export type SelectPositionProps = {
-  returnedValue?: (data: { name: string; value: string | object }) => {}
+  returnedValue?: (data: { name: string; value: string | object }) => void
 }
 
 export default function SelectPosition({ returnedValue }: SelectPositionProps) {

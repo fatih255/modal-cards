@@ -96,7 +96,7 @@ function useModalEvents(
         }, Number(value) * 1000)
     }
 
-    let returnForStatusFalse: boolean | {} = false
+    let returnForStatusFalse: boolean | object = false
     if (status === false) {
       switch (eventType) {
         case 'afterXSeconds':

@@ -8,7 +8,7 @@ import React from 'react'
 
 export type ColorPaletteProps = {
   colorPaletteSize: number
-  returnedValue?: (data: { name: string; value: string | object }) => {}
+  returnedValue?: (data: { name: string; value: string | object }) => void
 }
 
 export default function ColorPalette({

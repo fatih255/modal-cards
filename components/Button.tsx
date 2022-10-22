@@ -36,7 +36,7 @@ const getClass = (
   size: ButtonProps['size'],
   shadow: boolean,
 ) => {
-  let themeClass: string = ''
+  let themeClass = ''
   switch (theme) {
     case 'primary':
       themeClass = 'bg-primary text-white hover:bg-opacity-85 '

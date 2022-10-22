@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 export type CheckBoxListProps = {
   items: { text: string; value: string; checked?: boolean }[]
-  returnedValue?: (data: any) => void
+  returnedValue?: (data: unknown) => void
 }
 
 export default function CheckBoxList({

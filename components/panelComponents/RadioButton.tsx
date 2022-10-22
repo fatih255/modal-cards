@@ -3,7 +3,7 @@ import cn from 'classnames'
 
 export type RadioButtonProps = {
   options: { text: string; value: string }[]
-  returnedValue: (data: string) => {}
+  returnedValue: (data: string) => void
   defaultValue?: string
 }
 
@@ -14,7 +14,7 @@ export default function RadioButton({
 }: RadioButtonProps) {
   const [selectedOptionValue, setSelectedOptionValue] = useState(
     defaultValue ??
-      (options.length % 2 === 0 ? options[0].value : options[1].value),
+    (options.length % 2 === 0 ? options[0].value : options[1].value),
   )
 
   const selectOptionHandler = (value: string) => {

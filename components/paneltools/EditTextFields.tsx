@@ -6,12 +6,10 @@ import {
   updateModalPostURL,
 } from 'redux/slices/modal'
 import { shallowEqual } from 'react-redux'
-import { AiOutlineLink } from 'react-icons/ai'
-import { BsSignpost } from 'react-icons/bs'
 
 //panel components
 import { InputText } from 'components/panelComponents'
-import { linkParser, LinkParserType } from 'lib/utils'
+import { LinkParserType } from 'lib/utils'
 import InputLink from 'components/panelComponents/InputLink'
 
 export default function EditTextFields() {

@@ -1,7 +1,5 @@
 import '@testing-library/jest-dom'
 import { renderWithProviders } from 'jest-utils/renderWithProviders'
-import { setupStore } from 'redux/store'
-import Home from 'pages/index'
 import { ModalInitialState } from 'redux/slices/modal'
 import Header from 'components/Header'
 

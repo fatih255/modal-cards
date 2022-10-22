@@ -1,7 +1,6 @@
 import React from 'react'
 import type { NextPage } from 'next'
 import { useAppSelector } from 'redux/hooks'
-import { conditionalRender } from 'lib/utils'
 import { shallowEqual } from 'react-redux'
 //components
 import Button from 'components/Button'
