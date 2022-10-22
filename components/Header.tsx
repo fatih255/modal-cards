@@ -1,6 +1,6 @@
 import React from 'react'
-import Logo from 'icons/logo.svg'
-import DropdownIcon from 'icons/dropdown.svg'
+import Logo from 'public/icons/logo.svg'
+import DropdownIcon from 'public/icons/dropdown.svg'
 import Button from './Button'
 import Flexing from './Flexing'
 import { scrollStep } from 'lib/utils'
@@ -11,7 +11,6 @@ export default function Header() {
   const signInHandler = () => {
     scrollStep('1')
   }
-
   return (
     <Flexing>
       <div className='flex justify-between items-stretch py-6'>

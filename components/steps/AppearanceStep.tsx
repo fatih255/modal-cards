@@ -10,7 +10,6 @@ import {
 } from 'components/paneltools'
 
 function AppearanceStep() {
-
   return (
     <>
       <div className='dosticky'>

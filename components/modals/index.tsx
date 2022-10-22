@@ -20,5 +20,5 @@ export {
   InstallLocalNowModal,
   SecurityCodeModal,
   TheFileIsOnItsWayModal,
-  JoinOurMailListModal
+  JoinOurMailListModal,
 }

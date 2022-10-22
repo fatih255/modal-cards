@@ -14,7 +14,6 @@ import SettingsAndCodeStep from './steps/SettingsAndCodeStep'
 import TargetingRulesStep from './steps/TargetingRulesStep'
 import centerScroll from 'lib/centerScroll'
 
-
 export default React.memo(Panel)
 
 export type PanelProps = {
@@ -22,12 +21,11 @@ export type PanelProps = {
 }
 
 function Panel({ selectedModalName }: PanelProps) {
-
   //when selectedmodal first render props scrolling
   const EffectRanCounter = useRef<number>(0)
   useEffect(() => {
     if (EffectRanCounter.current > 0) {
-      console.log("rr")
+      console.log('rr')
       makeStickyContainer(
         '.dosticky',
         'white',
@@ -41,8 +39,8 @@ function Panel({ selectedModalName }: PanelProps) {
       })
       centerScroll({
         selector: '.preview-outer',
-        behavior: "auto",
-        condition: 'ifnotcentered'
+        behavior: 'auto',
+        condition: 'ifnotcentered',
       })
       scrollStep('2')
     }

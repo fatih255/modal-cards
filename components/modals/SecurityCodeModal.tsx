@@ -31,7 +31,6 @@ export default function SecurityCodeModal({
           size='modal-default'
           text={texts[4]}
         />
-
       </div>
     </WithModalLayout>
   )

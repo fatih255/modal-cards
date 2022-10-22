@@ -26,8 +26,8 @@ export default function modalCard({ html, settings }: Props) {
   head.appendChild(link)
 
   type formDataType = {
-    selectedRadioButtonValue?: { name: string, value: string | null },
-    textFields?: { name: string, value: string }[]
+    selectedRadioButtonValue?: { name: string; value: string | null }
+    textFields?: { name: string; value: string }[]
   }
 
   let formData: formDataType = {}
@@ -74,9 +74,7 @@ export default function modalCard({ html, settings }: Props) {
           if (haveWebHookPostAction) {
             closeModalAction()
           }
-
         })
-
       })
     }
 
@@ -84,13 +82,15 @@ export default function modalCard({ html, settings }: Props) {
     const radioButtons = document.querySelectorAll('[data-radio-value]')
 
     if (radioButtons.length > 0) {
-
       radioButtons.forEach((radio) => {
-        const defaultSelected = radio.querySelector(".selected-radio")
+        const defaultSelected = radio.querySelector('.selected-radio')
         if (defaultSelected) {
           formData = {
             ...formData,
-            selectedRadioButtonValue: { name: "selected-radio", value: radio.getAttribute("data-radio-value") }
+            selectedRadioButtonValue: {
+              name: 'selected-radio',
+              value: radio.getAttribute('data-radio-value'),
+            },
           }
         }
       })
@@ -98,43 +98,47 @@ export default function modalCard({ html, settings }: Props) {
       //for form submissions
       radioButtons.forEach((radio) => {
         radio.addEventListener('click', () => {
-
-          const radioEye = radio.querySelector(".radio-eye")
-          const previousSelected = document.querySelector(".selected-radio")
+          const radioEye = radio.querySelector('.radio-eye')
+          const previousSelected = document.querySelector('.selected-radio')
           if (previousSelected) {
-            previousSelected.classList.remove("selected-radio")
-            radioEye?.classList.remove("scale-[.4]")
+            previousSelected.classList.remove('selected-radio')
+            radioEye?.classList.remove('scale-[.4]')
           }
 
           if (!radio.firstChild) return
 
           const radioCircle = radio.firstChild as HTMLDivElement
 
-          if (!radioCircle.classList.contains("selected-radio")) {
-            (radio.firstChild as HTMLDivElement).classList.add("selected-radio");
-            radioEye?.classList.add("scale-[.4]")
+          if (!radioCircle.classList.contains('selected-radio')) {
+            ;(radio.firstChild as HTMLDivElement).classList.add(
+              'selected-radio',
+            )
+            radioEye?.classList.add('scale-[.4]')
 
             formData = {
               ...formData,
-              selectedRadioButtonValue: { name: "selected-radio", value: radio.getAttribute("data-radio-value") }
+              selectedRadioButtonValue: {
+                name: 'selected-radio',
+                value: radio.getAttribute('data-radio-value'),
+              },
             }
           }
-        }
-        )
+        })
       })
     }
     //for form submissions
     function getTextFields() {
       const textInputs = document.querySelectorAll('[data-text]')
       if (textInputs.length > 0) {
-        textInputs.forEach(textInput => {
+        textInputs.forEach((textInput) => {
           const target = textInput as HTMLInputElement
-          formData['textFields'] = [...formData.textFields ?? [], { name: target.placeholder, value: target.value }]
-
+          formData['textFields'] = [
+            ...(formData.textFields ?? []),
+            { name: target.placeholder, value: target.value },
+          ]
         })
       }
     }
-
 
     const modalElement = document.getElementById('layout') as HTMLElement
     if (!modalElement) return
@@ -147,27 +151,22 @@ export default function modalCard({ html, settings }: Props) {
     let modalOpenedContidions = []
     let isModalOpened = sessionStorage.getItem('modalopened')
 
-
     type webHookDataType = {
-      clickedButtons: string[]  //get button innerText
+      clickedButtons: string[] //get button innerText
       browserLanguage: readonly string[]
       browserName: string
       operatingSystem: string
       deviceType: string
       dateTime: string
       formData?: {}
-
     }
     let webHookData: webHookDataType = {
       dateTime: '', // get date when send request - new Date(Date.now())
-      browserLanguage: navigator.languages.filter(lang => lang.length > 2),
+      browserLanguage: navigator.languages.filter((lang) => lang.length > 2),
       browserName: getBrowserName(),
       operatingSystem: getOperatingSystem(),
       deviceType: getDeviceType(),
       clickedButtons: [],
-
-
-
     }
     // 1.Condition:  if modal is opened this session dont show again
     // 2.Condition:  if have traffic source setting check is have refferrer is same traffic source that entered input if not dont show modal
@@ -179,7 +178,9 @@ export default function modalCard({ html, settings }: Props) {
     )
     modalOpenedContidions.push(
       !settings.browserLanguages ||
-      settings.browserLanguages.some(lang => navigator.languages.includes(lang))
+        settings.browserLanguages.some((lang) =>
+          navigator.languages.includes(lang),
+        ),
     )
 
     if (modalOpenedContidions.every((v) => v)) {
@@ -207,15 +208,17 @@ export default function modalCard({ html, settings }: Props) {
               document.addEventListener('mouseout', exitIntentTargetting)
             break
           case 'sendClickData':
-            ModalCloseEffects.push(() => webHookData.clickedButtons = clickedButtons)
+            ModalCloseEffects.push(
+              () => (webHookData.clickedButtons = clickedButtons),
+            )
             break
           case 'sendFormSubmission':
-            ModalCloseEffects.push(() => webHookData.formData = formData)
+            ModalCloseEffects.push(() => (webHookData.formData = formData))
             break
           case 'webHookUrl':
             ModalCloseEffects.push(
               () => getTextFields(),
-              () => webHookData.dateTime = new Date(Date.now()).toString(),
+              () => (webHookData.dateTime = new Date(Date.now()).toString()),
             )
             ModalCloseSendDataEffects.push(() => sendDataToWebHook())
             break
@@ -258,7 +261,10 @@ export default function modalCard({ html, settings }: Props) {
     function sendDataToWebHook() {
       if (!settings.webHookUrl) return
 
-      fetch(settings.webHookUrl, { method: 'POST', body: JSON.stringify(webHookData) })
+      fetch(settings.webHookUrl, {
+        method: 'POST',
+        body: JSON.stringify(webHookData),
+      })
         .then((response) => response.json())
         .then((data) => console.log(data))
     }
@@ -278,9 +284,7 @@ export default function modalCard({ html, settings }: Props) {
       modalElement.classList.add('close')
 
       if (useSideEffects) {
-
         ModalCloseEffects.forEach((code) => code())
-
 
         ModalCloseSendDataEffects.forEach((code) => code())
         // console.log(webHookData)

@@ -10,13 +10,7 @@ export type ModalRadiosProps = {
 
 export default React.memo(ModalRadios)
 
-function ModalRadios({
-  items,
-  colors,
-  returnedIndex,
-}: ModalRadiosProps) {
-
-
+function ModalRadios({ items, colors, returnedIndex }: ModalRadiosProps) {
   const [selectedIndex, setSelectedIndex] = useState<null | number>(null)
 
   const selectHandler = (index: number) => {
@@ -34,7 +28,7 @@ function ModalRadios({
             data-radio-value={value}
             className={cn(
               'trans-300 cursor-pointer hover:opacity-100 group  flex gap-[10.5px] justify-center items-center',
-              { 'opacity-[.78]': selectedIndex !== index }
+              { 'opacity-[.78]': selectedIndex !== index },
             )}>
             <div
               className={cn(

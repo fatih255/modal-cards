@@ -18,7 +18,6 @@ export default function TheFileIsOnItsWayModal({
       <p className='description '>{texts[1]}</p>
       <div className='flex gap-3 w-full items-stretch flex-wrap'>
         <Button
-          
           className={`${colors.bg} flex-1`}
           size='modal-default'
           text={texts[2]}

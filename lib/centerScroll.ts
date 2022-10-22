@@ -3,7 +3,11 @@ type Props = {
   condition?: 'ifnotcentered'
   behavior?: ScrollBehavior
 }
-export default function centerScroll({ selector, condition = undefined, behavior = "smooth" }: Props) {
+export default function centerScroll({
+  selector,
+  condition = undefined,
+  behavior = 'smooth',
+}: Props) {
   const element = document.querySelector(selector) as HTMLElement
 
   let conditions = true

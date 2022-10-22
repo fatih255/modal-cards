@@ -20,6 +20,12 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", ".storybook", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    ".storybook",
+    "**/*.ts",
+    "**/*.tsx",
+    "__mocks__/svg.js"
+  ],
   "exclude": ["node_modules"]
 }

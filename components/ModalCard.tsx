@@ -14,7 +14,6 @@ export type ModalCardProps = {
 export default function ModalCard({ name, thumbnail }: ModalCardProps) {
   const dispatch = useAppDispatch()
 
-
   const onClickHandler = (name: string) => {
     // choose template
     dispatch(selectModal(name as ModalAlias))

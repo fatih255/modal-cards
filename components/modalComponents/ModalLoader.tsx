@@ -14,7 +14,6 @@ export type ModalProps = {
 }
 
 function ModalLoader({ selectedModalName }: ModalLoaderProps) {
-
   const modalProps = useAppSelector(
     (state) =>
       Object({

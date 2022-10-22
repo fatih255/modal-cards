@@ -5,9 +5,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .default {
-
   @apply absolute w-full h-max bg-white flex flex-col gap-8 shadow-2xl rounded-lg overflow-hidden text-center;
 
   &.open {
@@ -152,14 +150,9 @@
 
 // select colors
 // call colors with modal-bg-color-{$colorid} and modal-text-color-{$colorid}
-$colors: '1'#7d4aea,
-'2'#000000,
-'3'#f37c34,
-'4'#777777,
-'5'#ffffff;
+$colors: '1' #7d4aea, '2' #000000, '3' #f37c34, '4' #777777, '5' #ffffff;
 
-@each $id,
-$hex in $colors {
+@each $id, $hex in $colors {
   .modal-bg-color-#{$id} {
     &:not(img, .radio) {
       background-color: $hex;
@@ -234,7 +227,7 @@ $hex in $colors {
 }
 
 .trans-300 {
-  @apply transition-all duration-100
+  @apply transition-all duration-100;
 }
 
 .radio {

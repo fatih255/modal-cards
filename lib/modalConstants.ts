@@ -1,7 +1,6 @@
 import { ModalAlias } from 'components/modals'
 import { ModalType } from 'redux/slices/modal'
 
-
 /*
 text fields extra actions  @Post @Link
 
@@ -106,7 +105,7 @@ export const modalConstants = new Map([
           `The file is on it's way`,
           'You’ll get an notified when the receiver has opened the email.',
           'Go to dashboard',
-        ]
+        ],
       },
       layout: {
         className: 'items-center justify-start',
@@ -134,7 +133,6 @@ export const modalConstants = new Map([
       },
     },
   ],
-
 ])
 
 export const getModalContants = (modalName: ModalAlias) => {

@@ -17,13 +17,12 @@ export default function generateCode(): string {
 
   //for prevent user agent browser default class
   const preflightDiv = document.createElement('div')
-  preflightDiv.classList.add("popupsmart-preflight")
+  preflightDiv.classList.add('popupsmart-preflight')
 
   //  1.Stage: clone current modal layout
   let modalElement = document.getElementById('layout')
   if (!modalElement) return ''
-  let modalElement_cloned = modalElement.cloneNode(true) as HTMLElement;
-
+  let modalElement_cloned = modalElement.cloneNode(true) as HTMLElement
 
   //  2.Stage: check check whether there is a targeting  visitor device,
   //  if there is a targeted visitor device add a responsive class
@@ -41,8 +40,7 @@ export default function generateCode(): string {
     .querySelectorAll('img')
     .forEach((img) => (img.src = img.src))
 
-
-    preflightDiv.appendChild(modalElement_cloned)
+  preflightDiv.appendChild(modalElement_cloned)
   //4.Stage: write event listeners and webhook process
   // Final Stage: create code between script tags
   const generatedCode = `<script src="${location.origin}/script.js"></script>

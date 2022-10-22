@@ -49,7 +49,7 @@ function InputSelect({
 
   const clearAllHandler = () => {
     document.querySelectorAll('.check-box:checked').forEach((item) => {
-      ; (item as HTMLInputElement).checked = false
+      ;(item as HTMLInputElement).checked = false
     })
     setCheckedItems([])
   }
