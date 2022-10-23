@@ -6,7 +6,6 @@ import ModalLoader, {
   ModalLoaderProps,
 } from 'components/modalComponents/ModalLoader'
 import { useAppDispatch } from 'redux/hooks'
-import { useEffect } from '@storybook/addons'
 
 const selectedModalConstants = getModalContants(ModalAlias.SecurityCodeModal)
 const initialState = {

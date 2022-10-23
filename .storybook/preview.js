@@ -9,10 +9,10 @@ export const parameters = {
 
 export const decorators = [
   (Story) => (
-    <div style={{ margin: '3em' }}>
+    <html style={{ margin: '3em' }}>
       <Provider store={store}>
         <Story />
       </Provider>
-    </div>
+    </html>
   ),
 ]
