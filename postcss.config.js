@@ -1,9 +1,12 @@
-import tailwindcss from './tailwind.config.js'
-export const plugins = {
-  cssnano: {},
-  tailwindcss:
-    process.env.NODE_ENV === 'parsecss'
-      ? { ...tailwindcss, important: true, corePlugins: { preflight: false } }
+/* eslint-disable @typescript-eslint/no-var-requires */
+
+const tailwindcss = require('./tailwind.config.js')
+
+module.exports = {
+  plugins: {
+    tailwindcss: process.env.NODE_ENV === 'parsecss'
+      ? { ...tailwindcss, important: 'popupsmart-prefix', corePlugins: { preflight: false } }
       : {},
-  autoprefixer: {},
+    autoprefixer: {},
+  },
 }
