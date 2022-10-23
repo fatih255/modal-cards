@@ -20,6 +20,12 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "jest-utils",".storybook", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "jest-utils",
+    ".storybook",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
   "exclude": ["node_modules"]
 }

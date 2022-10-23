@@ -1,3 +1,8 @@
 
 for non global preflight
 stylus scoped-preflight.stylus -o scoped-preflight.css
+
+
+//next-env.d.ts
+ This file ensures Next.js types are picked up by the TypeScript compiler. 
+

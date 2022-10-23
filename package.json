@@ -16,6 +16,7 @@
     "format:fix": "prettier --write --ignore-path .gitignore .",
     "test": "jest --watch",
     "lint": "next lint",
+    "modaljs":"webpack",
     "modalcss": "sass ./styles/modal.scss ./public/styles/modal.css  --no-source-map --style=compressed && cross-env NODE_ENV=parsecss postcss  ./public/styles/modal.css -o ./public/styles/modal.css  --no-map --verbose"
   },
   "dependencies": {

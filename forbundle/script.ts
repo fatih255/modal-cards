@@ -178,9 +178,9 @@ export default function modalCard({ html, settings }: Props) {
     )
     modalOpenedContidions.push(
       !settings.browserLanguages ||
-      settings.browserLanguages.some((lang) =>
-        navigator.languages.includes(lang),
-      ),
+        settings.browserLanguages.some((lang) =>
+          navigator.languages.includes(lang),
+        ),
     )
 
     if (modalOpenedContidions.every((v) => v)) {

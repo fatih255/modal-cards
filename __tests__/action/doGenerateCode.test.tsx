@@ -60,14 +60,12 @@ describe('Generate Code Process Test', () => {
   test('generate code', () => {
     const getYourCodeButton = getByText(app.container, /Get your Code/i)
     if (getYourCodeButton) {
-
       act(() => {
         getYourCodeButton.click()
       })
 
       // generator component was whether visible
       expect(getByTestId(app.container, 'code-box')).not.toHaveClass('hidden')
-
     } else {
       throw new Error('getYourCodeButton not found')
     }
@@ -79,23 +77,16 @@ describe('Generate Code Process Test', () => {
         clipboard: {
           writeText: () => {},
         },
-      });
-      jest.spyOn(navigator.clipboard, "writeText");
+      })
+      jest.spyOn(navigator.clipboard, 'writeText')
       copyTheCodeButton.click()
-      expect(navigator.clipboard.writeText).toBeCalledTimes(1);
-
-
+      expect(navigator.clipboard.writeText).toBeCalledTimes(1)
     } else {
       throw new Error('copyTheCodeButton not found')
     }
   })
 
-
-
-
   function selectModal(modalNumber: number) {
-
-
     // selectable modal button elements
     const selectModalButtons = app.container.querySelectorAll(
       '#pagination-modals > div > div button',
@@ -130,5 +121,3 @@ describe('Generate Code Process Test', () => {
     }
   }
 })
-
-

@@ -36,7 +36,7 @@ export default function GenerateCode() {
         />
       </div>
       <div
-        data-testid="code-box"
+        data-testid='code-box'
         className={cn(
           { hidden: !(codeString.length > 0) },
           ' bg-[#333333] w-full rounded-lg border-[10px] border-b-[14px] border-[#333333]',
