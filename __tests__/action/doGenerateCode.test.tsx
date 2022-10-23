@@ -6,7 +6,7 @@ import { ModalInitialState } from 'redux/slices/modal'
 import { queryByDataStep, queryById } from 'jest-utils/customQueries';
 import { act } from 'react-dom/test-utils'
 import { getByText, waitFor } from '@testing-library/react'
-
+import { create } from 'jest-utils/reduxMiddleware'
 //components
 import Home from 'pages'
 import Header from 'components/Header'
@@ -65,7 +65,7 @@ describe('Generate Code Process Test', () => {
 
     test('select modal 2', () => {
         expect(selectedModal).toBeDefined()
-      
+
     })
 
     test('generate code', () => {
@@ -83,6 +83,11 @@ describe('Generate Code Process Test', () => {
 
 
     function selectModal(modalNumber: number) {
+
+        const { store, invoke } = create()
+ 
+
+       
         // selectable modal button elements
         const selectModalButtons = app.container.querySelectorAll("#pagination-modals > div > div button")
 
@@ -90,13 +95,15 @@ describe('Generate Code Process Test', () => {
             const willClickedButton = selectModalButtons[modalNumber] as HTMLButtonElement
             if (selectModalButtons) {
 
-                jest.useFakeTimers();
+
                 // this below action causes rendering panel component
                 let selectedModalName = '';
                 act(() => {
                     willClickedButton.click();
                     selectedModalName = app.store.getState().modal.selectedModalName
                 });
+                expect(store.dispatch).toHaveBeenCalledWith('selectModal')
+                expect(store.getState).toHaveBeenCalled()
                 //redux state have selected modal ??
                 expect(selectedModalName).toBeDefined();
                 //scrolled when selected modal
