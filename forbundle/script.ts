@@ -15,9 +15,9 @@ type Props = {
 }
 
 export default function modalCard({ html, settings }: Props) {
-  var cssId = 'modalCardCSS'
-  var head = document.getElementsByTagName('head')[0]
-  var link = document.createElement('link')
+  const cssId = 'modalCardCSS'
+  const head = document.getElementsByTagName('head')[0]
+  const link = document.createElement('link')
   link.id = cssId
   link.rel = 'stylesheet'
   link.type = 'text/css'
@@ -110,7 +110,7 @@ export default function modalCard({ html, settings }: Props) {
           const radioCircle = radio.firstChild as HTMLDivElement
 
           if (!radioCircle.classList.contains('selected-radio')) {
-            ;(radio.firstChild as HTMLDivElement).classList.add(
+            (radio.firstChild as HTMLDivElement).classList.add(
               'selected-radio',
             )
             radioEye?.classList.add('scale-[.4]')
@@ -145,11 +145,11 @@ export default function modalCard({ html, settings }: Props) {
 
     // fixed modal position and opacity 0
     modalElement.classList.add('for-generated')
-    let ModalCloseSendDataEffects: Function[] = []
-    let ModalCloseEffects: Function[] = [] // this array use when settings have effects during the closing
+    const ModalCloseSendDataEffects: (() => void)[] = []
+    const ModalCloseEffects: (() => void)[] = [] // this array use when settings have effects during the closing
     let timer: number | NodeJS.Timeout | undefined
-    let modalOpenedContidions = []
-    let isModalOpened = sessionStorage.getItem('modalopened')
+    const modalOpenedContidions = []
+    const isModalOpened = sessionStorage.getItem('modalopened')
 
     type webHookDataType = {
       clickedButtons: string[] //get button innerText
@@ -158,9 +158,9 @@ export default function modalCard({ html, settings }: Props) {
       operatingSystem: string
       deviceType: string
       dateTime: string
-      formData?: {}
+      formData?: object
     }
-    let webHookData: webHookDataType = {
+    const webHookData: webHookDataType = {
       dateTime: '', // get date when send request - new Date(Date.now())
       browserLanguage: navigator.languages.filter((lang) => lang.length > 2),
       browserName: getBrowserName(),
@@ -178,9 +178,9 @@ export default function modalCard({ html, settings }: Props) {
     )
     modalOpenedContidions.push(
       !settings.browserLanguages ||
-        settings.browserLanguages.some((lang) =>
-          navigator.languages.includes(lang),
-        ),
+      settings.browserLanguages.some((lang) =>
+        navigator.languages.includes(lang),
+      ),
     )
 
     if (modalOpenedContidions.every((v) => v)) {
@@ -233,11 +233,11 @@ export default function modalCard({ html, settings }: Props) {
 
     //percentage scrolling show
     function scrollEventOnDocument() {
-      let scrollTop = window.scrollY
-      let docHeight = document.documentElement.offsetHeight
-      let winHeight = window.innerHeight
-      let scrollPercent = scrollTop / (docHeight - winHeight)
-      let scrollPercentRounded = Math.round(scrollPercent * 100)
+      const scrollTop = window.scrollY
+      const docHeight = document.documentElement.offsetHeight
+      const winHeight = window.innerHeight
+      const scrollPercent = scrollTop / (docHeight - winHeight)
+      const scrollPercentRounded = Math.round(scrollPercent * 100)
       // if(scrollPercentRounded < Number(value))
       if (scrollPercentRounded === Number(settings.afterPercentageScroll))
         openModalAction()
@@ -250,6 +250,7 @@ export default function modalCard({ html, settings }: Props) {
 
     //generate data functions
 
+    /*
     function countClick(e: MouseEvent) {
       const target = e.target as HTMLButtonElement
       if (!target) return
@@ -257,6 +258,7 @@ export default function modalCard({ html, settings }: Props) {
       webHookData.clickedButtons.push(target.innerText)
       target.removeEventListener('click', countClick)
     }
+     */
     //send data to webhook
     function sendDataToWebHook() {
       if (!settings.webHookUrl) return

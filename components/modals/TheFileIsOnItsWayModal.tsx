@@ -1,9 +1,6 @@
 import React from 'react'
 import Button from 'components/Button'
-import {
-  WithModalLayout,
-  ModalLogo,
-} from 'components/modalComponents'
+import { WithModalLayout, ModalLogo } from 'components/modalComponents'
 import { ModalProps } from 'components/modalComponents/ModalLoader'
 
 export default function TheFileIsOnItsWayModal({

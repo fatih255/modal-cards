@@ -12,4 +12,3 @@ it('render correctly Home Page ', async () => {
   expect(component).toBeDefined()
   expect(component.store.getState()).toBeDefined()
 })
-

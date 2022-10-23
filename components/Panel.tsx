@@ -22,7 +22,7 @@ export type PanelProps = {
 
 function Panel({ selectedModalName }: PanelProps) {
   //when selectedmodal first render props scrolling
-  const EffectRan = useRef<boolean>(false);
+  const EffectRan = useRef<boolean>(false)
   useEffect(() => {
     if (!EffectRan.current) {
       makeStickyContainer(

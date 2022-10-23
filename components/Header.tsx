@@ -8,7 +8,6 @@ import { scrollStep } from 'lib/utils'
 export type HeaderProps = object
 
 export default function Header() {
-
   const signInHandler = () => {
     console.log('signInHandler')
   }
@@ -49,7 +48,7 @@ export default function Header() {
             theme='light'
           />
           <Button
-            id="try-for-free-btn-1"
+            id='try-for-free-btn-1'
             onClick={tryForFreeHandler}
             text='Try for free'
             size='small'

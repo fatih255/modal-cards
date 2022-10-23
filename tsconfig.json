@@ -11,7 +11,7 @@
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": false,
+    "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -20,12 +20,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": [
-    "next-env.d.ts",
-    ".storybook",
-    "**/*.ts",
-    "**/*.tsx",
-    "__mocks__/svg.js"
-  ],
+  "include": ["next-env.d.ts", "jest-utils",".storybook", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

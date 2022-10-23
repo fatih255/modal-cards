@@ -41,8 +41,9 @@ export default function ModalLogo({ transparentBg = false }: modalLogoProps) {
                 )}>
                 <img
                   alt='logo'
-                  className={`logo z-20 ${!transparentBg ? 'p-[30%]' : ''
-                    } aspect-square ${colors.bg}`}
+                  className={`logo z-20 ${
+                    !transparentBg ? 'p-[30%]' : ''
+                  } aspect-square ${colors.bg}`}
                   src={`${logo}`}
                 />
                 {!transparentBg && (

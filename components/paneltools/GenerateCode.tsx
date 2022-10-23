@@ -14,9 +14,7 @@ export default function GenerateCode() {
   const getCodeHandler = () => {
     setCodeString(generateCode())
   }
-  const copyCodeHandler = (
-    e: React.MouseEvent<HTMLElement, MouseEvent>,
-  ) => {
+  const copyCodeHandler = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     navigator.clipboard.writeText(codeString)
     const btnElement = e.target as HTMLButtonElement
     btnElement.innerText = 'Copied Generated Code'

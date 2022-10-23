@@ -1,8 +1,13 @@
-import React from 'react';
- 
-const SvgrMock = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
+import React from 'react'
 
-SvgrMock.displayName = "SvgrIcon";
+const SvgrMock = React.forwardRef((props, ref) => (
+  <span
+    ref={ref}
+    {...props}
+  />
+))
 
-export const ReactComponent = SvgrMock;
-export default SvgrMock;
+SvgrMock.displayName = 'SvgrIcon'
+
+export const ReactComponent = SvgrMock
+export default SvgrMock
