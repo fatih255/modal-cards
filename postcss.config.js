@@ -8,7 +8,7 @@ module.exports = {
       process.env.NODE_ENV === 'parsecss'
         ? {
             ...tailwindcss,
-            important: '.popupsmart-prefix',
+            important: '.popupsmart-preflight',
             corePlugins: { preflight: false },
           }
         : {},
