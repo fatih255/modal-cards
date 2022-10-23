@@ -9,7 +9,7 @@ import { store } from 'redux/store'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
 
   return (
     <React.StrictMode>
@@ -24,4 +24,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   )
 }
 
-export default MyApp
+export default App

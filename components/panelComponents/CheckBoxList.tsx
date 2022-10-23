@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import React, { useState } from 'react'
 
 export type CheckBoxListProps = {
   items: { text: string; value: string; checked?: boolean }[]
-  returnedValue?: (data: unknown) => void
+  returnedValue?: (data: any) => void
 }
 
 export default function CheckBoxList({

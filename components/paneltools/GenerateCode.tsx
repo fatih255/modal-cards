@@ -15,7 +15,7 @@ export default function GenerateCode() {
     setCodeString(generateCode())
   }
   const copyCodeHandler = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
   ) => {
     navigator.clipboard.writeText(codeString)
     const btnElement = e.target as HTMLButtonElement

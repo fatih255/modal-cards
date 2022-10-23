@@ -8,9 +8,15 @@ import { scrollStep } from 'lib/utils'
 export type HeaderProps = object
 
 export default function Header() {
+
   const signInHandler = () => {
+    console.log('signInHandler')
+  }
+
+  const tryForFreeHandler = () => {
     scrollStep('1')
   }
+
   return (
     <Flexing>
       <div className='flex justify-between items-stretch py-6'>
@@ -43,7 +49,8 @@ export default function Header() {
             theme='light'
           />
           <Button
-            onClick={signInHandler}
+            id="try-for-free-btn-1"
+            onClick={tryForFreeHandler}
             text='Try for free'
             size='small'
           />

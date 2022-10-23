@@ -6,7 +6,8 @@ export type ButtonProps = {
   size?: 'small' | 'large' | 'medium' | 'modal-default'
   shadow?: boolean
   className?: string
-} & React.DOMAttributes<HTMLButtonElement>
+  id?: string
+} & React.DOMAttributes<HTMLElement>
 
 export default function Button({
   text,

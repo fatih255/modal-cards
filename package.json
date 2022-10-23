@@ -12,7 +12,7 @@
     "format": "prettier --check --ignore-path .gitignore .",
     "format:fix": "prettier --write --ignore-path .gitignore .",
     "test": "jest --watch",
-    "lint": "next lint --fix",
+    "lint": "next lint",
     "modalcss": "sass ./styles/modal.scss ./public/styles/modal.css  --no-source-map --style=compressed && cross-env NODE_ENV=parsecss postcss  ./public/styles/modal.css -o ./public/styles/modal.css  --no-map --verbose"
   },
   "dependencies": {
@@ -47,6 +47,7 @@
     "@svgr/webpack": "^6.4.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
+    "@types/enzyme": "^3.10.12",
     "@types/jest": "^29.2.0",
     "@types/node": "18.8.3",
     "@types/react": "18.0.21",

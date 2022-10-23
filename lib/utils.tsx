@@ -3,7 +3,7 @@ import colors from 'tailwindcss/colors'
 
 const twColors = colors
 
-function scrollStep(step: string) {
+async function scrollStep(step: string) {
   const el = document.querySelector(`[data-step="${step}"]`) as HTMLElement
   if (!el) return
   el.scrollIntoView({ behavior: 'smooth' })
