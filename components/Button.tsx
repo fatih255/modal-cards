@@ -7,7 +7,7 @@ export type ButtonProps = {
   shadow?: boolean
   className?: string
   id?: string
-} & React.DOMAttributes<HTMLElement>
+} & React.DOMAttributes<HTMLButtonElement>
 
 export default function Button({
   text,
