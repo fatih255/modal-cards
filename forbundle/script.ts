@@ -110,7 +110,7 @@ export default function modalCard({ html, settings }: Props) {
           const radioCircle = radio.firstChild as HTMLDivElement
 
           if (!radioCircle.classList.contains('selected-radio')) {
-            (radio.firstChild as HTMLDivElement).classList.add(
+            ;(radio.firstChild as HTMLDivElement).classList.add(
               'selected-radio',
             )
             radioEye?.classList.add('scale-[.4]')
