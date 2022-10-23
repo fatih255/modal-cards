@@ -20,7 +20,6 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
-    "addon-redux": "^2.0.11",
     "classnames": "^2.3.2",
     "next": "^12.3.1",
     "react": "18.2.0",
@@ -38,6 +37,7 @@
     "@babel/preset-typescript": "^7.18.6",
     "@csstools/postcss-sass": "^5.0.1",
     "@next/eslint-plugin-next": "^12.3.1",
+    "addon-redux": "^2.0.11",
     "@storybook/addon-actions": "^6.4.19",
     "@storybook/addon-essentials": "^6.5.12",
     "@storybook/addon-interactions": "^6.4.19",

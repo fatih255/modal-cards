@@ -36,13 +36,14 @@ function Panel({ selectedModalName }: PanelProps) {
         selectors: { from: '.panel', to: '.preview-inner' },
         divideHeight: 2,
       })
-      centerScroll({
-        selector: '.preview-outer',
-        behavior: 'auto',
-        condition: 'ifnotcentered',
-      })
-      scrollStep('2')
+    
     }
+    centerScroll({
+      selector: '.preview-outer',
+      behavior: 'auto',
+      condition: 'ifnotcentered',
+    })
+    scrollStep('2')
     return () => {
       EffectRan.current = true
     }
@@ -62,6 +63,7 @@ function Panel({ selectedModalName }: PanelProps) {
         </div>
         {/* Modal Preview Zone */}
         <div
+          data-testid="modal-preview-zone"
           className={`dosticky preview-outer scrollbar-style-1 bold-scroll flex-[70%] flex self-start min-h-[96vh] justify-center relative rounded-lg overflow-y-scroll bg-gray-50`}>
           <div
             className='preview-inner'

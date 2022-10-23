@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import '@testing-library/jest-dom'
@@ -5,15 +6,12 @@ import { renderWithProviders } from 'jest-utils/renderWithProviders'
 import { ModalInitialState } from 'redux/slices/modal'
 import { queryByDataStep, queryById } from 'jest-utils/customQueries'
 import { act } from 'react-dom/test-utils'
-import { getByText, waitFor } from '@testing-library/react'
-import { create } from 'jest-utils/reduxMiddleware'
+import { getByText, getByTestId } from '@testing-library/react'
+
 //components
 import Home from 'pages'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
-import { PrettyFormatOptions } from 'pretty-format'
-import { ReactElement, JSXElementConstructor } from 'react'
-
 // check for scrollIntoView event whether fired
 const scrollIntoViewMock = jest.fn()
 window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock
@@ -56,19 +54,47 @@ describe('Generate Code Process Test', () => {
 
   test('select modal 2', () => {
     expect(selectedModal).toBeDefined()
+    expect(getByTestId(app.container, 'modal-preview-zone')).toBeDefined()
   })
 
   test('generate code', () => {
     const getYourCodeButton = getByText(app.container, /Get your Code/i)
     if (getYourCodeButton) {
-      getYourCodeButton.click()
+
+      act(() => {
+        getYourCodeButton.click()
+      })
+
+      // generator component was whether visible
+      expect(getByTestId(app.container, 'code-box')).not.toHaveClass('hidden')
+
     } else {
       throw new Error('getYourCodeButton not found')
     }
   })
+  test('copy the code', () => {
+    const copyTheCodeButton = getByText(app.container, /Copy the code/i)
+    if (copyTheCodeButton) {
+      Object.assign(navigator, {
+        clipboard: {
+          writeText: () => {},
+        },
+      });
+      jest.spyOn(navigator.clipboard, "writeText");
+      copyTheCodeButton.click()
+      expect(navigator.clipboard.writeText).toBeCalledTimes(1);
+
+
+    } else {
+      throw new Error('copyTheCodeButton not found')
+    }
+  })
+
+
+
 
   function selectModal(modalNumber: number) {
-    const { store, invoke } = create()
+
 
     // selectable modal button elements
     const selectModalButtons = app.container.querySelectorAll(
@@ -104,3 +130,5 @@ describe('Generate Code Process Test', () => {
     }
   }
 })
+
+
