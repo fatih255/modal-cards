@@ -187,7 +187,6 @@ export default function modalCard({ html, settings }: Props) {
       // if not have any listener, show modal directly
       if (
         !settings.afterPercentageScroll &&
-        !settings.exitIntentTargetting &&
         !settings.afterXSeconds
       ) {
         openModalAction()
