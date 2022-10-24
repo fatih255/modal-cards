@@ -8,9 +8,9 @@ https://leafy-mermaid-eb53cb.netlify.app/
 - [x] UI with scss & tailwind
 - [x] State management with Context API / redux. No prop drilling
 - [x] Eslint
-- [ ] Prettier
+- [X] Prettier
 - [x] Should be deployed to vercel/netlify and URL should be providedin readme
-- [ ] Unit Testing with jest
+- [X] Unit Testing with jest (I have written 2 tests currently available.)
 
 - [x] Users enter the platform easily with a URL, no login, or nosign-up is required.
 - [x] In the first step users need to select a particular template amongdifferent template styles from the grid in order to skip to the nextstep,
@@ -27,9 +27,9 @@ https://leafy-mermaid-eb53cb.netlify.app/
 - [x] All behavior settings must be switched on/off with atoggle.
 - [x] Behavior settings should be working independently, i.e. ifthe user selects after 5 secs and after %50 scroll, thepopup should be triggered in either case.
 - [x] The frequency for the popups to appear must be preset. Allpopups appear once in every session and stop displaying afterusers click on the close button or submit any data to the popups.
-- [ ] (just i made SendClickData) In the final step users must be able to send the collected datafrom popups through Webhook. Form input variables, date andtime, browser language and name, operating system, device type(mobile or desktop) are required in the system variables takenfrom Webhook.
+- [X] In the final step users must be able to send the collected datafrom popups through Webhook. Form input variables, date andtime, browser language and name, operating system, device type(mobile or desktop) are required in the system variables takenfrom Webhook.
 - [x] You can create a Webhook endpoint with make.com to testit
-- [ ] Submission fields and click data names in the popups must be the same and they must be the default selected value if they are used in the popups.
+- [X] Submission fields and click data names in the popups must be the same and they must be the default selected value if they are used in the popups.
 - [x] Users should get the necessary assets to show modal in the UI
 - [x] HTML code to embed on the website. Modal div code withall components styled with a tailwind.
 - [x] The hosted script that will trigger modal on givenconditions○Selected trigger configurations should be given asparameters in that script.
