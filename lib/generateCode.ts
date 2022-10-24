@@ -28,13 +28,13 @@ export default function generateCode(): string {
   //  if there is a targeted visitor device add a responsive class
   if (activeSettingsValues.visitorDevice) {
     modalElement_cloned.classList.add(activeSettingsValues.visitorDevice)
-    modalElement_cloned.classList.add('for-generated')
-    modalElement_cloned.classList.contains('close') &&
-      modalElement_cloned.classList.remove('close')
-    modalElement_cloned.classList.contains('open') &&
-      modalElement_cloned.classList.remove('open')
   }
 
+  modalElement_cloned.classList.add('for-generated')
+  modalElement_cloned.classList.contains('close') &&
+    modalElement_cloned.classList.remove('close')
+  modalElement_cloned.classList.contains('open') &&
+    modalElement_cloned.classList.remove('open')
   //3.Stage: Add the hostname to the beginning of the image's source url string
   modalElement_cloned
     .querySelectorAll('img')

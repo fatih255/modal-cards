@@ -4,13 +4,14 @@ const tailwindcss = require('./tailwind.config.js')
 
 module.exports = {
   plugins: {
+    'tailwindcss/nesting': 'postcss-nested',
     tailwindcss:
       process.env.NODE_ENV === 'parsecss'
         ? {
-            ...tailwindcss,
-            important: '.popupsmart-preflight',
-            corePlugins: { preflight: false },
-          }
+          ...tailwindcss,
+          important: true,
+          corePlugins: { preflight: false },
+        }
         : {},
     autoprefixer: {},
   },

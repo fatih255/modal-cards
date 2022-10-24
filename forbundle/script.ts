@@ -1,4 +1,5 @@
 import { ModalAlias } from 'components/modals'
+import { isDesktop } from 'lib/deviceDetection'
 import getBrowserName from 'lib/getBrowserName'
 import getDeviceType from 'lib/getDeviceType'
 import getOperatingSystem from 'lib/getOperatingSystem'
@@ -21,7 +22,7 @@ export default function modalCard({ html, settings }: Props) {
   link.id = cssId
   link.rel = 'stylesheet'
   link.type = 'text/css'
-  link.href = `https://leafy-mermaid-eb53cb.netlify.app/styles/modal.css`
+  link.href = `http://localhost:3000/styles/modal.css`
   link.media = 'all'
   head.appendChild(link)
 
@@ -74,6 +75,12 @@ export default function modalCard({ html, settings }: Props) {
           if (haveWebHookPostAction) {
             closeModalAction()
           }
+
+          // if have post , redirect or webhook post action and have exitIntentTargetting setting remove listener
+          // prevent exit intent targeting effect when there is this actions 
+          if ((havePostURL || haveLinkURL || haveWebHookPostAction) && settings.exitIntentTargetting) {
+            document.documentElement.removeEventListener("mouseout", exitIntentTargetting)
+          }
         })
       })
     }
@@ -110,7 +117,7 @@ export default function modalCard({ html, settings }: Props) {
           const radioCircle = radio.firstChild as HTMLDivElement
 
           if (!radioCircle.classList.contains('selected-radio')) {
-            ;(radio.firstChild as HTMLDivElement).classList.add(
+            ; (radio.firstChild as HTMLDivElement).classList.add(
               'selected-radio',
             )
             radioEye?.classList.add('scale-[.4]')
@@ -178,9 +185,9 @@ export default function modalCard({ html, settings }: Props) {
     )
     modalOpenedContidions.push(
       !settings.browserLanguages ||
-        settings.browserLanguages.some((lang) =>
-          navigator.languages.includes(lang),
-        ),
+      settings.browserLanguages.some((lang) =>
+        navigator.languages.includes(lang),
+      ),
     )
 
     if (modalOpenedContidions.every((v) => v)) {
@@ -191,7 +198,6 @@ export default function modalCard({ html, settings }: Props) {
       ) {
         openModalAction()
       }
-
       Object.keys(settings).forEach((setting) => {
         switch (setting) {
           case 'afterPercentageScroll':
@@ -203,8 +209,8 @@ export default function modalCard({ html, settings }: Props) {
             }, Number(settings.afterXSeconds) * 1000)
             break
           case 'exitIntentTargetting':
-            if (typeof screen.orientation === 'undefined')
-              document.addEventListener('mouseout', exitIntentTargetting)
+            if (isDesktop)
+              document.documentElement.addEventListener('mouseout', exitIntentTargetting)
             break
           case 'sendClickData':
             ModalCloseEffects.push(
@@ -244,7 +250,10 @@ export default function modalCard({ html, settings }: Props) {
 
     //exit indent targeting show modal
     function exitIntentTargetting(e: MouseEvent) {
-      if (!e.relatedTarget) openModalAction()
+      if (!e.relatedTarget && modalElement.classList.contains("close")) {
+        openModalAction()
+        document.documentElement.removeEventListener('mouseout', exitIntentTargetting)
+      }
     }
 
     //generate data functions
@@ -274,6 +283,11 @@ export default function modalCard({ html, settings }: Props) {
 
     //trigger open modal animation
     function openModalAction() {
+
+      if (modalElement.classList.contains('close')) {
+        modalElement.classList.remove('close')
+      }
+
       modalElement.classList.add('open')
       sessionStorage.setItem('modalopened', 'true')
       removeAllEvents()
@@ -295,7 +309,6 @@ export default function modalCard({ html, settings }: Props) {
     // remove all event listeners
     function removeAllEvents() {
       window.removeEventListener('scroll', scrollEventOnDocument)
-      document.removeEventListener('mouseout', exitIntentTargetting)
       window.clearTimeout(timer)
     }
   }
